@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.mapper.BasicCategoryDetailMapper">
+  <resultMap id="BaseResultMap" type="com.heyue.model.BasicCategoryDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="entry_name" jdbcType="VARCHAR" property="entryName" />
+    <result column="project_code" jdbcType="VARCHAR" property="projectCode" />
+    <result column="engineering_stage" jdbcType="INTEGER" property="engineeringStage" />
+    <result column="construction_type" jdbcType="INTEGER" property="constructionType" />
+    <result column="cost_price" jdbcType="DOUBLE" property="costPrice" />
+    <result column="accounting_price" jdbcType="DOUBLE" property="accountingPrice" />
+    <result column="sales_price" jdbcType="DOUBLE" property="salesPrice" />
+    <result column="lowest_selling_price" jdbcType="DOUBLE" property="lowestSellingPrice" />
+    <result column="recommended_selling_price" jdbcType="DOUBLE" property="recommendedSellingPrice" />
+    <result column="contract_price" jdbcType="DOUBLE" property="contractPrice" />
+    <result column="main_unit" jdbcType="INTEGER" property="mainUnit" />
+    <result column="deputy_unit" jdbcType="INTEGER" property="deputyUnit" />
+    <result column="brand_id" jdbcType="BIGINT" property="brandId" />
+    <result column="model_id" jdbcType="BIGINT" property="modelId" />
+    <result column="specifications" jdbcType="BIGINT" property="specifications" />
+    <result column="color" jdbcType="BIGINT" property="color" />
+    <result column="formula" jdbcType="VARCHAR" property="formula" />
+    <result column="move_details" jdbcType="CHAR" property="moveDetails" />
+    <result column="shelf_status" jdbcType="CHAR" property="shelfStatus" />
+    <result column="remind" jdbcType="CHAR" property="remind" />
+    <result column="round_up" jdbcType="CHAR" property="roundUp" />
+    <result column="project_description" jdbcType="VARCHAR" property="projectDescription" />
+    <result column="pricing_instructions" jdbcType="VARCHAR" property="pricingInstructions" />
+    <result column="acceptance_criteria" jdbcType="VARCHAR" property="acceptanceCriteria" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.heyue.model.BasicCategoryDetail">
+    <result column="image" jdbcType="LONGVARBINARY" property="image" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, entry_name, project_code, engineering_stage, construction_type, cost_price, accounting_price, 
+    sales_price, lowest_selling_price, recommended_selling_price, contract_price, main_unit, 
+    deputy_unit, brand_id, model_id, specifications, color, formula, move_details, shelf_status, 
+    remind, round_up, project_description, pricing_instructions, acceptance_criteria
+  </sql>
+  <sql id="Blob_Column_List">
+    image
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.heyue.model.BasicCategoryDetailExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from basic_category_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.heyue.model.BasicCategoryDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from basic_category_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from basic_category_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from basic_category_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.heyue.model.BasicCategoryDetailExample">
+    delete from basic_category_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.heyue.model.BasicCategoryDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into basic_category_detail (entry_name, project_code, engineering_stage, 
+      construction_type, cost_price, accounting_price, 
+      sales_price, lowest_selling_price, recommended_selling_price, 
+      contract_price, main_unit, deputy_unit, 
+      brand_id, model_id, specifications, 
+      color, formula, move_details, 
+      shelf_status, remind, round_up, 
+      project_description, pricing_instructions, 
+      acceptance_criteria, image)
+    values (#{entryName,jdbcType=VARCHAR}, #{projectCode,jdbcType=VARCHAR}, #{engineeringStage,jdbcType=INTEGER}, 
+      #{constructionType,jdbcType=INTEGER}, #{costPrice,jdbcType=DOUBLE}, #{accountingPrice,jdbcType=DOUBLE}, 
+      #{salesPrice,jdbcType=DOUBLE}, #{lowestSellingPrice,jdbcType=DOUBLE}, #{recommendedSellingPrice,jdbcType=DOUBLE}, 
+      #{contractPrice,jdbcType=DOUBLE}, #{mainUnit,jdbcType=INTEGER}, #{deputyUnit,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=BIGINT}, #{modelId,jdbcType=BIGINT}, #{specifications,jdbcType=BIGINT}, 
+      #{color,jdbcType=BIGINT}, #{formula,jdbcType=VARCHAR}, #{moveDetails,jdbcType=CHAR}, 
+      #{shelfStatus,jdbcType=CHAR}, #{remind,jdbcType=CHAR}, #{roundUp,jdbcType=CHAR}, 
+      #{projectDescription,jdbcType=VARCHAR}, #{pricingInstructions,jdbcType=VARCHAR}, 
+      #{acceptanceCriteria,jdbcType=VARCHAR}, #{image,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.heyue.model.BasicCategoryDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into basic_category_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="entryName != null">
+        entry_name,
+      </if>
+      <if test="projectCode != null">
+        project_code,
+      </if>
+      <if test="engineeringStage != null">
+        engineering_stage,
+      </if>
+      <if test="constructionType != null">
+        construction_type,
+      </if>
+      <if test="costPrice != null">
+        cost_price,
+      </if>
+      <if test="accountingPrice != null">
+        accounting_price,
+      </if>
+      <if test="salesPrice != null">
+        sales_price,
+      </if>
+      <if test="lowestSellingPrice != null">
+        lowest_selling_price,
+      </if>
+      <if test="recommendedSellingPrice != null">
+        recommended_selling_price,
+      </if>
+      <if test="contractPrice != null">
+        contract_price,
+      </if>
+      <if test="mainUnit != null">
+        main_unit,
+      </if>
+      <if test="deputyUnit != null">
+        deputy_unit,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="modelId != null">
+        model_id,
+      </if>
+      <if test="specifications != null">
+        specifications,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="formula != null">
+        formula,
+      </if>
+      <if test="moveDetails != null">
+        move_details,
+      </if>
+      <if test="shelfStatus != null">
+        shelf_status,
+      </if>
+      <if test="remind != null">
+        remind,
+      </if>
+      <if test="roundUp != null">
+        round_up,
+      </if>
+      <if test="projectDescription != null">
+        project_description,
+      </if>
+      <if test="pricingInstructions != null">
+        pricing_instructions,
+      </if>
+      <if test="acceptanceCriteria != null">
+        acceptance_criteria,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="entryName != null">
+        #{entryName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCode != null">
+        #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="engineeringStage != null">
+        #{engineeringStage,jdbcType=INTEGER},
+      </if>
+      <if test="constructionType != null">
+        #{constructionType,jdbcType=INTEGER},
+      </if>
+      <if test="costPrice != null">
+        #{costPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="accountingPrice != null">
+        #{accountingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="salesPrice != null">
+        #{salesPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="lowestSellingPrice != null">
+        #{lowestSellingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="recommendedSellingPrice != null">
+        #{recommendedSellingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="contractPrice != null">
+        #{contractPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="mainUnit != null">
+        #{mainUnit,jdbcType=INTEGER},
+      </if>
+      <if test="deputyUnit != null">
+        #{deputyUnit,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="modelId != null">
+        #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="specifications != null">
+        #{specifications,jdbcType=BIGINT},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=BIGINT},
+      </if>
+      <if test="formula != null">
+        #{formula,jdbcType=VARCHAR},
+      </if>
+      <if test="moveDetails != null">
+        #{moveDetails,jdbcType=CHAR},
+      </if>
+      <if test="shelfStatus != null">
+        #{shelfStatus,jdbcType=CHAR},
+      </if>
+      <if test="remind != null">
+        #{remind,jdbcType=CHAR},
+      </if>
+      <if test="roundUp != null">
+        #{roundUp,jdbcType=CHAR},
+      </if>
+      <if test="projectDescription != null">
+        #{projectDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="pricingInstructions != null">
+        #{pricingInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptanceCriteria != null">
+        #{acceptanceCriteria,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.heyue.model.BasicCategoryDetailExample" resultType="java.lang.Long">
+    select count(*) from basic_category_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update basic_category_detail
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=BIGINT},
+      </if>
+      <if test="row.entryName != null">
+        entry_name = #{row.entryName,jdbcType=VARCHAR},
+      </if>
+      <if test="row.projectCode != null">
+        project_code = #{row.projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="row.engineeringStage != null">
+        engineering_stage = #{row.engineeringStage,jdbcType=INTEGER},
+      </if>
+      <if test="row.constructionType != null">
+        construction_type = #{row.constructionType,jdbcType=INTEGER},
+      </if>
+      <if test="row.costPrice != null">
+        cost_price = #{row.costPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="row.accountingPrice != null">
+        accounting_price = #{row.accountingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="row.salesPrice != null">
+        sales_price = #{row.salesPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="row.lowestSellingPrice != null">
+        lowest_selling_price = #{row.lowestSellingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="row.recommendedSellingPrice != null">
+        recommended_selling_price = #{row.recommendedSellingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="row.contractPrice != null">
+        contract_price = #{row.contractPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="row.mainUnit != null">
+        main_unit = #{row.mainUnit,jdbcType=INTEGER},
+      </if>
+      <if test="row.deputyUnit != null">
+        deputy_unit = #{row.deputyUnit,jdbcType=INTEGER},
+      </if>
+      <if test="row.brandId != null">
+        brand_id = #{row.brandId,jdbcType=BIGINT},
+      </if>
+      <if test="row.modelId != null">
+        model_id = #{row.modelId,jdbcType=BIGINT},
+      </if>
+      <if test="row.specifications != null">
+        specifications = #{row.specifications,jdbcType=BIGINT},
+      </if>
+      <if test="row.color != null">
+        color = #{row.color,jdbcType=BIGINT},
+      </if>
+      <if test="row.formula != null">
+        formula = #{row.formula,jdbcType=VARCHAR},
+      </if>
+      <if test="row.moveDetails != null">
+        move_details = #{row.moveDetails,jdbcType=CHAR},
+      </if>
+      <if test="row.shelfStatus != null">
+        shelf_status = #{row.shelfStatus,jdbcType=CHAR},
+      </if>
+      <if test="row.remind != null">
+        remind = #{row.remind,jdbcType=CHAR},
+      </if>
+      <if test="row.roundUp != null">
+        round_up = #{row.roundUp,jdbcType=CHAR},
+      </if>
+      <if test="row.projectDescription != null">
+        project_description = #{row.projectDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="row.pricingInstructions != null">
+        pricing_instructions = #{row.pricingInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="row.acceptanceCriteria != null">
+        acceptance_criteria = #{row.acceptanceCriteria,jdbcType=VARCHAR},
+      </if>
+      <if test="row.image != null">
+        image = #{row.image,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update basic_category_detail
+    set id = #{row.id,jdbcType=BIGINT},
+      entry_name = #{row.entryName,jdbcType=VARCHAR},
+      project_code = #{row.projectCode,jdbcType=VARCHAR},
+      engineering_stage = #{row.engineeringStage,jdbcType=INTEGER},
+      construction_type = #{row.constructionType,jdbcType=INTEGER},
+      cost_price = #{row.costPrice,jdbcType=DOUBLE},
+      accounting_price = #{row.accountingPrice,jdbcType=DOUBLE},
+      sales_price = #{row.salesPrice,jdbcType=DOUBLE},
+      lowest_selling_price = #{row.lowestSellingPrice,jdbcType=DOUBLE},
+      recommended_selling_price = #{row.recommendedSellingPrice,jdbcType=DOUBLE},
+      contract_price = #{row.contractPrice,jdbcType=DOUBLE},
+      main_unit = #{row.mainUnit,jdbcType=INTEGER},
+      deputy_unit = #{row.deputyUnit,jdbcType=INTEGER},
+      brand_id = #{row.brandId,jdbcType=BIGINT},
+      model_id = #{row.modelId,jdbcType=BIGINT},
+      specifications = #{row.specifications,jdbcType=BIGINT},
+      color = #{row.color,jdbcType=BIGINT},
+      formula = #{row.formula,jdbcType=VARCHAR},
+      move_details = #{row.moveDetails,jdbcType=CHAR},
+      shelf_status = #{row.shelfStatus,jdbcType=CHAR},
+      remind = #{row.remind,jdbcType=CHAR},
+      round_up = #{row.roundUp,jdbcType=CHAR},
+      project_description = #{row.projectDescription,jdbcType=VARCHAR},
+      pricing_instructions = #{row.pricingInstructions,jdbcType=VARCHAR},
+      acceptance_criteria = #{row.acceptanceCriteria,jdbcType=VARCHAR},
+      image = #{row.image,jdbcType=LONGVARBINARY}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update basic_category_detail
+    set id = #{row.id,jdbcType=BIGINT},
+      entry_name = #{row.entryName,jdbcType=VARCHAR},
+      project_code = #{row.projectCode,jdbcType=VARCHAR},
+      engineering_stage = #{row.engineeringStage,jdbcType=INTEGER},
+      construction_type = #{row.constructionType,jdbcType=INTEGER},
+      cost_price = #{row.costPrice,jdbcType=DOUBLE},
+      accounting_price = #{row.accountingPrice,jdbcType=DOUBLE},
+      sales_price = #{row.salesPrice,jdbcType=DOUBLE},
+      lowest_selling_price = #{row.lowestSellingPrice,jdbcType=DOUBLE},
+      recommended_selling_price = #{row.recommendedSellingPrice,jdbcType=DOUBLE},
+      contract_price = #{row.contractPrice,jdbcType=DOUBLE},
+      main_unit = #{row.mainUnit,jdbcType=INTEGER},
+      deputy_unit = #{row.deputyUnit,jdbcType=INTEGER},
+      brand_id = #{row.brandId,jdbcType=BIGINT},
+      model_id = #{row.modelId,jdbcType=BIGINT},
+      specifications = #{row.specifications,jdbcType=BIGINT},
+      color = #{row.color,jdbcType=BIGINT},
+      formula = #{row.formula,jdbcType=VARCHAR},
+      move_details = #{row.moveDetails,jdbcType=CHAR},
+      shelf_status = #{row.shelfStatus,jdbcType=CHAR},
+      remind = #{row.remind,jdbcType=CHAR},
+      round_up = #{row.roundUp,jdbcType=CHAR},
+      project_description = #{row.projectDescription,jdbcType=VARCHAR},
+      pricing_instructions = #{row.pricingInstructions,jdbcType=VARCHAR},
+      acceptance_criteria = #{row.acceptanceCriteria,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.BasicCategoryDetail">
+    update basic_category_detail
+    <set>
+      <if test="entryName != null">
+        entry_name = #{entryName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCode != null">
+        project_code = #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="engineeringStage != null">
+        engineering_stage = #{engineeringStage,jdbcType=INTEGER},
+      </if>
+      <if test="constructionType != null">
+        construction_type = #{constructionType,jdbcType=INTEGER},
+      </if>
+      <if test="costPrice != null">
+        cost_price = #{costPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="accountingPrice != null">
+        accounting_price = #{accountingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="salesPrice != null">
+        sales_price = #{salesPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="lowestSellingPrice != null">
+        lowest_selling_price = #{lowestSellingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="recommendedSellingPrice != null">
+        recommended_selling_price = #{recommendedSellingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="contractPrice != null">
+        contract_price = #{contractPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="mainUnit != null">
+        main_unit = #{mainUnit,jdbcType=INTEGER},
+      </if>
+      <if test="deputyUnit != null">
+        deputy_unit = #{deputyUnit,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="modelId != null">
+        model_id = #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="specifications != null">
+        specifications = #{specifications,jdbcType=BIGINT},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=BIGINT},
+      </if>
+      <if test="formula != null">
+        formula = #{formula,jdbcType=VARCHAR},
+      </if>
+      <if test="moveDetails != null">
+        move_details = #{moveDetails,jdbcType=CHAR},
+      </if>
+      <if test="shelfStatus != null">
+        shelf_status = #{shelfStatus,jdbcType=CHAR},
+      </if>
+      <if test="remind != null">
+        remind = #{remind,jdbcType=CHAR},
+      </if>
+      <if test="roundUp != null">
+        round_up = #{roundUp,jdbcType=CHAR},
+      </if>
+      <if test="projectDescription != null">
+        project_description = #{projectDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="pricingInstructions != null">
+        pricing_instructions = #{pricingInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptanceCriteria != null">
+        acceptance_criteria = #{acceptanceCriteria,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.heyue.model.BasicCategoryDetail">
+    update basic_category_detail
+    set entry_name = #{entryName,jdbcType=VARCHAR},
+      project_code = #{projectCode,jdbcType=VARCHAR},
+      engineering_stage = #{engineeringStage,jdbcType=INTEGER},
+      construction_type = #{constructionType,jdbcType=INTEGER},
+      cost_price = #{costPrice,jdbcType=DOUBLE},
+      accounting_price = #{accountingPrice,jdbcType=DOUBLE},
+      sales_price = #{salesPrice,jdbcType=DOUBLE},
+      lowest_selling_price = #{lowestSellingPrice,jdbcType=DOUBLE},
+      recommended_selling_price = #{recommendedSellingPrice,jdbcType=DOUBLE},
+      contract_price = #{contractPrice,jdbcType=DOUBLE},
+      main_unit = #{mainUnit,jdbcType=INTEGER},
+      deputy_unit = #{deputyUnit,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      model_id = #{modelId,jdbcType=BIGINT},
+      specifications = #{specifications,jdbcType=BIGINT},
+      color = #{color,jdbcType=BIGINT},
+      formula = #{formula,jdbcType=VARCHAR},
+      move_details = #{moveDetails,jdbcType=CHAR},
+      shelf_status = #{shelfStatus,jdbcType=CHAR},
+      remind = #{remind,jdbcType=CHAR},
+      round_up = #{roundUp,jdbcType=CHAR},
+      project_description = #{projectDescription,jdbcType=VARCHAR},
+      pricing_instructions = #{pricingInstructions,jdbcType=VARCHAR},
+      acceptance_criteria = #{acceptanceCriteria,jdbcType=VARCHAR},
+      image = #{image,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.heyue.model.BasicCategoryDetail">
+    update basic_category_detail
+    set entry_name = #{entryName,jdbcType=VARCHAR},
+      project_code = #{projectCode,jdbcType=VARCHAR},
+      engineering_stage = #{engineeringStage,jdbcType=INTEGER},
+      construction_type = #{constructionType,jdbcType=INTEGER},
+      cost_price = #{costPrice,jdbcType=DOUBLE},
+      accounting_price = #{accountingPrice,jdbcType=DOUBLE},
+      sales_price = #{salesPrice,jdbcType=DOUBLE},
+      lowest_selling_price = #{lowestSellingPrice,jdbcType=DOUBLE},
+      recommended_selling_price = #{recommendedSellingPrice,jdbcType=DOUBLE},
+      contract_price = #{contractPrice,jdbcType=DOUBLE},
+      main_unit = #{mainUnit,jdbcType=INTEGER},
+      deputy_unit = #{deputyUnit,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      model_id = #{modelId,jdbcType=BIGINT},
+      specifications = #{specifications,jdbcType=BIGINT},
+      color = #{color,jdbcType=BIGINT},
+      formula = #{formula,jdbcType=VARCHAR},
+      move_details = #{moveDetails,jdbcType=CHAR},
+      shelf_status = #{shelfStatus,jdbcType=CHAR},
+      remind = #{remind,jdbcType=CHAR},
+      round_up = #{roundUp,jdbcType=CHAR},
+      project_description = #{projectDescription,jdbcType=VARCHAR},
+      pricing_instructions = #{pricingInstructions,jdbcType=VARCHAR},
+      acceptance_criteria = #{acceptanceCriteria,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
