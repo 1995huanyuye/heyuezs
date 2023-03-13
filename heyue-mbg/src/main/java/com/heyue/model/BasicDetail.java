@@ -3,12 +3,11 @@ package com.heyue.model;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
-/***
- *基装定额类别明细
- */
-public class BasicCategoryDetail implements Serializable {
+public class BasicDetail implements Serializable {
     @ApiModelProperty(value = "主键")
     private Long id;
+
+    private Long categoryId;
 
     @ApiModelProperty(value = "项目名称")
     private String entryName;
@@ -16,11 +15,11 @@ public class BasicCategoryDetail implements Serializable {
     @ApiModelProperty(value = "项目编码")
     private String projectCode;
 
-    @ApiModelProperty(value = "工程阶段（枚举展示）")
-    private Integer engineeringStage;
+    @ApiModelProperty(value = "工程阶段")
+    private String engineeringStage;
 
-    @ApiModelProperty(value = "施工类型（枚举展示）")
-    private Integer constructionType;
+    @ApiModelProperty(value = "施工类型")
+    private String constructionType;
 
     @ApiModelProperty(value = "成本价")
     private Double costPrice;
@@ -95,6 +94,14 @@ public class BasicCategoryDetail implements Serializable {
         this.id = id;
     }
 
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public String getEntryName() {
         return entryName;
     }
@@ -111,19 +118,19 @@ public class BasicCategoryDetail implements Serializable {
         this.projectCode = projectCode;
     }
 
-    public Integer getEngineeringStage() {
+    public String getEngineeringStage() {
         return engineeringStage;
     }
 
-    public void setEngineeringStage(Integer engineeringStage) {
+    public void setEngineeringStage(String engineeringStage) {
         this.engineeringStage = engineeringStage;
     }
 
-    public Integer getConstructionType() {
+    public String getConstructionType() {
         return constructionType;
     }
 
-    public void setConstructionType(Integer constructionType) {
+    public void setConstructionType(String constructionType) {
         this.constructionType = constructionType;
     }
 
@@ -302,6 +309,7 @@ public class BasicCategoryDetail implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", categoryId=").append(categoryId);
         sb.append(", entryName=").append(entryName);
         sb.append(", projectCode=").append(projectCode);
         sb.append(", engineeringStage=").append(engineeringStage);

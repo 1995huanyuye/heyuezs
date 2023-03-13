@@ -1,4 +1,4 @@
-package com.heyue.basicenum;
+package com.heyue.basic;
 
 public class unitEnum {
     /**

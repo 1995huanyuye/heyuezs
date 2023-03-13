@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.mapper.SupplierMapper">
+  <resultMap id="BaseResultMap" type="com.heyue.model.Supplier">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="contactor" jdbcType="VARCHAR" property="contactor" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="begintime" jdbcType="TIMESTAMP" property="begintime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="show" jdbcType="VARCHAR" property="show" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, business_type, name, contactor, telephone, status, begintime, endtime, address, 
+    show, introduction
+  </sql>
+  <select id="selectByExample" parameterType="com.heyue.model.SupplierExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from supplier
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from supplier
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.heyue.model.SupplierExample">
+    delete from supplier
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.heyue.model.Supplier">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into supplier (business_type, name, contactor, 
+      telephone, status, begintime, 
+      endtime, address, show, 
+      introduction)
+    values (#{businessType,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{contactor,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, #{show,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.heyue.model.Supplier">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="contactor != null">
+        contactor,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="begintime != null">
+        begintime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="show != null">
+        show,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contactor != null">
+        #{contactor,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null">
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="show != null">
+        #{show,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.heyue.model.SupplierExample" resultType="java.lang.Long">
+    select count(*) from supplier
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update supplier
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=BIGINT},
+      </if>
+      <if test="row.businessType != null">
+        business_type = #{row.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="row.name != null">
+        name = #{row.name,jdbcType=VARCHAR},
+      </if>
+      <if test="row.contactor != null">
+        contactor = #{row.contactor,jdbcType=VARCHAR},
+      </if>
+      <if test="row.telephone != null">
+        telephone = #{row.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="row.status != null">
+        status = #{row.status,jdbcType=VARCHAR},
+      </if>
+      <if test="row.begintime != null">
+        begintime = #{row.begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.endtime != null">
+        endtime = #{row.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.address != null">
+        address = #{row.address,jdbcType=VARCHAR},
+      </if>
+      <if test="row.show != null">
+        show = #{row.show,jdbcType=VARCHAR},
+      </if>
+      <if test="row.introduction != null">
+        introduction = #{row.introduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update supplier
+    set id = #{row.id,jdbcType=BIGINT},
+      business_type = #{row.businessType,jdbcType=VARCHAR},
+      name = #{row.name,jdbcType=VARCHAR},
+      contactor = #{row.contactor,jdbcType=VARCHAR},
+      telephone = #{row.telephone,jdbcType=VARCHAR},
+      status = #{row.status,jdbcType=VARCHAR},
+      begintime = #{row.begintime,jdbcType=TIMESTAMP},
+      endtime = #{row.endtime,jdbcType=TIMESTAMP},
+      address = #{row.address,jdbcType=VARCHAR},
+      show = #{row.show,jdbcType=VARCHAR},
+      introduction = #{row.introduction,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.Supplier">
+    update supplier
+    <set>
+      <if test="businessType != null">
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contactor != null">
+        contactor = #{contactor,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null">
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="show != null">
+        show = #{show,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.heyue.model.Supplier">
+    update supplier
+    set business_type = #{businessType,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      contactor = #{contactor,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      show = #{show,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

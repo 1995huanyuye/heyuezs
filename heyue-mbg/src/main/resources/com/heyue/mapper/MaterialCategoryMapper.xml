@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.heyue.mapper.BasicCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.heyue.model.BasicCategory">
+<mapper namespace="com.heyue.mapper.MaterialCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.heyue.model.MaterialCategory">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="basic_category_name" jdbcType="VARCHAR" property="basicCategoryName" />
-    <result column="basic_category_code" jdbcType="VARCHAR" property="basicCategoryCode" />
+    <result column="material_category_name" jdbcType="VARCHAR" property="materialCategoryName" />
+    <result column="material_category_code" jdbcType="VARCHAR" property="materialCategoryCode" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="isroot" jdbcType="CHAR" property="isroot" />
   </resultMap>
@@ -67,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, basic_category_name, basic_category_code, parent_id, isroot
+    id, material_category_name, material_category_code, parent_id, isroot
   </sql>
-  <select id="selectByExample" parameterType="com.heyue.model.BasicCategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.heyue.model.MaterialCategoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from basic_category
+    from material_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,39 +86,39 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from basic_category
+    from material_category
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from basic_category
+    delete from material_category
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.heyue.model.BasicCategoryExample">
-    delete from basic_category
+  <delete id="deleteByExample" parameterType="com.heyue.model.MaterialCategoryExample">
+    delete from material_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.heyue.model.BasicCategory">
+  <insert id="insert" parameterType="com.heyue.model.MaterialCategory">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into basic_category (basic_category_name, basic_category_code, 
+    insert into material_category (material_category_name, material_category_code, 
       parent_id, isroot)
-    values (#{basicCategoryName,jdbcType=VARCHAR}, #{basicCategoryCode,jdbcType=VARCHAR}, 
+    values (#{materialCategoryName,jdbcType=VARCHAR}, #{materialCategoryCode,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=BIGINT}, #{isroot,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.heyue.model.BasicCategory">
+  <insert id="insertSelective" parameterType="com.heyue.model.MaterialCategory">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into basic_category
+    insert into material_category
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="basicCategoryName != null">
-        basic_category_name,
+      <if test="materialCategoryName != null">
+        material_category_name,
       </if>
-      <if test="basicCategoryCode != null">
-        basic_category_code,
+      <if test="materialCategoryCode != null">
+        material_category_code,
       </if>
       <if test="parentId != null">
         parent_id,
@@ -128,11 +128,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="basicCategoryName != null">
-        #{basicCategoryName,jdbcType=VARCHAR},
+      <if test="materialCategoryName != null">
+        #{materialCategoryName,jdbcType=VARCHAR},
       </if>
-      <if test="basicCategoryCode != null">
-        #{basicCategoryCode,jdbcType=VARCHAR},
+      <if test="materialCategoryCode != null">
+        #{materialCategoryCode,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null">
         #{parentId,jdbcType=BIGINT},
@@ -142,23 +142,23 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.heyue.model.BasicCategoryExample" resultType="java.lang.Long">
-    select count(*) from basic_category
+  <select id="countByExample" parameterType="com.heyue.model.MaterialCategoryExample" resultType="java.lang.Long">
+    select count(*) from material_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update basic_category
+    update material_category
     <set>
       <if test="row.id != null">
         id = #{row.id,jdbcType=BIGINT},
       </if>
-      <if test="row.basicCategoryName != null">
-        basic_category_name = #{row.basicCategoryName,jdbcType=VARCHAR},
+      <if test="row.materialCategoryName != null">
+        material_category_name = #{row.materialCategoryName,jdbcType=VARCHAR},
       </if>
-      <if test="row.basicCategoryCode != null">
-        basic_category_code = #{row.basicCategoryCode,jdbcType=VARCHAR},
+      <if test="row.materialCategoryCode != null">
+        material_category_code = #{row.materialCategoryCode,jdbcType=VARCHAR},
       </if>
       <if test="row.parentId != null">
         parent_id = #{row.parentId,jdbcType=BIGINT},
@@ -172,24 +172,24 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update basic_category
+    update material_category
     set id = #{row.id,jdbcType=BIGINT},
-      basic_category_name = #{row.basicCategoryName,jdbcType=VARCHAR},
-      basic_category_code = #{row.basicCategoryCode,jdbcType=VARCHAR},
+      material_category_name = #{row.materialCategoryName,jdbcType=VARCHAR},
+      material_category_code = #{row.materialCategoryCode,jdbcType=VARCHAR},
       parent_id = #{row.parentId,jdbcType=BIGINT},
       isroot = #{row.isroot,jdbcType=CHAR}
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.BasicCategory">
-    update basic_category
+  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.MaterialCategory">
+    update material_category
     <set>
-      <if test="basicCategoryName != null">
-        basic_category_name = #{basicCategoryName,jdbcType=VARCHAR},
+      <if test="materialCategoryName != null">
+        material_category_name = #{materialCategoryName,jdbcType=VARCHAR},
       </if>
-      <if test="basicCategoryCode != null">
-        basic_category_code = #{basicCategoryCode,jdbcType=VARCHAR},
+      <if test="materialCategoryCode != null">
+        material_category_code = #{materialCategoryCode,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=BIGINT},
@@ -200,10 +200,10 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.heyue.model.BasicCategory">
-    update basic_category
-    set basic_category_name = #{basicCategoryName,jdbcType=VARCHAR},
-      basic_category_code = #{basicCategoryCode,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.heyue.model.MaterialCategory">
+    update material_category
+    set material_category_name = #{materialCategoryName,jdbcType=VARCHAR},
+      material_category_code = #{materialCategoryCode,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
       isroot = #{isroot,jdbcType=CHAR}
     where id = #{id,jdbcType=BIGINT}

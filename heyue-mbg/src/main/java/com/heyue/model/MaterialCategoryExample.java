@@ -3,14 +3,14 @@ package com.heyue.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BasicCategoryExample {
+public class MaterialCategoryExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BasicCategoryExample() {
+    public MaterialCategoryExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -164,143 +164,143 @@ public class BasicCategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameIsNull() {
-            addCriterion("basic_category_name is null");
+        public Criteria andMaterialCategoryNameIsNull() {
+            addCriterion("material_category_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameIsNotNull() {
-            addCriterion("basic_category_name is not null");
+        public Criteria andMaterialCategoryNameIsNotNull() {
+            addCriterion("material_category_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameEqualTo(String value) {
-            addCriterion("basic_category_name =", value, "basicCategoryName");
+        public Criteria andMaterialCategoryNameEqualTo(String value) {
+            addCriterion("material_category_name =", value, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameNotEqualTo(String value) {
-            addCriterion("basic_category_name <>", value, "basicCategoryName");
+        public Criteria andMaterialCategoryNameNotEqualTo(String value) {
+            addCriterion("material_category_name <>", value, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameGreaterThan(String value) {
-            addCriterion("basic_category_name >", value, "basicCategoryName");
+        public Criteria andMaterialCategoryNameGreaterThan(String value) {
+            addCriterion("material_category_name >", value, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameGreaterThanOrEqualTo(String value) {
-            addCriterion("basic_category_name >=", value, "basicCategoryName");
+        public Criteria andMaterialCategoryNameGreaterThanOrEqualTo(String value) {
+            addCriterion("material_category_name >=", value, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameLessThan(String value) {
-            addCriterion("basic_category_name <", value, "basicCategoryName");
+        public Criteria andMaterialCategoryNameLessThan(String value) {
+            addCriterion("material_category_name <", value, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameLessThanOrEqualTo(String value) {
-            addCriterion("basic_category_name <=", value, "basicCategoryName");
+        public Criteria andMaterialCategoryNameLessThanOrEqualTo(String value) {
+            addCriterion("material_category_name <=", value, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameLike(String value) {
-            addCriterion("basic_category_name like", value, "basicCategoryName");
+        public Criteria andMaterialCategoryNameLike(String value) {
+            addCriterion("material_category_name like", value, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameNotLike(String value) {
-            addCriterion("basic_category_name not like", value, "basicCategoryName");
+        public Criteria andMaterialCategoryNameNotLike(String value) {
+            addCriterion("material_category_name not like", value, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameIn(List<String> values) {
-            addCriterion("basic_category_name in", values, "basicCategoryName");
+        public Criteria andMaterialCategoryNameIn(List<String> values) {
+            addCriterion("material_category_name in", values, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameNotIn(List<String> values) {
-            addCriterion("basic_category_name not in", values, "basicCategoryName");
+        public Criteria andMaterialCategoryNameNotIn(List<String> values) {
+            addCriterion("material_category_name not in", values, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameBetween(String value1, String value2) {
-            addCriterion("basic_category_name between", value1, value2, "basicCategoryName");
+        public Criteria andMaterialCategoryNameBetween(String value1, String value2) {
+            addCriterion("material_category_name between", value1, value2, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryNameNotBetween(String value1, String value2) {
-            addCriterion("basic_category_name not between", value1, value2, "basicCategoryName");
+        public Criteria andMaterialCategoryNameNotBetween(String value1, String value2) {
+            addCriterion("material_category_name not between", value1, value2, "materialCategoryName");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeIsNull() {
-            addCriterion("basic_category_code is null");
+        public Criteria andMaterialCategoryCodeIsNull() {
+            addCriterion("material_category_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeIsNotNull() {
-            addCriterion("basic_category_code is not null");
+        public Criteria andMaterialCategoryCodeIsNotNull() {
+            addCriterion("material_category_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeEqualTo(String value) {
-            addCriterion("basic_category_code =", value, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeEqualTo(String value) {
+            addCriterion("material_category_code =", value, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeNotEqualTo(String value) {
-            addCriterion("basic_category_code <>", value, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeNotEqualTo(String value) {
+            addCriterion("material_category_code <>", value, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeGreaterThan(String value) {
-            addCriterion("basic_category_code >", value, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeGreaterThan(String value) {
+            addCriterion("material_category_code >", value, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("basic_category_code >=", value, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("material_category_code >=", value, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeLessThan(String value) {
-            addCriterion("basic_category_code <", value, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeLessThan(String value) {
+            addCriterion("material_category_code <", value, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeLessThanOrEqualTo(String value) {
-            addCriterion("basic_category_code <=", value, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeLessThanOrEqualTo(String value) {
+            addCriterion("material_category_code <=", value, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeLike(String value) {
-            addCriterion("basic_category_code like", value, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeLike(String value) {
+            addCriterion("material_category_code like", value, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeNotLike(String value) {
-            addCriterion("basic_category_code not like", value, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeNotLike(String value) {
+            addCriterion("material_category_code not like", value, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeIn(List<String> values) {
-            addCriterion("basic_category_code in", values, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeIn(List<String> values) {
+            addCriterion("material_category_code in", values, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeNotIn(List<String> values) {
-            addCriterion("basic_category_code not in", values, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeNotIn(List<String> values) {
+            addCriterion("material_category_code not in", values, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeBetween(String value1, String value2) {
-            addCriterion("basic_category_code between", value1, value2, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeBetween(String value1, String value2) {
+            addCriterion("material_category_code between", value1, value2, "materialCategoryCode");
             return (Criteria) this;
         }
 
-        public Criteria andBasicCategoryCodeNotBetween(String value1, String value2) {
-            addCriterion("basic_category_code not between", value1, value2, "basicCategoryCode");
+        public Criteria andMaterialCategoryCodeNotBetween(String value1, String value2) {
+            addCriterion("material_category_code not between", value1, value2, "materialCategoryCode");
             return (Criteria) this;
         }
 

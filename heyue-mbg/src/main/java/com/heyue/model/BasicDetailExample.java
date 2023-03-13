@@ -3,14 +3,14 @@ package com.heyue.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BasicCategoryDetailExample {
+public class BasicDetailExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BasicCategoryDetailExample() {
+    public BasicDetailExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -164,6 +164,66 @@ public class BasicCategoryDetailExample {
             return (Criteria) this;
         }
 
+        public Criteria andCategoryIdIsNull() {
+            addCriterion("category_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdIsNotNull() {
+            addCriterion("category_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdEqualTo(Long value) {
+            addCriterion("category_id =", value, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdNotEqualTo(Long value) {
+            addCriterion("category_id <>", value, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdGreaterThan(Long value) {
+            addCriterion("category_id >", value, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("category_id >=", value, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdLessThan(Long value) {
+            addCriterion("category_id <", value, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdLessThanOrEqualTo(Long value) {
+            addCriterion("category_id <=", value, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdIn(List<Long> values) {
+            addCriterion("category_id in", values, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdNotIn(List<Long> values) {
+            addCriterion("category_id not in", values, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdBetween(Long value1, Long value2) {
+            addCriterion("category_id between", value1, value2, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdNotBetween(Long value1, Long value2) {
+            addCriterion("category_id not between", value1, value2, "categoryId");
+            return (Criteria) this;
+        }
+
         public Criteria andEntryNameIsNull() {
             addCriterion("entry_name is null");
             return (Criteria) this;
@@ -314,52 +374,62 @@ public class BasicCategoryDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageEqualTo(Integer value) {
+        public Criteria andEngineeringStageEqualTo(String value) {
             addCriterion("engineering_stage =", value, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageNotEqualTo(Integer value) {
+        public Criteria andEngineeringStageNotEqualTo(String value) {
             addCriterion("engineering_stage <>", value, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageGreaterThan(Integer value) {
+        public Criteria andEngineeringStageGreaterThan(String value) {
             addCriterion("engineering_stage >", value, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageGreaterThanOrEqualTo(Integer value) {
+        public Criteria andEngineeringStageGreaterThanOrEqualTo(String value) {
             addCriterion("engineering_stage >=", value, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageLessThan(Integer value) {
+        public Criteria andEngineeringStageLessThan(String value) {
             addCriterion("engineering_stage <", value, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageLessThanOrEqualTo(Integer value) {
+        public Criteria andEngineeringStageLessThanOrEqualTo(String value) {
             addCriterion("engineering_stage <=", value, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageIn(List<Integer> values) {
+        public Criteria andEngineeringStageLike(String value) {
+            addCriterion("engineering_stage like", value, "engineeringStage");
+            return (Criteria) this;
+        }
+
+        public Criteria andEngineeringStageNotLike(String value) {
+            addCriterion("engineering_stage not like", value, "engineeringStage");
+            return (Criteria) this;
+        }
+
+        public Criteria andEngineeringStageIn(List<String> values) {
             addCriterion("engineering_stage in", values, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageNotIn(List<Integer> values) {
+        public Criteria andEngineeringStageNotIn(List<String> values) {
             addCriterion("engineering_stage not in", values, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageBetween(Integer value1, Integer value2) {
+        public Criteria andEngineeringStageBetween(String value1, String value2) {
             addCriterion("engineering_stage between", value1, value2, "engineeringStage");
             return (Criteria) this;
         }
 
-        public Criteria andEngineeringStageNotBetween(Integer value1, Integer value2) {
+        public Criteria andEngineeringStageNotBetween(String value1, String value2) {
             addCriterion("engineering_stage not between", value1, value2, "engineeringStage");
             return (Criteria) this;
         }
@@ -374,52 +444,62 @@ public class BasicCategoryDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeEqualTo(Integer value) {
+        public Criteria andConstructionTypeEqualTo(String value) {
             addCriterion("construction_type =", value, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeNotEqualTo(Integer value) {
+        public Criteria andConstructionTypeNotEqualTo(String value) {
             addCriterion("construction_type <>", value, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeGreaterThan(Integer value) {
+        public Criteria andConstructionTypeGreaterThan(String value) {
             addCriterion("construction_type >", value, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andConstructionTypeGreaterThanOrEqualTo(String value) {
             addCriterion("construction_type >=", value, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeLessThan(Integer value) {
+        public Criteria andConstructionTypeLessThan(String value) {
             addCriterion("construction_type <", value, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeLessThanOrEqualTo(Integer value) {
+        public Criteria andConstructionTypeLessThanOrEqualTo(String value) {
             addCriterion("construction_type <=", value, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeIn(List<Integer> values) {
+        public Criteria andConstructionTypeLike(String value) {
+            addCriterion("construction_type like", value, "constructionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstructionTypeNotLike(String value) {
+            addCriterion("construction_type not like", value, "constructionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andConstructionTypeIn(List<String> values) {
             addCriterion("construction_type in", values, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeNotIn(List<Integer> values) {
+        public Criteria andConstructionTypeNotIn(List<String> values) {
             addCriterion("construction_type not in", values, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeBetween(Integer value1, Integer value2) {
+        public Criteria andConstructionTypeBetween(String value1, String value2) {
             addCriterion("construction_type between", value1, value2, "constructionType");
             return (Criteria) this;
         }
 
-        public Criteria andConstructionTypeNotBetween(Integer value1, Integer value2) {
+        public Criteria andConstructionTypeNotBetween(String value1, String value2) {
             addCriterion("construction_type not between", value1, value2, "constructionType");
             return (Criteria) this;
         }

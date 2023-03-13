@@ -3,14 +3,14 @@ package com.heyue.model;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
-public class BasicCategory implements Serializable {
+public class MaterialCategory implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "基装定额类别名称")
-    private String basicCategoryName;
+    @ApiModelProperty(value = "材料定额类别名称")
+    private String materialCategoryName;
 
-    @ApiModelProperty(value = "基装定额类别编码")
-    private String basicCategoryCode;
+    @ApiModelProperty(value = "材料定额类别编码")
+    private String materialCategoryCode;
 
     @ApiModelProperty(value = "上级节点")
     private Long parentId;
@@ -28,20 +28,20 @@ public class BasicCategory implements Serializable {
         this.id = id;
     }
 
-    public String getBasicCategoryName() {
-        return basicCategoryName;
+    public String getMaterialCategoryName() {
+        return materialCategoryName;
     }
 
-    public void setBasicCategoryName(String basicCategoryName) {
-        this.basicCategoryName = basicCategoryName;
+    public void setMaterialCategoryName(String materialCategoryName) {
+        this.materialCategoryName = materialCategoryName;
     }
 
-    public String getBasicCategoryCode() {
-        return basicCategoryCode;
+    public String getMaterialCategoryCode() {
+        return materialCategoryCode;
     }
 
-    public void setBasicCategoryCode(String basicCategoryCode) {
-        this.basicCategoryCode = basicCategoryCode;
+    public void setMaterialCategoryCode(String materialCategoryCode) {
+        this.materialCategoryCode = materialCategoryCode;
     }
 
     public Long getParentId() {
@@ -67,8 +67,8 @@ public class BasicCategory implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", basicCategoryName=").append(basicCategoryName);
-        sb.append(", basicCategoryCode=").append(basicCategoryCode);
+        sb.append(", materialCategoryName=").append(materialCategoryName);
+        sb.append(", materialCategoryCode=").append(materialCategoryCode);
         sb.append(", parentId=").append(parentId);
         sb.append(", isroot=").append(isroot);
         sb.append(", serialVersionUID=").append(serialVersionUID);
