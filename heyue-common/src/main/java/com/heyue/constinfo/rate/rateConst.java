@@ -1,4 +1,4 @@
-package com.heyue.rate;
+package com.heyue.constinfo.rate;
 
 public class rateConst {
     /**

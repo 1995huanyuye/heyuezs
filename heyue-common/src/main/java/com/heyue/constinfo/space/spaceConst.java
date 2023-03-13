@@ -1,4 +1,4 @@
-package com.heyue.space;
+package com.heyue.constinfo.space;
 
 public class spaceConst {
     /**

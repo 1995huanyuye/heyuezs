@@ -1,4 +1,4 @@
-package com.heyue.basic;
+package com.heyue.constinfo.basic;
 
 public class engineeringConst {
     /**

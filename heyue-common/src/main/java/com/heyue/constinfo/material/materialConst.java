@@ -1,4 +1,4 @@
-package com.heyue.material;
+package com.heyue.constinfo.material;
 
 public class materialConst {
 
