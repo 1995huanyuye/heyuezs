@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.mapper.BudgetModelMapper">
+  <resultMap id="BaseResultMap" type="com.heyue.model.BudgetModel">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="budget_name" jdbcType="VARCHAR" property="budgetName" />
+    <result column="budget_code" jdbcType="VARCHAR" property="budgetCode" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="modify" jdbcType="BIGINT" property="modify" />
+    <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, budget_name, budget_code, createtime, creator, modify, modifytime
+  </sql>
+  <select id="selectByExample" parameterType="com.heyue.model.BudgetModelExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from budget_model
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from budget_model
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from budget_model
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.heyue.model.BudgetModelExample">
+    delete from budget_model
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.heyue.model.BudgetModel">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into budget_model (budget_name, budget_code, createtime, 
+      creator, modify, modifytime
+      )
+    values (#{budgetName,jdbcType=VARCHAR}, #{budgetCode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=BIGINT}, #{modify,jdbcType=BIGINT}, #{modifytime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.heyue.model.BudgetModel">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into budget_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="budgetName != null">
+        budget_name,
+      </if>
+      <if test="budgetCode != null">
+        budget_code,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modify != null">
+        modify,
+      </if>
+      <if test="modifytime != null">
+        modifytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="budgetName != null">
+        #{budgetName,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetCode != null">
+        #{budgetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="modify != null">
+        #{modify,jdbcType=BIGINT},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.heyue.model.BudgetModelExample" resultType="java.lang.Long">
+    select count(*) from budget_model
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update budget_model
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=BIGINT},
+      </if>
+      <if test="row.budgetName != null">
+        budget_name = #{row.budgetName,jdbcType=VARCHAR},
+      </if>
+      <if test="row.budgetCode != null">
+        budget_code = #{row.budgetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="row.createtime != null">
+        createtime = #{row.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.creator != null">
+        creator = #{row.creator,jdbcType=BIGINT},
+      </if>
+      <if test="row.modify != null">
+        modify = #{row.modify,jdbcType=BIGINT},
+      </if>
+      <if test="row.modifytime != null">
+        modifytime = #{row.modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update budget_model
+    set id = #{row.id,jdbcType=BIGINT},
+      budget_name = #{row.budgetName,jdbcType=VARCHAR},
+      budget_code = #{row.budgetCode,jdbcType=VARCHAR},
+      createtime = #{row.createtime,jdbcType=TIMESTAMP},
+      creator = #{row.creator,jdbcType=BIGINT},
+      modify = #{row.modify,jdbcType=BIGINT},
+      modifytime = #{row.modifytime,jdbcType=TIMESTAMP}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.BudgetModel">
+    update budget_model
+    <set>
+      <if test="budgetName != null">
+        budget_name = #{budgetName,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetCode != null">
+        budget_code = #{budgetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="modify != null">
+        modify = #{modify,jdbcType=BIGINT},
+      </if>
+      <if test="modifytime != null">
+        modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.heyue.model.BudgetModel">
+    update budget_model
+    set budget_name = #{budgetName,jdbcType=VARCHAR},
+      budget_code = #{budgetCode,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=BIGINT},
+      modify = #{modify,jdbcType=BIGINT},
+      modifytime = #{modifytime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
