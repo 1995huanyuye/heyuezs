@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.mapper.RateItemMapper">
+  <resultMap id="BaseResultMap" type="com.heyue.model.RateItem">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="calc_type" jdbcType="VARCHAR" property="calcType" />
+    <result column="formula" jdbcType="VARCHAR" property="formula" />
+    <result column="discount" jdbcType="VARCHAR" property="discount" />
+    <result column="show" jdbcType="VARCHAR" property="show" />
+    <result column="cost_type" jdbcType="VARCHAR" property="costType" />
+    <result column="cost_percent" jdbcType="VARCHAR" property="costPercent" />
+    <result column="sort_value" jdbcType="VARCHAR" property="sortValue" />
+    <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, calc_type, formula, discount, show, cost_type, cost_percent, sort_value, 
+    modifytime
+  </sql>
+  <select id="selectByExample" parameterType="com.heyue.model.RateItemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rate_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.heyue.model.RateItemExample">
+    delete from rate_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.heyue.model.RateItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into rate_item (name, calc_type, formula, 
+      discount, show, cost_type, 
+      cost_percent, sort_value, modifytime
+      )
+    values (#{name,jdbcType=VARCHAR}, #{calcType,jdbcType=VARCHAR}, #{formula,jdbcType=VARCHAR}, 
+      #{discount,jdbcType=VARCHAR}, #{show,jdbcType=VARCHAR}, #{costType,jdbcType=VARCHAR}, 
+      #{costPercent,jdbcType=VARCHAR}, #{sortValue,jdbcType=VARCHAR}, #{modifytime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.heyue.model.RateItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into rate_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="calcType != null">
+        calc_type,
+      </if>
+      <if test="formula != null">
+        formula,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="show != null">
+        show,
+      </if>
+      <if test="costType != null">
+        cost_type,
+      </if>
+      <if test="costPercent != null">
+        cost_percent,
+      </if>
+      <if test="sortValue != null">
+        sort_value,
+      </if>
+      <if test="modifytime != null">
+        modifytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="calcType != null">
+        #{calcType,jdbcType=VARCHAR},
+      </if>
+      <if test="formula != null">
+        #{formula,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="show != null">
+        #{show,jdbcType=VARCHAR},
+      </if>
+      <if test="costType != null">
+        #{costType,jdbcType=VARCHAR},
+      </if>
+      <if test="costPercent != null">
+        #{costPercent,jdbcType=VARCHAR},
+      </if>
+      <if test="sortValue != null">
+        #{sortValue,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.heyue.model.RateItemExample" resultType="java.lang.Long">
+    select count(*) from rate_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rate_item
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=INTEGER},
+      </if>
+      <if test="row.name != null">
+        name = #{row.name,jdbcType=VARCHAR},
+      </if>
+      <if test="row.calcType != null">
+        calc_type = #{row.calcType,jdbcType=VARCHAR},
+      </if>
+      <if test="row.formula != null">
+        formula = #{row.formula,jdbcType=VARCHAR},
+      </if>
+      <if test="row.discount != null">
+        discount = #{row.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="row.show != null">
+        show = #{row.show,jdbcType=VARCHAR},
+      </if>
+      <if test="row.costType != null">
+        cost_type = #{row.costType,jdbcType=VARCHAR},
+      </if>
+      <if test="row.costPercent != null">
+        cost_percent = #{row.costPercent,jdbcType=VARCHAR},
+      </if>
+      <if test="row.sortValue != null">
+        sort_value = #{row.sortValue,jdbcType=VARCHAR},
+      </if>
+      <if test="row.modifytime != null">
+        modifytime = #{row.modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rate_item
+    set id = #{row.id,jdbcType=INTEGER},
+      name = #{row.name,jdbcType=VARCHAR},
+      calc_type = #{row.calcType,jdbcType=VARCHAR},
+      formula = #{row.formula,jdbcType=VARCHAR},
+      discount = #{row.discount,jdbcType=VARCHAR},
+      show = #{row.show,jdbcType=VARCHAR},
+      cost_type = #{row.costType,jdbcType=VARCHAR},
+      cost_percent = #{row.costPercent,jdbcType=VARCHAR},
+      sort_value = #{row.sortValue,jdbcType=VARCHAR},
+      modifytime = #{row.modifytime,jdbcType=TIMESTAMP}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
