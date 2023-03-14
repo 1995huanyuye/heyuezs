@@ -5,12 +5,12 @@ public class PKeyGenerator {
     /**
      * 生成时间戳主键
      */
-    public static synchronized String getUniqueString()
+    public static synchronized Long generator()
     {
         if(generateCount > 999)
             generateCount = 0;
-        String uniqueNumber = Long.toString(System.currentTimeMillis()) + Integer.toString(generateCount);
+        String uniqueNumber = System.currentTimeMillis() + Integer.toString(generateCount);
         generateCount++;
-        return uniqueNumber;
+        return Long.valueOf(uniqueNumber);
     }
 }
