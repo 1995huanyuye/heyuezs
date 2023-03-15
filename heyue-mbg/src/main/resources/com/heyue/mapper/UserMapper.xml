@@ -109,11 +109,11 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user (user_code, user_name, sex, 
+    insert into user (id,user_code, user_name, sex,
       phone_number, role_id, status, 
       password, user_account, dept
       )
-    values (#{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT},#{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
       #{phoneNumber,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
       #{password,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{dept,jdbcType=BIGINT}
       )

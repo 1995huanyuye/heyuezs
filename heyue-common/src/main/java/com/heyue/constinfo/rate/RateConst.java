@@ -1,6 +1,6 @@
 package com.heyue.constinfo.rate;
 
-public class rateConst {
+public class RateConst {
     /**
      *根据公式计算
      */

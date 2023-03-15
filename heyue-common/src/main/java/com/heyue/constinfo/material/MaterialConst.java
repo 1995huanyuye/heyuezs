@@ -1,6 +1,6 @@
 package com.heyue.constinfo.material;
 
-public class materialConst {
+public class MaterialConst {
 
 
     /**

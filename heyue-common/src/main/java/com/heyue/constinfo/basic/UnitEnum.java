@@ -1,6 +1,6 @@
 package com.heyue.constinfo.basic;
 
-public class unitEnum {
+public class UnitEnum {
     /**
      *个
      */

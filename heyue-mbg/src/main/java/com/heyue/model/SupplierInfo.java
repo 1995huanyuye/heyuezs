@@ -18,7 +18,7 @@ public class SupplierInfo implements Serializable {
     @ApiModelProperty(value = "账户名称")
     private String accountName;
 
-    @ApiModelProperty(value = "开户网点 ")
+    @ApiModelProperty(value = "开户网点")
     private String accountAddress;
 
     @ApiModelProperty(value = "开户人名称")

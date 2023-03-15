@@ -3,7 +3,7 @@ package com.heyue.constinfo.staff;
 /**
  *员工状态
  */
-public class staffConst {
+public class StaffConst {
     /**
      *启用
      */

@@ -1,34 +1,34 @@
 package com.heyue.constinfo.basic;
 
-public class constructionConst {
+public class EngineeringConst {
     /**
      *开工准备
      */
     public static final String PREPARATION = "preparation";
     /**
-     *拆除准备
+     *水电阶段
      */
-    public static final String REMOVAL  = "removal";
+    public static final String HYDROPOWER  = "hydropower";
     /**
-     *水电工程
+     *瓦工阶段
      */
-    public static final String HYDROPOWER   = "removal";
+    public static final String BRICKLAYING  = "bricklaying";
     /**
-     *瓦工工程
-     */
-    public static final String BRICKWORK  = "brickwork";
-    /**
-     *木工工程
+     *木工阶段
      */
     public static final String CARPENTRY  = "carpentry";
     /**
-     *油漆工程
+     *腻子工程阶段
      */
-    public static final String PAINT  = "carpentry";
+    public static final String PUTTY  = "putty";
     /**
-     *安装工程
+     *安装阶段
      */
     public static final String INSTALLATION  = "installation";
+    /**
+     *修补阶段
+     */
+    public static final String REPAIR = "repair";
     /**
      *完工保洁
      */

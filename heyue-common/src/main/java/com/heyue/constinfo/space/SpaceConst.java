@@ -1,6 +1,6 @@
 package com.heyue.constinfo.space;
 
-public class spaceConst {
+public class SpaceConst {
     /**
      *不限制
      */
