@@ -105,10 +105,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into client (client_name, project_address, cell_name, 
+    insert into client (id,client_name, project_address, cell_name,
       unit_room_number, phone_number, creation_time
       )
-    values (#{clientName,jdbcType=VARCHAR}, #{projectAddress,jdbcType=VARCHAR}, #{cellName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT},#{clientName,jdbcType=VARCHAR}, #{projectAddress,jdbcType=VARCHAR}, #{cellName,jdbcType=VARCHAR},
       #{unitRoomNumber,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}
       )
   </insert>

@@ -3,14 +3,14 @@ package com.heyue.serivce.impl;
 import com.heyue.mapper.UserMapper;
 import com.heyue.model.User;
 import com.heyue.model.UserExample;
-import com.heyue.serivce.UserSerivce;
+import com.heyue.serivce.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserSerivceImpl implements UserSerivce {
+public class UserSerivceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;

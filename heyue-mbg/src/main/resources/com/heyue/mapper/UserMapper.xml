@@ -113,7 +113,7 @@
       phone_number, role_id, status, 
       password, user_account, dept
       )
-    values (#{id,jdbcType=BIGINT},#{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
+    values ( #{id,jdbcType=BIGINT},#{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
       #{phoneNumber,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
       #{password,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{dept,jdbcType=BIGINT}
       )

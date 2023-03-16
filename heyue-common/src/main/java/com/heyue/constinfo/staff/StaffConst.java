@@ -7,10 +7,10 @@ public class StaffConst {
     /**
      *启用
      */
-    public static final String ABLE = "able";
+    public static final String ABLE = "Y";
     /**
      * 禁用
      * */
-    public static final String DISABLE = "disable";
+    public static final String DISABLE = "N";
 
 }

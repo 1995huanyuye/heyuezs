@@ -8,7 +8,7 @@ public class SpaceInfo implements Serializable {
 
     private Long categoryId;
 
-    @ApiModelProperty(value = "空间名称 ")
+    @ApiModelProperty(value = "空间名称")
     private String spaceName;
 
     @ApiModelProperty(value = "空间编码")
