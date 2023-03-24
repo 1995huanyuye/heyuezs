@@ -152,7 +152,7 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into basic_detail (category_id, entry_name, project_code, 
+    insert into basic_detail (id,category_id, entry_name, project_code,
       engineering_stage, construction_type, cost_price, 
       accounting_price, sales_price, lowest_selling_price, 
       recommended_selling_price, contract_price, main_unit, 
@@ -161,7 +161,7 @@
       move_details, shelf_status, remind, 
       round_up, project_description, pricing_instructions, 
       acceptance_criteria, image)
-    values (#{categoryId,jdbcType=BIGINT}, #{entryName,jdbcType=VARCHAR}, #{projectCode,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT},#{categoryId,jdbcType=BIGINT}, #{entryName,jdbcType=VARCHAR}, #{projectCode,jdbcType=VARCHAR},
       #{engineeringStage,jdbcType=VARCHAR}, #{constructionType,jdbcType=VARCHAR}, #{costPrice,jdbcType=DOUBLE}, 
       #{accountingPrice,jdbcType=DOUBLE}, #{salesPrice,jdbcType=DOUBLE}, #{lowestSellingPrice,jdbcType=DOUBLE}, 
       #{recommendedSellingPrice,jdbcType=DOUBLE}, #{contractPrice,jdbcType=DOUBLE}, #{mainUnit,jdbcType=INTEGER}, 

@@ -60,21 +60,4 @@ public class DeptController {
         }
         return CommonResult.failed();
     }
-
-//    @ApiOperation("添加部门")
-//    @GetMapping(value = "/addDeptTest")
-//    @ResponseBody
-//    public CommonResult addDeptTest(){
-//        Dept dept = new Dept();
-//        dept.setId(PKeyGenerator.generator());
-//        dept.setDeptCode("dept3");
-//        dept.setDeptName("部门三");
-//        dept.setParentDept(16789396041340L);
-//        int count = deptService.addDept(dept);
-//        if(count>0){
-//            return CommonResult.success(count);
-//        }
-//        return CommonResult.failed();
-//    }
-
 }

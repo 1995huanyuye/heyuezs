@@ -103,9 +103,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into basic_category (basic_category_name, basic_category_code, 
+    insert into basic_category (id,basic_category_name, basic_category_code,
       parent_id, isroot)
-    values (#{basicCategoryName,jdbcType=VARCHAR}, #{basicCategoryCode,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT},#{basicCategoryName,jdbcType=VARCHAR}, #{basicCategoryCode,jdbcType=VARCHAR},
       #{parentId,jdbcType=BIGINT}, #{isroot,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.heyue.model.BasicCategory">
