@@ -12,3 +12,16 @@ spring:
       stat-view-servlet:
         login-username: druid
         login-password: druid
+
+  redis:
+    host: 101.33.232.150 #redis服务器地址
+    database: 0 #redis数据库索引
+    port: 6379
+    password: admin
+    jedis:
+      pool:
+        max-active: 8 #连接池最大连接数
+        max-wait: -1ms #连接池最大阻塞等待时间
+        max-idle: 8 #连接池中最大空闲连接
+        min-idle: 0 #连接池中最小空闲连接
+    timeout: 3000ms #连接超时时间
