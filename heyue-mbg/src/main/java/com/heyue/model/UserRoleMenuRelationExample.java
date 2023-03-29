@@ -3,14 +3,14 @@ package com.heyue.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRoleResourceRelationExample {
+public class UserRoleMenuRelationExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserRoleResourceRelationExample() {
+    public UserRoleMenuRelationExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -224,63 +224,63 @@ public class UserRoleResourceRelationExample {
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdIsNull() {
-            addCriterion("resource_id is null");
+        public Criteria andMenuIdIsNull() {
+            addCriterion("menu_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdIsNotNull() {
-            addCriterion("resource_id is not null");
+        public Criteria andMenuIdIsNotNull() {
+            addCriterion("menu_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdEqualTo(Long value) {
-            addCriterion("resource_id =", value, "resourceId");
+        public Criteria andMenuIdEqualTo(Long value) {
+            addCriterion("menu_id =", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdNotEqualTo(Long value) {
-            addCriterion("resource_id <>", value, "resourceId");
+        public Criteria andMenuIdNotEqualTo(Long value) {
+            addCriterion("menu_id <>", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdGreaterThan(Long value) {
-            addCriterion("resource_id >", value, "resourceId");
+        public Criteria andMenuIdGreaterThan(Long value) {
+            addCriterion("menu_id >", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("resource_id >=", value, "resourceId");
+        public Criteria andMenuIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("menu_id >=", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdLessThan(Long value) {
-            addCriterion("resource_id <", value, "resourceId");
+        public Criteria andMenuIdLessThan(Long value) {
+            addCriterion("menu_id <", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdLessThanOrEqualTo(Long value) {
-            addCriterion("resource_id <=", value, "resourceId");
+        public Criteria andMenuIdLessThanOrEqualTo(Long value) {
+            addCriterion("menu_id <=", value, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdIn(List<Long> values) {
-            addCriterion("resource_id in", values, "resourceId");
+        public Criteria andMenuIdIn(List<Long> values) {
+            addCriterion("menu_id in", values, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdNotIn(List<Long> values) {
-            addCriterion("resource_id not in", values, "resourceId");
+        public Criteria andMenuIdNotIn(List<Long> values) {
+            addCriterion("menu_id not in", values, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdBetween(Long value1, Long value2) {
-            addCriterion("resource_id between", value1, value2, "resourceId");
+        public Criteria andMenuIdBetween(Long value1, Long value2) {
+            addCriterion("menu_id between", value1, value2, "menuId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdNotBetween(Long value1, Long value2) {
-            addCriterion("resource_id not between", value1, value2, "resourceId");
+        public Criteria andMenuIdNotBetween(Long value1, Long value2) {
+            addCriterion("menu_id not between", value1, value2, "menuId");
             return (Criteria) this;
         }
     }

@@ -3,14 +3,14 @@ package com.heyue.model;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
-public class UserRoleResourceRelation implements Serializable {
+public class UserRoleMenuRelation implements Serializable {
     private Long id;
 
     @ApiModelProperty(value = "角色ID")
     private Long roleId;
 
-    @ApiModelProperty(value = "资源ID")
-    private Long resourceId;
+    @ApiModelProperty(value = "菜单ID")
+    private Long menuId;
 
     private static final long serialVersionUID = 1L;
 
@@ -30,12 +30,12 @@ public class UserRoleResourceRelation implements Serializable {
         this.roleId = roleId;
     }
 
-    public Long getResourceId() {
-        return resourceId;
+    public Long getMenuId() {
+        return menuId;
     }
 
-    public void setResourceId(Long resourceId) {
-        this.resourceId = resourceId;
+    public void setMenuId(Long menuId) {
+        this.menuId = menuId;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class UserRoleResourceRelation implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", roleId=").append(roleId);
-        sb.append(", resourceId=").append(resourceId);
+        sb.append(", menuId=").append(menuId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
