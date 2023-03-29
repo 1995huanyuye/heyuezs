@@ -90,6 +90,16 @@ public class UserExample {
             criteria.add(new Criterion(condition));
         }
 
+        public Criteria andUsernameEqualTo(String value) {
+            addCriterion("user_name =", value, "user_name");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsercodeEqualTo(String value) {
+            addCriterion("user_code =", value, "user_code");
+            return (Criteria) this;
+        }
+
         protected void addCriterion(String condition, Object value, String property) {
             if (value == null) {
                 throw new RuntimeException("Value for " + property + " cannot be null");
