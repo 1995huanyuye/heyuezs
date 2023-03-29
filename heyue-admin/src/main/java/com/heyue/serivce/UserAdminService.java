@@ -72,7 +72,7 @@ public interface UserAdminService {
     /**
      * 获取指定用户的可访问资源
      */
-    List<UserResource> getResourceList(Long userId);
+    List<UserResource> getResourceList(Long adminId);
 
     /**
      * 修改密码
