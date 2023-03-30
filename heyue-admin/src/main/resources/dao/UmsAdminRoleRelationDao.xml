@@ -27,7 +27,7 @@
         LEFT JOIN user_role_resource_relation rrr ON r.id = rrr.role_id
         LEFT JOIN user_resource ur ON ur.id = rrr.resource_id
         WHERE
-            ar.user_id = #{userid}
+            ar.user_id = #{user_id}
         AND ur.id IS NOT NULL
         GROUP BY
             ur.id

@@ -104,9 +104,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user_login_log (user_id, create_time, ip, 
+    insert into user_login_log (id,user_id, create_time, ip,
       address, user_agent)
-    values (#{userId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT},#{userId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR},
       #{address,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.heyue.model.UserLoginLog">

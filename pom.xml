@@ -30,6 +30,7 @@
         <pagehelper-starter.version>1.4.5</pagehelper-starter.version>
         <pagehelper.version>5.3.2</pagehelper.version>
     </properties>
+
     <dependencies>
         <!--SpringBoot通用依赖模块-->
         <dependency>

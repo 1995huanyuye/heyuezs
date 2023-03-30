@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *  heyue-security模块相关配置
  */
 @Configuration
-public class SecurityConfig {
+public class AdminSecurityConfig {
     @Autowired
     private UserAdminService adminService;
 

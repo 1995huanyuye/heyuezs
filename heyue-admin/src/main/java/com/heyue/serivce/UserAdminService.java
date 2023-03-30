@@ -1,6 +1,7 @@
 package com.heyue.serivce;
 
 import com.heyue.dto.UpdateUserPasswordParam;
+import com.heyue.dto.UserParam;
 import com.heyue.model.Role;
 import com.heyue.model.User;
 import com.heyue.model.UserResource;
@@ -21,7 +22,7 @@ public interface UserAdminService {
     /**
      * 注册功能
      */
-    User register(User umsAdminParam);
+    User register(UserParam umsAdminParam);
 
     /**
      * 登录功能

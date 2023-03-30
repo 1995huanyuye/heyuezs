@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.heyue.bo.HeyueUserDetails;
 import com.heyue.dao.UserRoleRelationDao;
 import com.heyue.dto.UpdateUserPasswordParam;
+import com.heyue.dto.UserParam;
 import com.heyue.exception.Asserts;
 import com.heyue.mapper.UserLoginLogMapper;
 import com.heyue.mapper.UserMapper;
@@ -73,7 +74,7 @@ public class UserAdminServiceImpl implements UserAdminService {
     }
 
     @Override
-    public User register(User userParam) {
+    public User register(UserParam userParam) {
         User user = new User();
         BeanUtils.copyProperties(userParam,user);
         user.setStatus(1);
@@ -86,6 +87,7 @@ public class UserAdminServiceImpl implements UserAdminService {
         }
         //加密密码
         String encode = passwordEncoder.encode(user.getPassword());
+        user.setId(PKeyGenerator.generator());
         user.setPassword(encode);
         userMapper.insert(user);
         return user;
@@ -121,6 +123,7 @@ public class UserAdminServiceImpl implements UserAdminService {
         User user = getUserByUserCode(usercode);
         if(user==null) return;
         UserLoginLog loginLog = new UserLoginLog();
+        loginLog.setId(PKeyGenerator.generator());
         loginLog.setUserId(user.getId());
         loginLog.setCreateTime(new Date());
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
