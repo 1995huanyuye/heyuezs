@@ -62,7 +62,7 @@ public interface UserAdminService {
      * 修改用户角色关系
      */
     @Transactional
-    int updateRole(Long adminId, List<Long> roleIds);
+    int updateRole(Long user_id, List<Long> roleIds);
 
     /**
      * 获取用户对应角色

@@ -185,9 +185,9 @@ public class UserController {
     @ApiOperation("给用户分配角色")
     @RequestMapping(value = "/role/update", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateRole(@RequestParam("adminId") Long adminId,
+    public CommonResult updateRole(@RequestParam("user_id") Long user_id,
                                    @RequestParam("roleIds") List<Long> roleIds) {
-        int count = userAdminService.updateRole(adminId, roleIds);
+        int count = userAdminService.updateRole(user_id, roleIds);
         if (count >= 0) {
             return CommonResult.success(count);
         }

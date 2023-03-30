@@ -10,8 +10,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode
 public class UserLoginParam {
-    @ApiModelProperty(value = "用户名",required = true)
+    @ApiModelProperty(value = "用户名",required = true,position = 0)
     private String userCode;
-    @ApiModelProperty(value = "密码",required = true)
+    @ApiModelProperty(value = "密码",required = true,position = 1)
     private String password;
 }

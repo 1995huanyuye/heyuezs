@@ -178,11 +178,11 @@ public class UserAdminServiceImpl implements UserAdminService {
     }
 
     @Override
-    public int updateRole(Long userid, List<Long> roleIds) {
+    public int updateRole(Long user_id, List<Long> roleIds) {
         int count = roleIds==null?0: roleIds.size();
         //删除原来的关系
         UserRoleRelationExample userRoleRelationExample = new UserRoleRelationExample();
-        userRoleRelationExample.createCriteria().andUserIdEqualTo(userid);
+        userRoleRelationExample.createCriteria().andUserIdEqualTo(user_id);
         userRoleRelationMapper.deleteByExample(userRoleRelationExample);
         //建立新关系
         if(!CollectionUtils.isEmpty(roleIds)){
@@ -190,13 +190,13 @@ public class UserAdminServiceImpl implements UserAdminService {
             for (Long roleId : roleIds) {
                 UserRoleRelation userRoleRelation = new UserRoleRelation();
                 userRoleRelation.setId(PKeyGenerator.generator());
-                userRoleRelation.setUserId(userid);
+                userRoleRelation.setUserId(user_id);
                 userRoleRelation.setRoleId(roleId);
                 list.add(userRoleRelation);
             }
             userRoleRelationDao.insertList(list);
         }
-        getCacheService().delResourceList(userid);
+        getCacheService().delResourceList(user_id);
         return count;
     }
 

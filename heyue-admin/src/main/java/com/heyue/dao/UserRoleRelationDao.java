@@ -19,12 +19,12 @@ public interface UserRoleRelationDao {
     /**
      * 获取用于所有角色
      */
-    List<Role> getRoleList(@Param("user_id") Long userid);
+    List<Role> getRoleList(@Param("user_id") Long user_id);
 
     /**
      * 获取用户所有可访问资源
      */
-    List<UserResource> getResourceList(@Param("user_id") Long userid);
+    List<UserResource> getResourceList(@Param("user_id") Long user_id);
 
     /**
      * 获取资源相关用户ID列表
