@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class UpdateUserPasswordParam {
     @ApiModelProperty(value = "用户名", required = true)
-    private String username;
+    private String userCode;
     @ApiModelProperty(value = "旧密码", required = true)
     private String oldPassword;
     @ApiModelProperty(value = "新密码", required = true)

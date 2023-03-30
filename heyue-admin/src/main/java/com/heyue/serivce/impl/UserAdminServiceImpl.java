@@ -155,9 +155,8 @@ public class UserAdminServiceImpl implements UserAdminService {
     }
 
     @Override
-    public int update(Long id, User user) {
-        user.setId(id);
-        User userObject = userMapper.selectByPrimaryKey(id);
+    public int update(User user) {
+        User userObject = userMapper.selectByPrimaryKey(user.getId());
         if(userObject.getPassword().equals(user.getPassword())){
             //与原密码相同不需要修改
             user.setPassword(null);
@@ -165,7 +164,7 @@ public class UserAdminServiceImpl implements UserAdminService {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         int count = userMapper.updateByPrimaryKeySelective(user);
-        getCacheService().delUser(id);
+        getCacheService().delUser(user.getId());
         return count;
     }
 
@@ -220,13 +219,13 @@ public class UserAdminServiceImpl implements UserAdminService {
 
     @Override
     public int updatePassword(UpdateUserPasswordParam updatePasswordParam) {
-        if(StrUtil.isEmpty(updatePasswordParam.getUsername())
+        if(StrUtil.isEmpty(updatePasswordParam.getUserCode())
                 ||StrUtil.isEmpty(updatePasswordParam.getOldPassword())
                 ||StrUtil.isEmpty(updatePasswordParam.getNewPassword())){
             return -1;
         }
         UserExample userExample = new UserExample();
-        userExample.createCriteria().andUsercodeEqualTo(updatePasswordParam.getUsername());
+        userExample.createCriteria().andUsercodeEqualTo(updatePasswordParam.getUserCode());
         List<User> userList = userMapper.selectByExample(userExample);
         if(CollUtil.isEmpty(userList)){
             return -2;

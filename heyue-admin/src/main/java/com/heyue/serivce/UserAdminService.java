@@ -51,7 +51,7 @@ public interface UserAdminService {
     /**
      * 修改指定用户信息
      */
-    int update(Long id, User user);
+    int update(User user);
 
     /**
      * 删除指定用户
@@ -73,7 +73,7 @@ public interface UserAdminService {
     /**
      * 获取指定用户的可访问资源
      */
-    List<UserResource> getResourceList(Long adminId);
+    List<UserResource> getResourceList(Long user_id);
 
     /**
      * 修改密码
@@ -83,7 +83,7 @@ public interface UserAdminService {
     /**
      * 获取用户信息
      */
-    UserDetails loadUserByUserCode(String usercode);
+    UserDetails loadUserByUserCode(String userCode);
 
     /**
      * 获取缓存服务

@@ -119,10 +119,10 @@ public class UserController {
     }
 
     @ApiOperation(value = "获取指定用户信息")
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{user_id}",method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<User> getItem(@PathVariable Long userId){
-        User user = userAdminService.getItem(userId);
+    public CommonResult<User> getItem(@PathVariable Long user_id){
+        User user = userAdminService.getItem(user_id);
         if(user==null){
             return CommonResult.failed("未找到指定用户");
         }
@@ -130,10 +130,10 @@ public class UserController {
     }
 
     @ApiOperation(value = "修改指定用户信息")
-    @RequestMapping(value = "/udpate/{id}",method = RequestMethod.POST)
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long userId,@RequestBody User user){
-        int count = userAdminService.update(userId,user);
+    public CommonResult update(@RequestBody User user){
+        int count = userAdminService.update(user);
         if(count>0){
             return CommonResult.success(count);
         }
@@ -159,28 +159,16 @@ public class UserController {
     }
 
     @ApiOperation(value = "删除指定用户信息")
-    @RequestMapping(value = "/delete/{id}",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
-        int count = userAdminService.delete(id);
+    public CommonResult delete(@RequestParam("user_id") Long user_id) {
+        int count = userAdminService.delete(user_id);
         if (count>0){
             return CommonResult.success(count);
         }
         return CommonResult.failed();
     }
 
-    @ApiOperation("修改帐号状态")
-    @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
-    @ResponseBody
-    public CommonResult updateStatus(@PathVariable Long id,@RequestParam(value = "status") Integer status) {
-        User user = new User();
-        user.setStatus(status);
-        int count = userAdminService.update(id,user);
-        if (count > 0) {
-            return CommonResult.success(count);
-        }
-        return CommonResult.failed();
-    }
 
     @ApiOperation("给用户分配角色")
     @RequestMapping(value = "/role/update", method = RequestMethod.POST)
@@ -195,10 +183,10 @@ public class UserController {
     }
 
     @ApiOperation("获取指定用户的角色")
-    @RequestMapping(value = "/role/{adminId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/role/getrolelist", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<Role>> getRoleList(@PathVariable Long adminId) {
-        List<Role> roleList = userAdminService.getRoleList(adminId);
+    public CommonResult<List<Role>> getRoleList(@RequestParam("user_id") Long user_id) {
+        List<Role> roleList = userAdminService.getRoleList(user_id);
         return CommonResult.success(roleList);
     }
 
