@@ -7,7 +7,6 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
-    <result column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
@@ -72,8 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_code, user_name, sex, phone_number, role_id, status, password, user_account, 
-    dept
+    id, user_code, user_name, sex, phone_number, status, password, user_account, dept
   </sql>
   <select id="selectByExample" parameterType="com.heyue.model.UserExample" resultMap="BaseResultMap">
     select
@@ -110,13 +108,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into user (id,user_code, user_name, sex,
-      phone_number, role_id, status, 
-      password, user_account, dept
-      )
-    values ( #{id,jdbcType=BIGINT},#{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
-      #{phoneNumber,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
-      #{password,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{dept,jdbcType=BIGINT}
-      )
+      phone_number, status, password, 
+      user_account, dept)
+    values (#{id,jdbcType=BIGINT},#{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
+      #{phoneNumber,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, 
+      #{userAccount,jdbcType=VARCHAR}, #{dept,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.heyue.model.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -135,9 +131,6 @@
       </if>
       <if test="phoneNumber != null">
         phone_number,
-      </if>
-      <if test="roleId != null">
-        role_id,
       </if>
       <if test="status != null">
         status,
@@ -164,9 +157,6 @@
       </if>
       <if test="phoneNumber != null">
         #{phoneNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=BIGINT},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -206,9 +196,6 @@
       <if test="row.phoneNumber != null">
         phone_number = #{row.phoneNumber,jdbcType=VARCHAR},
       </if>
-      <if test="row.roleId != null">
-        role_id = #{row.roleId,jdbcType=BIGINT},
-      </if>
       <if test="row.status != null">
         status = #{row.status,jdbcType=INTEGER},
       </if>
@@ -233,7 +220,6 @@
       user_name = #{row.userName,jdbcType=VARCHAR},
       sex = #{row.sex,jdbcType=INTEGER},
       phone_number = #{row.phoneNumber,jdbcType=VARCHAR},
-      role_id = #{row.roleId,jdbcType=BIGINT},
       status = #{row.status,jdbcType=INTEGER},
       password = #{row.password,jdbcType=VARCHAR},
       user_account = #{row.userAccount,jdbcType=VARCHAR},
@@ -257,9 +243,6 @@
       <if test="phoneNumber != null">
         phone_number = #{phoneNumber,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null">
-        role_id = #{roleId,jdbcType=BIGINT},
-      </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -281,7 +264,6 @@
       user_name = #{userName,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=INTEGER},
       phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      role_id = #{roleId,jdbcType=BIGINT},
       status = #{status,jdbcType=INTEGER},
       password = #{password,jdbcType=VARCHAR},
       user_account = #{userAccount,jdbcType=VARCHAR},

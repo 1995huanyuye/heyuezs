@@ -19,19 +19,16 @@ public class User implements Serializable {
     @ApiModelProperty(value = "手机号码",position = 4)
     private String phoneNumber;
 
-    @ApiModelProperty(value = "角色",position = 5)
-    private Long roleId;
-
-    @ApiModelProperty(value = "状态",position = 6)
+    @ApiModelProperty(value = "状态",position = 5)
     private Integer status;
 
-    @ApiModelProperty(value = "用户密码",position = 7)
+    @ApiModelProperty(value = "用户密码",position = 6)
     private String password;
 
-    @ApiModelProperty(value = "用户账号",position = 8)
+    @ApiModelProperty(value = "用户账号",position = 7)
     private String userAccount;
 
-    @ApiModelProperty(value = "所属部门",position = 9)
+    @ApiModelProperty(value = "所属部门",position = 8)
     private Long dept;
 
     private static final long serialVersionUID = 1L;
@@ -74,14 +71,6 @@ public class User implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
     }
 
     public Integer getStatus() {
@@ -127,7 +116,6 @@ public class User implements Serializable {
         sb.append(", userName=").append(userName);
         sb.append(", sex=").append(sex);
         sb.append(", phoneNumber=").append(phoneNumber);
-        sb.append(", roleId=").append(roleId);
         sb.append(", status=").append(status);
         sb.append(", password=").append(password);
         sb.append(", userAccount=").append(userAccount);
