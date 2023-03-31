@@ -42,14 +42,15 @@ public class BasicCategoryController {
     @RequestMapping(value = "/addBasicCategory",method = RequestMethod.POST)
     @ResponseBody
     public CommonResult addBasicCategory(@RequestBody BasicCategoryParam param){
+        String message = "";
         int count = service.addBasicCategory(param);
         if(count==-1){
-            CommonResult.failed("类别编码重复");
+            message= "类别编码重复";
         }
         if(count>0){
             return CommonResult.success(count);
         }
-        return CommonResult.failed();
+        return CommonResult.failed(message);
     }
 
     @ApiOperation("修改基装定额类别")

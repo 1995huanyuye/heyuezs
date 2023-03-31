@@ -34,13 +34,14 @@ public class DeptController {
     @RequestMapping(value = "/addDept",method = RequestMethod.POST)
     @ResponseBody
     public CommonResult addDept(@RequestBody DeptParam param){
+        String message = "";
         int count = deptService.addDept(param);
         if(count==-1){
-            return CommonResult.failed("部门编码重复");
+            message = "部门编码重复";
         }else if (count>0){
             return CommonResult.success(count);
         }
-        return CommonResult.failed();
+        return CommonResult.failed(message);
     }
 
     @ApiOperation("修改部门信息")

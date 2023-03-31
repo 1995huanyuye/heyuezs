@@ -1,5 +1,6 @@
 package com.heyue.serivce;
 
+import com.heyue.dto.BasicDetailParam;
 import com.heyue.model.BasicCategory;
 import com.heyue.model.BasicDetail;
 
@@ -8,19 +9,31 @@ import java.util.List;
 public interface BasicDetailService {
 
     /**
-     * 获取基装类型
+     * 获取目录下所有基装定额
      */
-    List<BasicDetail> listAll();
+    List<BasicDetail> listAll(Long catedory_id,String isHaveParent);
     /**
-     * 新增基装类别
+     * 获取基装定额
      */
-    int addBasicDetail(BasicDetail category);
+    BasicDetail getItem(Long id);
     /**
-     * 更新基装类别信息
+     * 新增基装定额
      */
-    int updateBasicDetail(BasicDetail category);
+    int addBasicDetail(BasicDetailParam param,Long category_id);
     /**
-     * 删除类别
+     * 更新基装定额
+     */
+    int updateBasicDetail(BasicDetail detail);
+    /**
+     * 删除基装定额
      */
     int deleteBasicDetail(Long id);
+    /**
+     * 基装定额详细信息
+     */
+    BasicDetail loadBasicDetailById(Long id);
+
+    BasicDetailCacheService getCacheService();
+
+
 }

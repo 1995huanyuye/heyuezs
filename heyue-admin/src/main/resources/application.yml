@@ -50,8 +50,10 @@ redis:
     admin: 'heyue:user'
     resourceList: 'heyue:resourceList'
     client: 'heyue:client'
-    basiccategory: 'heyue:category'
-    basiccategoryall: 'heyue:category:all'
+    basiccategory: 'heyue:basiccategory'
+    basiccategoryall: 'heyue:basiccategory:all'
+    basicdetail: 'heyue:basicdetail'
+    basicdetailall: 'heyue:basicdetail:all'
   expire:
     common: 3600 #24小时
     admin: 86400
