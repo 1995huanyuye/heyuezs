@@ -16,7 +16,7 @@ public class ClientCacheServiceImpl implements ClientCacheService {
     private RedisService redisService;
     @Value("${redis.database}")
     private String REDIS_DATABASE;
-    @Value("${redis.expire.client}")
+    @Value("${redis.expire.common}")
     private Long REDIS_EXPIRE;
     @Value("${redis.key.client}")
     private String REDIS_KEY_CLIENT;
