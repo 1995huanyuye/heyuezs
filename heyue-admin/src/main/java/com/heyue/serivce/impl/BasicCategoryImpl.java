@@ -67,6 +67,7 @@ public class BasicCategoryImpl implements BasicCategoryService {
     @Override
     public int updateBasicCategory(BasicCategory category) {
         getCacheService().delBasicCategory(category.getId());
+        getCacheService().delAll();
         int count = mapper.updateByPrimaryKey(category);
         getCacheService().setBasicCategory(category);
         return count;

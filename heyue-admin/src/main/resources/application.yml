@@ -54,6 +54,10 @@ redis:
     basiccategoryall: 'heyue:basiccategory:all'
     basicdetail: 'heyue:basicdetail'
     basicdetailall: 'heyue:basicdetail:all'
+    materialcategory: 'heyue:materialcategory'
+    materialcategoryall: 'heyue:materialcategory:all'
+    materialdetail: 'heyue:materialdetail'
+    materialdetailall: 'heyue:materialdetail:all'
   expire:
     common: 3600 #24小时
     admin: 86400

@@ -3,6 +3,7 @@
 <mapper namespace="com.heyue.mapper.MaterialDetailMapper">
   <resultMap id="BaseResultMap" type="com.heyue.model.MaterialDetail">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="category_id" jdbcType="BIGINT" property="categoryId" />
     <result column="material_type" jdbcType="VARCHAR" property="materialType" />
     <result column="material_number" jdbcType="VARCHAR" property="materialNumber" />
     <result column="material_name" jdbcType="VARCHAR" property="materialName" />
@@ -90,7 +91,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, material_type, material_number, material_name, supplier_id, engineering_stage, 
+    id, category_id, material_type, material_number, material_name, supplier_id, engineering_stage, 
     cost_price, accounting_price, sales_price, lowest_selling_price, recommended_selling_price, 
     contract_price, main_unit, deputy_unit, brand_id, model_id, specifications, color, 
     formula, shelf_status, remind, round_up, project_description, pricing_instructions, 
@@ -151,24 +152,26 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into material_detail (material_type, material_number, material_name, 
-      supplier_id, engineering_stage, cost_price, 
-      accounting_price, sales_price, lowest_selling_price, 
-      recommended_selling_price, contract_price, main_unit, 
-      deputy_unit, brand_id, model_id, 
-      specifications, color, formula, 
-      shelf_status, remind, round_up, 
-      project_description, pricing_instructions, 
-      acceptance_criteria, image)
-    values (#{materialType,jdbcType=VARCHAR}, #{materialNumber,jdbcType=VARCHAR}, #{materialName,jdbcType=VARCHAR}, 
-      #{supplierId,jdbcType=BIGINT}, #{engineeringStage,jdbcType=VARCHAR}, #{costPrice,jdbcType=DOUBLE}, 
-      #{accountingPrice,jdbcType=DOUBLE}, #{salesPrice,jdbcType=DOUBLE}, #{lowestSellingPrice,jdbcType=DOUBLE}, 
-      #{recommendedSellingPrice,jdbcType=DOUBLE}, #{contractPrice,jdbcType=DOUBLE}, #{mainUnit,jdbcType=INTEGER}, 
-      #{deputyUnit,jdbcType=INTEGER}, #{brandId,jdbcType=BIGINT}, #{modelId,jdbcType=BIGINT}, 
-      #{specifications,jdbcType=BIGINT}, #{color,jdbcType=BIGINT}, #{formula,jdbcType=VARCHAR}, 
-      #{shelfStatus,jdbcType=CHAR}, #{remind,jdbcType=CHAR}, #{roundUp,jdbcType=CHAR}, 
-      #{projectDescription,jdbcType=VARCHAR}, #{pricingInstructions,jdbcType=VARCHAR}, 
-      #{acceptanceCriteria,jdbcType=VARCHAR}, #{image,jdbcType=LONGVARBINARY})
+    insert into material_detail (id,category_id, material_type, material_number,
+      material_name, supplier_id, engineering_stage, 
+      cost_price, accounting_price, sales_price, 
+      lowest_selling_price, recommended_selling_price, 
+      contract_price, main_unit, deputy_unit, 
+      brand_id, model_id, specifications, 
+      color, formula, shelf_status, 
+      remind, round_up, project_description, 
+      pricing_instructions, acceptance_criteria, 
+      image)
+    values (#{id,jdbcType=BIGINT},#{categoryId,jdbcType=BIGINT}, #{materialType,jdbcType=VARCHAR}, #{materialNumber,jdbcType=VARCHAR},
+      #{materialName,jdbcType=VARCHAR}, #{supplierId,jdbcType=BIGINT}, #{engineeringStage,jdbcType=VARCHAR}, 
+      #{costPrice,jdbcType=DOUBLE}, #{accountingPrice,jdbcType=DOUBLE}, #{salesPrice,jdbcType=DOUBLE}, 
+      #{lowestSellingPrice,jdbcType=DOUBLE}, #{recommendedSellingPrice,jdbcType=DOUBLE}, 
+      #{contractPrice,jdbcType=DOUBLE}, #{mainUnit,jdbcType=INTEGER}, #{deputyUnit,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=BIGINT}, #{modelId,jdbcType=BIGINT}, #{specifications,jdbcType=BIGINT}, 
+      #{color,jdbcType=BIGINT}, #{formula,jdbcType=VARCHAR}, #{shelfStatus,jdbcType=CHAR}, 
+      #{remind,jdbcType=CHAR}, #{roundUp,jdbcType=CHAR}, #{projectDescription,jdbcType=VARCHAR}, 
+      #{pricingInstructions,jdbcType=VARCHAR}, #{acceptanceCriteria,jdbcType=VARCHAR}, 
+      #{image,jdbcType=LONGVARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.heyue.model.MaterialDetail">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -176,6 +179,9 @@
     </selectKey>
     insert into material_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        category_id,
+      </if>
       <if test="materialType != null">
         material_type,
       </if>
@@ -253,6 +259,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=BIGINT},
+      </if>
       <if test="materialType != null">
         #{materialType,jdbcType=VARCHAR},
       </if>
@@ -342,6 +351,9 @@
       <if test="row.id != null">
         id = #{row.id,jdbcType=BIGINT},
       </if>
+      <if test="row.categoryId != null">
+        category_id = #{row.categoryId,jdbcType=BIGINT},
+      </if>
       <if test="row.materialType != null">
         material_type = #{row.materialType,jdbcType=VARCHAR},
       </if>
@@ -425,6 +437,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update material_detail
     set id = #{row.id,jdbcType=BIGINT},
+      category_id = #{row.categoryId,jdbcType=BIGINT},
       material_type = #{row.materialType,jdbcType=VARCHAR},
       material_number = #{row.materialNumber,jdbcType=VARCHAR},
       material_name = #{row.materialName,jdbcType=VARCHAR},
@@ -457,6 +470,7 @@
   <update id="updateByExample" parameterType="map">
     update material_detail
     set id = #{row.id,jdbcType=BIGINT},
+      category_id = #{row.categoryId,jdbcType=BIGINT},
       material_type = #{row.materialType,jdbcType=VARCHAR},
       material_number = #{row.materialNumber,jdbcType=VARCHAR},
       material_name = #{row.materialName,jdbcType=VARCHAR},
@@ -488,6 +502,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.MaterialDetail">
     update material_detail
     <set>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
       <if test="materialType != null">
         material_type = #{materialType,jdbcType=VARCHAR},
       </if>
@@ -568,7 +585,8 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.heyue.model.MaterialDetail">
     update material_detail
-    set material_type = #{materialType,jdbcType=VARCHAR},
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      material_type = #{materialType,jdbcType=VARCHAR},
       material_number = #{materialNumber,jdbcType=VARCHAR},
       material_name = #{materialName,jdbcType=VARCHAR},
       supplier_id = #{supplierId,jdbcType=BIGINT},
@@ -597,7 +615,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.heyue.model.MaterialDetail">
     update material_detail
-    set material_type = #{materialType,jdbcType=VARCHAR},
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      material_type = #{materialType,jdbcType=VARCHAR},
       material_number = #{materialNumber,jdbcType=VARCHAR},
       material_name = #{materialName,jdbcType=VARCHAR},
       supplier_id = #{supplierId,jdbcType=BIGINT},

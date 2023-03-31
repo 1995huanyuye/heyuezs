@@ -6,13 +6,14 @@ import java.io.Serializable;
 public class MaterialDetail implements Serializable {
     private Long id;
 
+    private Long categoryId;
+
     @ApiModelProperty(value = "材料类型")
     private String materialType;
 
-    @ApiModelProperty(value = "材料名称")
-    private String materialNumber;
-
     @ApiModelProperty(value = "材料编码")
+    private String materialNumber;
+    @ApiModelProperty(value = "材料名称")
     private String materialName;
 
     @ApiModelProperty(value = "供应商")
@@ -89,6 +90,14 @@ public class MaterialDetail implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getMaterialType() {
@@ -298,6 +307,7 @@ public class MaterialDetail implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", categoryId=").append(categoryId);
         sb.append(", materialType=").append(materialType);
         sb.append(", materialNumber=").append(materialNumber);
         sb.append(", materialName=").append(materialName);
