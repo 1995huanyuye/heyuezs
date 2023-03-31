@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.mapper.ClientDetailMapper">
+  <resultMap id="BaseResultMap" type="com.heyue.model.ClientDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="client_id" jdbcType="BIGINT" property="clientId" />
+    <result column="quotation_type" jdbcType="VARCHAR" property="quotationType" />
+    <result column="decoration_type" jdbcType="VARCHAR" property="decorationType" />
+    <result column="delivery_status" jdbcType="INTEGER" property="deliveryStatus" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="time_limit" jdbcType="INTEGER" property="timeLimit" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="client_birthday" jdbcType="DATE" property="clientBirthday" />
+    <result column="client_address" jdbcType="VARCHAR" property="clientAddress" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="modifyer" jdbcType="BIGINT" property="modifyer" />
+    <result column="ispublic" jdbcType="INTEGER" property="ispublic" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, client_id, quotation_type, decoration_type, delivery_status, delivery_time, begin_time, 
+    time_limit, sex, client_birthday, client_address, end_time, modifyer, ispublic, type
+  </sql>
+  <select id="selectByExample" parameterType="com.heyue.model.ClientDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from client_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from client_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from client_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.heyue.model.ClientDetailExample">
+    delete from client_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.heyue.model.ClientDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into client_detail (id,client_id, quotation_type, decoration_type,
+      delivery_status, delivery_time, begin_time, 
+      time_limit, sex, client_birthday, 
+      client_address, end_time, modifyer, 
+      ispublic, type)
+    values (#{id,jdbcType=BIGINT},#{clientId,jdbcType=BIGINT}, #{quotationType,jdbcType=VARCHAR}, #{decorationType,jdbcType=VARCHAR},
+      #{deliveryStatus,jdbcType=INTEGER}, #{deliveryTime,jdbcType=TIMESTAMP}, #{beginTime,jdbcType=TIMESTAMP}, 
+      #{timeLimit,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{clientBirthday,jdbcType=DATE}, 
+      #{clientAddress,jdbcType=VARCHAR}, #{endTime,jdbcType=TIMESTAMP}, #{modifyer,jdbcType=BIGINT}, 
+      #{ispublic,jdbcType=INTEGER}, #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.heyue.model.ClientDetail">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into client_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clientId != null">
+        client_id,
+      </if>
+      <if test="quotationType != null">
+        quotation_type,
+      </if>
+      <if test="decorationType != null">
+        decoration_type,
+      </if>
+      <if test="deliveryStatus != null">
+        delivery_status,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="timeLimit != null">
+        time_limit,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="clientBirthday != null">
+        client_birthday,
+      </if>
+      <if test="clientAddress != null">
+        client_address,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="modifyer != null">
+        modifyer,
+      </if>
+      <if test="ispublic != null">
+        ispublic,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clientId != null">
+        #{clientId,jdbcType=BIGINT},
+      </if>
+      <if test="quotationType != null">
+        #{quotationType,jdbcType=VARCHAR},
+      </if>
+      <if test="decorationType != null">
+        #{decorationType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryStatus != null">
+        #{deliveryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeLimit != null">
+        #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="clientBirthday != null">
+        #{clientBirthday,jdbcType=DATE},
+      </if>
+      <if test="clientAddress != null">
+        #{clientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyer != null">
+        #{modifyer,jdbcType=BIGINT},
+      </if>
+      <if test="ispublic != null">
+        #{ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.heyue.model.ClientDetailExample" resultType="java.lang.Long">
+    select count(*) from client_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update client_detail
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=BIGINT},
+      </if>
+      <if test="row.clientId != null">
+        client_id = #{row.clientId,jdbcType=BIGINT},
+      </if>
+      <if test="row.quotationType != null">
+        quotation_type = #{row.quotationType,jdbcType=VARCHAR},
+      </if>
+      <if test="row.decorationType != null">
+        decoration_type = #{row.decorationType,jdbcType=VARCHAR},
+      </if>
+      <if test="row.deliveryStatus != null">
+        delivery_status = #{row.deliveryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="row.deliveryTime != null">
+        delivery_time = #{row.deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.beginTime != null">
+        begin_time = #{row.beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.timeLimit != null">
+        time_limit = #{row.timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="row.sex != null">
+        sex = #{row.sex,jdbcType=INTEGER},
+      </if>
+      <if test="row.clientBirthday != null">
+        client_birthday = #{row.clientBirthday,jdbcType=DATE},
+      </if>
+      <if test="row.clientAddress != null">
+        client_address = #{row.clientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="row.endTime != null">
+        end_time = #{row.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.modifyer != null">
+        modifyer = #{row.modifyer,jdbcType=BIGINT},
+      </if>
+      <if test="row.ispublic != null">
+        ispublic = #{row.ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="row.type != null">
+        type = #{row.type,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update client_detail
+    set id = #{row.id,jdbcType=BIGINT},
+      client_id = #{row.clientId,jdbcType=BIGINT},
+      quotation_type = #{row.quotationType,jdbcType=VARCHAR},
+      decoration_type = #{row.decorationType,jdbcType=VARCHAR},
+      delivery_status = #{row.deliveryStatus,jdbcType=INTEGER},
+      delivery_time = #{row.deliveryTime,jdbcType=TIMESTAMP},
+      begin_time = #{row.beginTime,jdbcType=TIMESTAMP},
+      time_limit = #{row.timeLimit,jdbcType=INTEGER},
+      sex = #{row.sex,jdbcType=INTEGER},
+      client_birthday = #{row.clientBirthday,jdbcType=DATE},
+      client_address = #{row.clientAddress,jdbcType=VARCHAR},
+      end_time = #{row.endTime,jdbcType=TIMESTAMP},
+      modifyer = #{row.modifyer,jdbcType=BIGINT},
+      ispublic = #{row.ispublic,jdbcType=INTEGER},
+      type = #{row.type,jdbcType=INTEGER}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.ClientDetail">
+    update client_detail
+    <set>
+      <if test="clientId != null">
+        client_id = #{clientId,jdbcType=BIGINT},
+      </if>
+      <if test="quotationType != null">
+        quotation_type = #{quotationType,jdbcType=VARCHAR},
+      </if>
+      <if test="decorationType != null">
+        decoration_type = #{decorationType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryStatus != null">
+        delivery_status = #{deliveryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeLimit != null">
+        time_limit = #{timeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="clientBirthday != null">
+        client_birthday = #{clientBirthday,jdbcType=DATE},
+      </if>
+      <if test="clientAddress != null">
+        client_address = #{clientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyer != null">
+        modifyer = #{modifyer,jdbcType=BIGINT},
+      </if>
+      <if test="ispublic != null">
+        ispublic = #{ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.heyue.model.ClientDetail">
+    update client_detail
+    set client_id = #{clientId,jdbcType=BIGINT},
+      quotation_type = #{quotationType,jdbcType=VARCHAR},
+      decoration_type = #{decorationType,jdbcType=VARCHAR},
+      delivery_status = #{deliveryStatus,jdbcType=INTEGER},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      time_limit = #{timeLimit,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=INTEGER},
+      client_birthday = #{clientBirthday,jdbcType=DATE},
+      client_address = #{clientAddress,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      modifyer = #{modifyer,jdbcType=BIGINT},
+      ispublic = #{ispublic,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

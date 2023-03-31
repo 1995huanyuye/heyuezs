@@ -4,11 +4,23 @@
   <resultMap id="BaseResultMap" type="com.heyue.model.Client">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="client_name" jdbcType="VARCHAR" property="clientName" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="client_resource" jdbcType="INTEGER" property="clientResource" />
+    <result column="provider" jdbcType="BIGINT" property="provider" />
+    <result column="vote" jdbcType="VARCHAR" property="vote" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
     <result column="project_address" jdbcType="VARCHAR" property="projectAddress" />
-    <result column="cell_name" jdbcType="VARCHAR" property="cellName" />
-    <result column="unit_room_number" jdbcType="VARCHAR" property="unitRoomNumber" />
-    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
-    <result column="creation_time" jdbcType="TIMESTAMP" property="creationTime" />
+    <result column="in_area" jdbcType="REAL" property="inArea" />
+    <result column="area" jdbcType="REAL" property="area" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="creationtime" jdbcType="TIMESTAMP" property="creationtime" />
+    <result column="fi_note" jdbcType="VARCHAR" property="fiNote" />
+    <result column="project_note" jdbcType="VARCHAR" property="projectNote" />
+    <result column="material_note" jdbcType="VARCHAR" property="materialNote" />
+    <result column="other_note" jdbcType="VARCHAR" property="otherNote" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +81,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, client_name, project_address, cell_name, unit_room_number, phone_number, creation_time
+    id, client_name, telephone, client_resource, provider, vote, location, project_name, 
+    project_address, in_area, area, type, note, creationtime, fi_note, project_note, 
+    material_note, other_note, status
   </sql>
   <select id="selectByExample" parameterType="com.heyue.model.ClientExample" resultMap="BaseResultMap">
     select
@@ -105,12 +119,18 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into client (id,client_name, project_address, cell_name,
-      unit_room_number, phone_number, creation_time
-      )
-    values (#{id,jdbcType=BIGINT},#{clientName,jdbcType=VARCHAR}, #{projectAddress,jdbcType=VARCHAR}, #{cellName,jdbcType=VARCHAR},
-      #{unitRoomNumber,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}
-      )
+    insert into client (id,client_name, telephone, client_resource,
+      provider, vote, location, 
+      project_name, project_address, in_area, 
+      area, type, note, creationtime, 
+      fi_note, project_note, material_note, 
+      other_note, status)
+    values (#{id,jdbcType=BIGINT},#{clientName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{clientResource,jdbcType=INTEGER},
+      #{provider,jdbcType=BIGINT}, #{vote,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{projectName,jdbcType=VARCHAR}, #{projectAddress,jdbcType=VARCHAR}, #{inArea,jdbcType=REAL}, 
+      #{area,jdbcType=REAL}, #{type,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{creationtime,jdbcType=TIMESTAMP}, 
+      #{fiNote,jdbcType=VARCHAR}, #{projectNote,jdbcType=VARCHAR}, #{materialNote,jdbcType=VARCHAR}, 
+      #{otherNote,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.heyue.model.Client">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -121,40 +141,112 @@
       <if test="clientName != null">
         client_name,
       </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="clientResource != null">
+        client_resource,
+      </if>
+      <if test="provider != null">
+        provider,
+      </if>
+      <if test="vote != null">
+        vote,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
       <if test="projectAddress != null">
         project_address,
       </if>
-      <if test="cellName != null">
-        cell_name,
+      <if test="inArea != null">
+        in_area,
       </if>
-      <if test="unitRoomNumber != null">
-        unit_room_number,
+      <if test="area != null">
+        area,
       </if>
-      <if test="phoneNumber != null">
-        phone_number,
+      <if test="type != null">
+        type,
       </if>
-      <if test="creationTime != null">
-        creation_time,
+      <if test="note != null">
+        note,
+      </if>
+      <if test="creationtime != null">
+        creationtime,
+      </if>
+      <if test="fiNote != null">
+        fi_note,
+      </if>
+      <if test="projectNote != null">
+        project_note,
+      </if>
+      <if test="materialNote != null">
+        material_note,
+      </if>
+      <if test="otherNote != null">
+        other_note,
+      </if>
+      <if test="status != null">
+        status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="clientName != null">
         #{clientName,jdbcType=VARCHAR},
       </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="clientResource != null">
+        #{clientResource,jdbcType=INTEGER},
+      </if>
+      <if test="provider != null">
+        #{provider,jdbcType=BIGINT},
+      </if>
+      <if test="vote != null">
+        #{vote,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
       <if test="projectAddress != null">
         #{projectAddress,jdbcType=VARCHAR},
       </if>
-      <if test="cellName != null">
-        #{cellName,jdbcType=VARCHAR},
+      <if test="inArea != null">
+        #{inArea,jdbcType=REAL},
       </if>
-      <if test="unitRoomNumber != null">
-        #{unitRoomNumber,jdbcType=VARCHAR},
+      <if test="area != null">
+        #{area,jdbcType=REAL},
       </if>
-      <if test="phoneNumber != null">
-        #{phoneNumber,jdbcType=VARCHAR},
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
       </if>
-      <if test="creationTime != null">
-        #{creationTime,jdbcType=TIMESTAMP},
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="creationtime != null">
+        #{creationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fiNote != null">
+        #{fiNote,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNote != null">
+        #{projectNote,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNote != null">
+        #{materialNote,jdbcType=VARCHAR},
+      </if>
+      <if test="otherNote != null">
+        #{otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -173,20 +265,56 @@
       <if test="row.clientName != null">
         client_name = #{row.clientName,jdbcType=VARCHAR},
       </if>
+      <if test="row.telephone != null">
+        telephone = #{row.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="row.clientResource != null">
+        client_resource = #{row.clientResource,jdbcType=INTEGER},
+      </if>
+      <if test="row.provider != null">
+        provider = #{row.provider,jdbcType=BIGINT},
+      </if>
+      <if test="row.vote != null">
+        vote = #{row.vote,jdbcType=VARCHAR},
+      </if>
+      <if test="row.location != null">
+        location = #{row.location,jdbcType=VARCHAR},
+      </if>
+      <if test="row.projectName != null">
+        project_name = #{row.projectName,jdbcType=VARCHAR},
+      </if>
       <if test="row.projectAddress != null">
         project_address = #{row.projectAddress,jdbcType=VARCHAR},
       </if>
-      <if test="row.cellName != null">
-        cell_name = #{row.cellName,jdbcType=VARCHAR},
+      <if test="row.inArea != null">
+        in_area = #{row.inArea,jdbcType=REAL},
       </if>
-      <if test="row.unitRoomNumber != null">
-        unit_room_number = #{row.unitRoomNumber,jdbcType=VARCHAR},
+      <if test="row.area != null">
+        area = #{row.area,jdbcType=REAL},
       </if>
-      <if test="row.phoneNumber != null">
-        phone_number = #{row.phoneNumber,jdbcType=VARCHAR},
+      <if test="row.type != null">
+        type = #{row.type,jdbcType=VARCHAR},
       </if>
-      <if test="row.creationTime != null">
-        creation_time = #{row.creationTime,jdbcType=TIMESTAMP},
+      <if test="row.note != null">
+        note = #{row.note,jdbcType=VARCHAR},
+      </if>
+      <if test="row.creationtime != null">
+        creationtime = #{row.creationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.fiNote != null">
+        fi_note = #{row.fiNote,jdbcType=VARCHAR},
+      </if>
+      <if test="row.projectNote != null">
+        project_note = #{row.projectNote,jdbcType=VARCHAR},
+      </if>
+      <if test="row.materialNote != null">
+        material_note = #{row.materialNote,jdbcType=VARCHAR},
+      </if>
+      <if test="row.otherNote != null">
+        other_note = #{row.otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="row.status != null">
+        status = #{row.status,jdbcType=INTEGER},
       </if>
     </set>
     <if test="example != null">
@@ -197,11 +325,23 @@
     update client
     set id = #{row.id,jdbcType=BIGINT},
       client_name = #{row.clientName,jdbcType=VARCHAR},
+      telephone = #{row.telephone,jdbcType=VARCHAR},
+      client_resource = #{row.clientResource,jdbcType=INTEGER},
+      provider = #{row.provider,jdbcType=BIGINT},
+      vote = #{row.vote,jdbcType=VARCHAR},
+      location = #{row.location,jdbcType=VARCHAR},
+      project_name = #{row.projectName,jdbcType=VARCHAR},
       project_address = #{row.projectAddress,jdbcType=VARCHAR},
-      cell_name = #{row.cellName,jdbcType=VARCHAR},
-      unit_room_number = #{row.unitRoomNumber,jdbcType=VARCHAR},
-      phone_number = #{row.phoneNumber,jdbcType=VARCHAR},
-      creation_time = #{row.creationTime,jdbcType=TIMESTAMP}
+      in_area = #{row.inArea,jdbcType=REAL},
+      area = #{row.area,jdbcType=REAL},
+      type = #{row.type,jdbcType=VARCHAR},
+      note = #{row.note,jdbcType=VARCHAR},
+      creationtime = #{row.creationtime,jdbcType=TIMESTAMP},
+      fi_note = #{row.fiNote,jdbcType=VARCHAR},
+      project_note = #{row.projectNote,jdbcType=VARCHAR},
+      material_note = #{row.materialNote,jdbcType=VARCHAR},
+      other_note = #{row.otherNote,jdbcType=VARCHAR},
+      status = #{row.status,jdbcType=INTEGER}
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -212,20 +352,56 @@
       <if test="clientName != null">
         client_name = #{clientName,jdbcType=VARCHAR},
       </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="clientResource != null">
+        client_resource = #{clientResource,jdbcType=INTEGER},
+      </if>
+      <if test="provider != null">
+        provider = #{provider,jdbcType=BIGINT},
+      </if>
+      <if test="vote != null">
+        vote = #{vote,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
       <if test="projectAddress != null">
         project_address = #{projectAddress,jdbcType=VARCHAR},
       </if>
-      <if test="cellName != null">
-        cell_name = #{cellName,jdbcType=VARCHAR},
+      <if test="inArea != null">
+        in_area = #{inArea,jdbcType=REAL},
       </if>
-      <if test="unitRoomNumber != null">
-        unit_room_number = #{unitRoomNumber,jdbcType=VARCHAR},
+      <if test="area != null">
+        area = #{area,jdbcType=REAL},
       </if>
-      <if test="phoneNumber != null">
-        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="creationTime != null">
-        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="creationtime != null">
+        creationtime = #{creationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fiNote != null">
+        fi_note = #{fiNote,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNote != null">
+        project_note = #{projectNote,jdbcType=VARCHAR},
+      </if>
+      <if test="materialNote != null">
+        material_note = #{materialNote,jdbcType=VARCHAR},
+      </if>
+      <if test="otherNote != null">
+        other_note = #{otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -233,11 +409,23 @@
   <update id="updateByPrimaryKey" parameterType="com.heyue.model.Client">
     update client
     set client_name = #{clientName,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      client_resource = #{clientResource,jdbcType=INTEGER},
+      provider = #{provider,jdbcType=BIGINT},
+      vote = #{vote,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
       project_address = #{projectAddress,jdbcType=VARCHAR},
-      cell_name = #{cellName,jdbcType=VARCHAR},
-      unit_room_number = #{unitRoomNumber,jdbcType=VARCHAR},
-      phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      creation_time = #{creationTime,jdbcType=TIMESTAMP}
+      in_area = #{inArea,jdbcType=REAL},
+      area = #{area,jdbcType=REAL},
+      type = #{type,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      creationtime = #{creationtime,jdbcType=TIMESTAMP},
+      fi_note = #{fiNote,jdbcType=VARCHAR},
+      project_note = #{projectNote,jdbcType=VARCHAR},
+      material_note = #{materialNote,jdbcType=VARCHAR},
+      other_note = #{otherNote,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

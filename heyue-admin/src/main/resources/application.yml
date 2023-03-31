@@ -49,5 +49,8 @@ redis:
   key:
     admin: 'heyue:user'
     resourceList: 'heyue:resourceList'
+    client: 'heyue:client'
   expire:
     common: 86400 #24小时
+    admin: 86400
+    client: 3600
