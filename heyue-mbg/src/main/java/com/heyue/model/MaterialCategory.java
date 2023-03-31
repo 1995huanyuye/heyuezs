@@ -18,6 +18,9 @@ public class MaterialCategory implements Serializable {
     @ApiModelProperty(value = "是否根节点")
     private String isroot;
 
+    @ApiModelProperty(value = "排序值")
+    private Integer sort;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -60,6 +63,14 @@ public class MaterialCategory implements Serializable {
         this.isroot = isroot;
     }
 
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -71,6 +82,7 @@ public class MaterialCategory implements Serializable {
         sb.append(", materialCategoryCode=").append(materialCategoryCode);
         sb.append(", parentId=").append(parentId);
         sb.append(", isroot=").append(isroot);
+        sb.append(", sort=").append(sort);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
