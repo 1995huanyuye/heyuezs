@@ -1,11 +1,14 @@
 package com.heyue.controller;
 
 import com.heyue.api.CommonResult;
+import com.heyue.dto.DeptParam;
 import com.heyue.model.Dept;
+import com.heyue.model.User;
 import com.heyue.serivce.DeptService;
 import com.heyue.util.PKeyGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,30 +31,31 @@ public class DeptController {
     }
 
     @ApiOperation("添加部门")
-    @GetMapping(value = "/addDept")
+    @RequestMapping(value = "/addDept",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult addDept(@RequestBody Dept dept){
-        dept.setId(PKeyGenerator.generator());
-        int count = deptService.addDept(dept);
-        if(count>0){
+    public CommonResult addDept(@RequestBody DeptParam param){
+        int count = deptService.addDept(param);
+        if(count==-1){
+            return CommonResult.failed("部门编码重复");
+        }else if (count>0){
             return CommonResult.success(count);
         }
         return CommonResult.failed();
     }
 
     @ApiOperation("修改部门信息")
-    @GetMapping(value = "/updateDept")
+    @RequestMapping(value = "/updateDept",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateDept(@RequestBody Dept dept){
-        int count = deptService.updateDept(dept);
+    public CommonResult updateDept(@RequestBody DeptParam param){
+        int count = deptService.updateDept(param);
         if(count>0){
             return CommonResult.success(count);
         }
         return CommonResult.failed();
     }
 
-    @ApiOperation("删除客户")
-    @GetMapping(value = "/deleteDept")
+    @ApiOperation("删除部门")
+    @RequestMapping(value = "/deleteDept",method = RequestMethod.POST)
     @ResponseBody
     public CommonResult deleteDept(@RequestParam("id") Long id){
         int count = deptService.deleteDept(id);
@@ -60,4 +64,16 @@ public class DeptController {
         }
         return CommonResult.failed();
     }
+
+    @ApiOperation("查询部门信息")
+    @RequestMapping(value = "/{deptCode}",method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<Dept> queryDeptInfo(@PathVariable("deptCode") String deptCode){
+        Dept dept = deptService.queryDeptInfo(deptCode);
+        if(dept == null){
+            return CommonResult.failed("未找到指定部门");
+        }
+        return CommonResult.success(dept);
+    }
+
 }

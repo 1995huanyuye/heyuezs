@@ -1,5 +1,6 @@
 package com.heyue.serivce;
 
+import com.heyue.dto.DeptParam;
 import com.heyue.model.Dept;
 import com.heyue.model.User;
 
@@ -14,14 +15,18 @@ public interface DeptService {
     /**
      * 添加部门
      */
-    int addDept(Dept dept);
+    int addDept(DeptParam param);
 
     /**
      * 更新用户信息
      */
-    int updateDept(Dept dept);
+    int updateDept(DeptParam param);
     /**
      * 删除用户
      */
     int deleteDept(Long id);
+    /**
+     * 查询部门信息
+     */
+    Dept queryDeptInfo(String deptCode);
 }
