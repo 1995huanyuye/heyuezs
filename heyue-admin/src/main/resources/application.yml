@@ -58,6 +58,8 @@ redis:
     materialcategoryall: 'heyue:materialcategory:all'
     materialdetail: 'heyue:materialdetail'
     materialdetailall: 'heyue:materialdetail:all'
+    spaceitem: 'heyue:spaceitem'
+    spaceitemdata: 'heyue:spaceitemdata'
   expire:
     common: 3600 #24小时
     admin: 86400

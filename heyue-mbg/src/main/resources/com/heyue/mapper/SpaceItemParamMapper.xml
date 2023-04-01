@@ -102,9 +102,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into space_item_param (space_param_id, space_item_id, value
+    insert into space_item_param (id,space_param_id, space_item_id, value
       )
-    values (#{spaceParamId,jdbcType=BIGINT}, #{spaceItemId,jdbcType=BIGINT}, #{value,jdbcType=REAL}
+    values (#{id,jdbcType=BIGINT},#{spaceParamId,jdbcType=BIGINT}, #{spaceItemId,jdbcType=BIGINT}, #{value,jdbcType=REAL}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.heyue.model.SpaceItemParam">
