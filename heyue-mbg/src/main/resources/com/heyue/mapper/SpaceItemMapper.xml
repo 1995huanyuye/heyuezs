@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.heyue.mapper.SpaceInfoMapper">
-  <resultMap id="BaseResultMap" type="com.heyue.model.SpaceInfo">
+<mapper namespace="com.heyue.mapper.SpaceItemMapper">
+  <resultMap id="BaseResultMap" type="com.heyue.model.SpaceItem">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
-    <result column="space_name" jdbcType="VARCHAR" property="spaceName" />
-    <result column="space_code" jdbcType="VARCHAR" property="spaceCode" />
-    <result column="limit" jdbcType="VARCHAR" property="limit" />
-    <result column="space_type" jdbcType="VARCHAR" property="spaceType" />
+    <result column="space_item_name" jdbcType="VARCHAR" property="spaceItemName" />
+    <result column="space_item_code" jdbcType="VARCHAR" property="spaceItemCode" />
+    <result column="limit" jdbcType="INTEGER" property="limit" />
+    <result column="space_type" jdbcType="INTEGER" property="spaceType" />
     <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="sort_value" jdbcType="VARCHAR" property="sortValue" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,15 +70,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, category_id, space_name, space_code, limit, space_type, note, sort_value
+    id, category_id, space_item_name, space_item_code, limit, space_type, note, sort
   </sql>
-  <select id="selectByExample" parameterType="com.heyue.model.SpaceInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.heyue.model.SpaceItemExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from space_info
+    from space_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,44 +89,44 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from space_info
+    from space_item
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from space_info
+    delete from space_item
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.heyue.model.SpaceInfoExample">
-    delete from space_info
+  <delete id="deleteByExample" parameterType="com.heyue.model.SpaceItemExample">
+    delete from space_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.heyue.model.SpaceInfo">
+  <insert id="insert" parameterType="com.heyue.model.SpaceItem">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into space_info (category_id, space_name, space_code, 
+    insert into space_item (id,category_id, space_item_name, space_item_code,
       limit, space_type, note, 
-      sort_value)
-    values (#{categoryId,jdbcType=BIGINT}, #{spaceName,jdbcType=VARCHAR}, #{spaceCode,jdbcType=VARCHAR}, 
-      #{limit,jdbcType=VARCHAR}, #{spaceType,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
-      #{sortValue,jdbcType=VARCHAR})
+      sort)
+    values (#{id,jdbcType=BIGINT},#{categoryId,jdbcType=BIGINT}, #{spaceItemName,jdbcType=VARCHAR}, #{spaceItemCode,jdbcType=VARCHAR},
+      #{limit,jdbcType=INTEGER}, #{spaceType,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.heyue.model.SpaceInfo">
+  <insert id="insertSelective" parameterType="com.heyue.model.SpaceItem">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into space_info
+    insert into space_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="categoryId != null">
         category_id,
       </if>
-      <if test="spaceName != null">
-        space_name,
+      <if test="spaceItemName != null">
+        space_item_name,
       </if>
-      <if test="spaceCode != null">
-        space_code,
+      <if test="spaceItemCode != null">
+        space_item_code,
       </if>
       <if test="limit != null">
         limit,
@@ -137,42 +137,42 @@
       <if test="note != null">
         note,
       </if>
-      <if test="sortValue != null">
-        sort_value,
+      <if test="sort != null">
+        sort,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="categoryId != null">
         #{categoryId,jdbcType=BIGINT},
       </if>
-      <if test="spaceName != null">
-        #{spaceName,jdbcType=VARCHAR},
+      <if test="spaceItemName != null">
+        #{spaceItemName,jdbcType=VARCHAR},
       </if>
-      <if test="spaceCode != null">
-        #{spaceCode,jdbcType=VARCHAR},
+      <if test="spaceItemCode != null">
+        #{spaceItemCode,jdbcType=VARCHAR},
       </if>
       <if test="limit != null">
-        #{limit,jdbcType=VARCHAR},
+        #{limit,jdbcType=INTEGER},
       </if>
       <if test="spaceType != null">
-        #{spaceType,jdbcType=VARCHAR},
+        #{spaceType,jdbcType=INTEGER},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
       </if>
-      <if test="sortValue != null">
-        #{sortValue,jdbcType=VARCHAR},
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.heyue.model.SpaceInfoExample" resultType="java.lang.Long">
-    select count(*) from space_info
+  <select id="countByExample" parameterType="com.heyue.model.SpaceItemExample" resultType="java.lang.Long">
+    select count(*) from space_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update space_info
+    update space_item
     <set>
       <if test="row.id != null">
         id = #{row.id,jdbcType=BIGINT},
@@ -180,23 +180,23 @@
       <if test="row.categoryId != null">
         category_id = #{row.categoryId,jdbcType=BIGINT},
       </if>
-      <if test="row.spaceName != null">
-        space_name = #{row.spaceName,jdbcType=VARCHAR},
+      <if test="row.spaceItemName != null">
+        space_item_name = #{row.spaceItemName,jdbcType=VARCHAR},
       </if>
-      <if test="row.spaceCode != null">
-        space_code = #{row.spaceCode,jdbcType=VARCHAR},
+      <if test="row.spaceItemCode != null">
+        space_item_code = #{row.spaceItemCode,jdbcType=VARCHAR},
       </if>
       <if test="row.limit != null">
-        limit = #{row.limit,jdbcType=VARCHAR},
+        limit = #{row.limit,jdbcType=INTEGER},
       </if>
       <if test="row.spaceType != null">
-        space_type = #{row.spaceType,jdbcType=VARCHAR},
+        space_type = #{row.spaceType,jdbcType=INTEGER},
       </if>
       <if test="row.note != null">
         note = #{row.note,jdbcType=VARCHAR},
       </if>
-      <if test="row.sortValue != null">
-        sort_value = #{row.sortValue,jdbcType=VARCHAR},
+      <if test="row.sort != null">
+        sort = #{row.sort,jdbcType=INTEGER},
       </if>
     </set>
     <if test="example != null">
@@ -204,55 +204,55 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update space_info
+    update space_item
     set id = #{row.id,jdbcType=BIGINT},
       category_id = #{row.categoryId,jdbcType=BIGINT},
-      space_name = #{row.spaceName,jdbcType=VARCHAR},
-      space_code = #{row.spaceCode,jdbcType=VARCHAR},
-      limit = #{row.limit,jdbcType=VARCHAR},
-      space_type = #{row.spaceType,jdbcType=VARCHAR},
+      space_item_name = #{row.spaceItemName,jdbcType=VARCHAR},
+      space_item_code = #{row.spaceItemCode,jdbcType=VARCHAR},
+      limit = #{row.limit,jdbcType=INTEGER},
+      space_type = #{row.spaceType,jdbcType=INTEGER},
       note = #{row.note,jdbcType=VARCHAR},
-      sort_value = #{row.sortValue,jdbcType=VARCHAR}
+      sort = #{row.sort,jdbcType=INTEGER}
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.SpaceInfo">
-    update space_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.SpaceItem">
+    update space_item
     <set>
       <if test="categoryId != null">
         category_id = #{categoryId,jdbcType=BIGINT},
       </if>
-      <if test="spaceName != null">
-        space_name = #{spaceName,jdbcType=VARCHAR},
+      <if test="spaceItemName != null">
+        space_item_name = #{spaceItemName,jdbcType=VARCHAR},
       </if>
-      <if test="spaceCode != null">
-        space_code = #{spaceCode,jdbcType=VARCHAR},
+      <if test="spaceItemCode != null">
+        space_item_code = #{spaceItemCode,jdbcType=VARCHAR},
       </if>
       <if test="limit != null">
-        limit = #{limit,jdbcType=VARCHAR},
+        limit = #{limit,jdbcType=INTEGER},
       </if>
       <if test="spaceType != null">
-        space_type = #{spaceType,jdbcType=VARCHAR},
+        space_type = #{spaceType,jdbcType=INTEGER},
       </if>
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
       </if>
-      <if test="sortValue != null">
-        sort_value = #{sortValue,jdbcType=VARCHAR},
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.heyue.model.SpaceInfo">
-    update space_info
+  <update id="updateByPrimaryKey" parameterType="com.heyue.model.SpaceItem">
+    update space_item
     set category_id = #{categoryId,jdbcType=BIGINT},
-      space_name = #{spaceName,jdbcType=VARCHAR},
-      space_code = #{spaceCode,jdbcType=VARCHAR},
-      limit = #{limit,jdbcType=VARCHAR},
-      space_type = #{spaceType,jdbcType=VARCHAR},
+      space_item_name = #{spaceItemName,jdbcType=VARCHAR},
+      space_item_code = #{spaceItemCode,jdbcType=VARCHAR},
+      limit = #{limit,jdbcType=INTEGER},
+      space_type = #{spaceType,jdbcType=INTEGER},
       note = #{note,jdbcType=VARCHAR},
-      sort_value = #{sortValue,jdbcType=VARCHAR}
+      sort = #{sort,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

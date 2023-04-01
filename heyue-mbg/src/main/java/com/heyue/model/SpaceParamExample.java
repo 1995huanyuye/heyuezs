@@ -3,14 +3,14 @@ package com.heyue.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetModelInfoExample {
+public class SpaceParamExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BudgetModelInfoExample() {
+    public SpaceParamExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -164,123 +164,213 @@ public class BudgetModelInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdIsNull() {
-            addCriterion("budget_model_id is null");
+        public Criteria andParamNameIsNull() {
+            addCriterion("param_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdIsNotNull() {
-            addCriterion("budget_model_id is not null");
+        public Criteria andParamNameIsNotNull() {
+            addCriterion("param_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdEqualTo(Long value) {
-            addCriterion("budget_model_id =", value, "budgetModelId");
+        public Criteria andParamNameEqualTo(String value) {
+            addCriterion("param_name =", value, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdNotEqualTo(Long value) {
-            addCriterion("budget_model_id <>", value, "budgetModelId");
+        public Criteria andParamNameNotEqualTo(String value) {
+            addCriterion("param_name <>", value, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdGreaterThan(Long value) {
-            addCriterion("budget_model_id >", value, "budgetModelId");
+        public Criteria andParamNameGreaterThan(String value) {
+            addCriterion("param_name >", value, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("budget_model_id >=", value, "budgetModelId");
+        public Criteria andParamNameGreaterThanOrEqualTo(String value) {
+            addCriterion("param_name >=", value, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdLessThan(Long value) {
-            addCriterion("budget_model_id <", value, "budgetModelId");
+        public Criteria andParamNameLessThan(String value) {
+            addCriterion("param_name <", value, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdLessThanOrEqualTo(Long value) {
-            addCriterion("budget_model_id <=", value, "budgetModelId");
+        public Criteria andParamNameLessThanOrEqualTo(String value) {
+            addCriterion("param_name <=", value, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdIn(List<Long> values) {
-            addCriterion("budget_model_id in", values, "budgetModelId");
+        public Criteria andParamNameLike(String value) {
+            addCriterion("param_name like", value, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdNotIn(List<Long> values) {
-            addCriterion("budget_model_id not in", values, "budgetModelId");
+        public Criteria andParamNameNotLike(String value) {
+            addCriterion("param_name not like", value, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdBetween(Long value1, Long value2) {
-            addCriterion("budget_model_id between", value1, value2, "budgetModelId");
+        public Criteria andParamNameIn(List<String> values) {
+            addCriterion("param_name in", values, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetModelIdNotBetween(Long value1, Long value2) {
-            addCriterion("budget_model_id not between", value1, value2, "budgetModelId");
+        public Criteria andParamNameNotIn(List<String> values) {
+            addCriterion("param_name not in", values, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdIsNull() {
-            addCriterion("space_id is null");
+        public Criteria andParamNameBetween(String value1, String value2) {
+            addCriterion("param_name between", value1, value2, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdIsNotNull() {
-            addCriterion("space_id is not null");
+        public Criteria andParamNameNotBetween(String value1, String value2) {
+            addCriterion("param_name not between", value1, value2, "paramName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdEqualTo(Long value) {
-            addCriterion("space_id =", value, "spaceId");
+        public Criteria andParamCodeIsNull() {
+            addCriterion("param_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdNotEqualTo(Long value) {
-            addCriterion("space_id <>", value, "spaceId");
+        public Criteria andParamCodeIsNotNull() {
+            addCriterion("param_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdGreaterThan(Long value) {
-            addCriterion("space_id >", value, "spaceId");
+        public Criteria andParamCodeEqualTo(String value) {
+            addCriterion("param_code =", value, "paramCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("space_id >=", value, "spaceId");
+        public Criteria andParamCodeNotEqualTo(String value) {
+            addCriterion("param_code <>", value, "paramCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdLessThan(Long value) {
-            addCriterion("space_id <", value, "spaceId");
+        public Criteria andParamCodeGreaterThan(String value) {
+            addCriterion("param_code >", value, "paramCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdLessThanOrEqualTo(Long value) {
-            addCriterion("space_id <=", value, "spaceId");
+        public Criteria andParamCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("param_code >=", value, "paramCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdIn(List<Long> values) {
-            addCriterion("space_id in", values, "spaceId");
+        public Criteria andParamCodeLessThan(String value) {
+            addCriterion("param_code <", value, "paramCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdNotIn(List<Long> values) {
-            addCriterion("space_id not in", values, "spaceId");
+        public Criteria andParamCodeLessThanOrEqualTo(String value) {
+            addCriterion("param_code <=", value, "paramCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdBetween(Long value1, Long value2) {
-            addCriterion("space_id between", value1, value2, "spaceId");
+        public Criteria andParamCodeLike(String value) {
+            addCriterion("param_code like", value, "paramCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceIdNotBetween(Long value1, Long value2) {
-            addCriterion("space_id not between", value1, value2, "spaceId");
+        public Criteria andParamCodeNotLike(String value) {
+            addCriterion("param_code not like", value, "paramCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParamCodeIn(List<String> values) {
+            addCriterion("param_code in", values, "paramCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParamCodeNotIn(List<String> values) {
+            addCriterion("param_code not in", values, "paramCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParamCodeBetween(String value1, String value2) {
+            addCriterion("param_code between", value1, value2, "paramCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andParamCodeNotBetween(String value1, String value2) {
+            addCriterion("param_code not between", value1, value2, "paramCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitIsNull() {
+            addCriterion("unit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitIsNotNull() {
+            addCriterion("unit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitEqualTo(String value) {
+            addCriterion("unit =", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitNotEqualTo(String value) {
+            addCriterion("unit <>", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitGreaterThan(String value) {
+            addCriterion("unit >", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitGreaterThanOrEqualTo(String value) {
+            addCriterion("unit >=", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitLessThan(String value) {
+            addCriterion("unit <", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitLessThanOrEqualTo(String value) {
+            addCriterion("unit <=", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitLike(String value) {
+            addCriterion("unit like", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitNotLike(String value) {
+            addCriterion("unit not like", value, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitIn(List<String> values) {
+            addCriterion("unit in", values, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitNotIn(List<String> values) {
+            addCriterion("unit not in", values, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitBetween(String value1, String value2) {
+            addCriterion("unit between", value1, value2, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnitNotBetween(String value1, String value2) {
+            addCriterion("unit not between", value1, value2, "unit");
             return (Criteria) this;
         }
     }

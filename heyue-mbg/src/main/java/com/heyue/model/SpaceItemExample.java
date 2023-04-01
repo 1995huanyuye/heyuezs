@@ -3,14 +3,14 @@ package com.heyue.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpaceInfoExample {
+public class SpaceItemExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public SpaceInfoExample() {
+    public SpaceItemExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -224,143 +224,143 @@ public class SpaceInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameIsNull() {
-            addCriterion("space_name is null");
+        public Criteria andSpaceItemNameIsNull() {
+            addCriterion("space_item_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameIsNotNull() {
-            addCriterion("space_name is not null");
+        public Criteria andSpaceItemNameIsNotNull() {
+            addCriterion("space_item_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameEqualTo(String value) {
-            addCriterion("space_name =", value, "spaceName");
+        public Criteria andSpaceItemNameEqualTo(String value) {
+            addCriterion("space_item_name =", value, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameNotEqualTo(String value) {
-            addCriterion("space_name <>", value, "spaceName");
+        public Criteria andSpaceItemNameNotEqualTo(String value) {
+            addCriterion("space_item_name <>", value, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameGreaterThan(String value) {
-            addCriterion("space_name >", value, "spaceName");
+        public Criteria andSpaceItemNameGreaterThan(String value) {
+            addCriterion("space_item_name >", value, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameGreaterThanOrEqualTo(String value) {
-            addCriterion("space_name >=", value, "spaceName");
+        public Criteria andSpaceItemNameGreaterThanOrEqualTo(String value) {
+            addCriterion("space_item_name >=", value, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameLessThan(String value) {
-            addCriterion("space_name <", value, "spaceName");
+        public Criteria andSpaceItemNameLessThan(String value) {
+            addCriterion("space_item_name <", value, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameLessThanOrEqualTo(String value) {
-            addCriterion("space_name <=", value, "spaceName");
+        public Criteria andSpaceItemNameLessThanOrEqualTo(String value) {
+            addCriterion("space_item_name <=", value, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameLike(String value) {
-            addCriterion("space_name like", value, "spaceName");
+        public Criteria andSpaceItemNameLike(String value) {
+            addCriterion("space_item_name like", value, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameNotLike(String value) {
-            addCriterion("space_name not like", value, "spaceName");
+        public Criteria andSpaceItemNameNotLike(String value) {
+            addCriterion("space_item_name not like", value, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameIn(List<String> values) {
-            addCriterion("space_name in", values, "spaceName");
+        public Criteria andSpaceItemNameIn(List<String> values) {
+            addCriterion("space_item_name in", values, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameNotIn(List<String> values) {
-            addCriterion("space_name not in", values, "spaceName");
+        public Criteria andSpaceItemNameNotIn(List<String> values) {
+            addCriterion("space_item_name not in", values, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameBetween(String value1, String value2) {
-            addCriterion("space_name between", value1, value2, "spaceName");
+        public Criteria andSpaceItemNameBetween(String value1, String value2) {
+            addCriterion("space_item_name between", value1, value2, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceNameNotBetween(String value1, String value2) {
-            addCriterion("space_name not between", value1, value2, "spaceName");
+        public Criteria andSpaceItemNameNotBetween(String value1, String value2) {
+            addCriterion("space_item_name not between", value1, value2, "spaceItemName");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeIsNull() {
-            addCriterion("space_code is null");
+        public Criteria andSpaceItemCodeIsNull() {
+            addCriterion("space_item_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeIsNotNull() {
-            addCriterion("space_code is not null");
+        public Criteria andSpaceItemCodeIsNotNull() {
+            addCriterion("space_item_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeEqualTo(String value) {
-            addCriterion("space_code =", value, "spaceCode");
+        public Criteria andSpaceItemCodeEqualTo(String value) {
+            addCriterion("space_item_code =", value, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeNotEqualTo(String value) {
-            addCriterion("space_code <>", value, "spaceCode");
+        public Criteria andSpaceItemCodeNotEqualTo(String value) {
+            addCriterion("space_item_code <>", value, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeGreaterThan(String value) {
-            addCriterion("space_code >", value, "spaceCode");
+        public Criteria andSpaceItemCodeGreaterThan(String value) {
+            addCriterion("space_item_code >", value, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("space_code >=", value, "spaceCode");
+        public Criteria andSpaceItemCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("space_item_code >=", value, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeLessThan(String value) {
-            addCriterion("space_code <", value, "spaceCode");
+        public Criteria andSpaceItemCodeLessThan(String value) {
+            addCriterion("space_item_code <", value, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeLessThanOrEqualTo(String value) {
-            addCriterion("space_code <=", value, "spaceCode");
+        public Criteria andSpaceItemCodeLessThanOrEqualTo(String value) {
+            addCriterion("space_item_code <=", value, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeLike(String value) {
-            addCriterion("space_code like", value, "spaceCode");
+        public Criteria andSpaceItemCodeLike(String value) {
+            addCriterion("space_item_code like", value, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeNotLike(String value) {
-            addCriterion("space_code not like", value, "spaceCode");
+        public Criteria andSpaceItemCodeNotLike(String value) {
+            addCriterion("space_item_code not like", value, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeIn(List<String> values) {
-            addCriterion("space_code in", values, "spaceCode");
+        public Criteria andSpaceItemCodeIn(List<String> values) {
+            addCriterion("space_item_code in", values, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeNotIn(List<String> values) {
-            addCriterion("space_code not in", values, "spaceCode");
+        public Criteria andSpaceItemCodeNotIn(List<String> values) {
+            addCriterion("space_item_code not in", values, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeBetween(String value1, String value2) {
-            addCriterion("space_code between", value1, value2, "spaceCode");
+        public Criteria andSpaceItemCodeBetween(String value1, String value2) {
+            addCriterion("space_item_code between", value1, value2, "spaceItemCode");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceCodeNotBetween(String value1, String value2) {
-            addCriterion("space_code not between", value1, value2, "spaceCode");
+        public Criteria andSpaceItemCodeNotBetween(String value1, String value2) {
+            addCriterion("space_item_code not between", value1, value2, "spaceItemCode");
             return (Criteria) this;
         }
 
@@ -374,62 +374,52 @@ public class SpaceInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andLimitEqualTo(String value) {
+        public Criteria andLimitEqualTo(Integer value) {
             addCriterion("limit =", value, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitNotEqualTo(String value) {
+        public Criteria andLimitNotEqualTo(Integer value) {
             addCriterion("limit <>", value, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitGreaterThan(String value) {
+        public Criteria andLimitGreaterThan(Integer value) {
             addCriterion("limit >", value, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitGreaterThanOrEqualTo(String value) {
+        public Criteria andLimitGreaterThanOrEqualTo(Integer value) {
             addCriterion("limit >=", value, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitLessThan(String value) {
+        public Criteria andLimitLessThan(Integer value) {
             addCriterion("limit <", value, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitLessThanOrEqualTo(String value) {
+        public Criteria andLimitLessThanOrEqualTo(Integer value) {
             addCriterion("limit <=", value, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitLike(String value) {
-            addCriterion("limit like", value, "limit");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimitNotLike(String value) {
-            addCriterion("limit not like", value, "limit");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimitIn(List<String> values) {
+        public Criteria andLimitIn(List<Integer> values) {
             addCriterion("limit in", values, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitNotIn(List<String> values) {
+        public Criteria andLimitNotIn(List<Integer> values) {
             addCriterion("limit not in", values, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitBetween(String value1, String value2) {
+        public Criteria andLimitBetween(Integer value1, Integer value2) {
             addCriterion("limit between", value1, value2, "limit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitNotBetween(String value1, String value2) {
+        public Criteria andLimitNotBetween(Integer value1, Integer value2) {
             addCriterion("limit not between", value1, value2, "limit");
             return (Criteria) this;
         }
@@ -444,62 +434,52 @@ public class SpaceInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeEqualTo(String value) {
+        public Criteria andSpaceTypeEqualTo(Integer value) {
             addCriterion("space_type =", value, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeNotEqualTo(String value) {
+        public Criteria andSpaceTypeNotEqualTo(Integer value) {
             addCriterion("space_type <>", value, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeGreaterThan(String value) {
+        public Criteria andSpaceTypeGreaterThan(Integer value) {
             addCriterion("space_type >", value, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andSpaceTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("space_type >=", value, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeLessThan(String value) {
+        public Criteria andSpaceTypeLessThan(Integer value) {
             addCriterion("space_type <", value, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeLessThanOrEqualTo(String value) {
+        public Criteria andSpaceTypeLessThanOrEqualTo(Integer value) {
             addCriterion("space_type <=", value, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeLike(String value) {
-            addCriterion("space_type like", value, "spaceType");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpaceTypeNotLike(String value) {
-            addCriterion("space_type not like", value, "spaceType");
-            return (Criteria) this;
-        }
-
-        public Criteria andSpaceTypeIn(List<String> values) {
+        public Criteria andSpaceTypeIn(List<Integer> values) {
             addCriterion("space_type in", values, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeNotIn(List<String> values) {
+        public Criteria andSpaceTypeNotIn(List<Integer> values) {
             addCriterion("space_type not in", values, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeBetween(String value1, String value2) {
+        public Criteria andSpaceTypeBetween(Integer value1, Integer value2) {
             addCriterion("space_type between", value1, value2, "spaceType");
             return (Criteria) this;
         }
 
-        public Criteria andSpaceTypeNotBetween(String value1, String value2) {
+        public Criteria andSpaceTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("space_type not between", value1, value2, "spaceType");
             return (Criteria) this;
         }
@@ -574,73 +554,63 @@ public class SpaceInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSortValueIsNull() {
-            addCriterion("sort_value is null");
+        public Criteria andSortIsNull() {
+            addCriterion("sort is null");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueIsNotNull() {
-            addCriterion("sort_value is not null");
+        public Criteria andSortIsNotNull() {
+            addCriterion("sort is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueEqualTo(String value) {
-            addCriterion("sort_value =", value, "sortValue");
+        public Criteria andSortEqualTo(Integer value) {
+            addCriterion("sort =", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueNotEqualTo(String value) {
-            addCriterion("sort_value <>", value, "sortValue");
+        public Criteria andSortNotEqualTo(Integer value) {
+            addCriterion("sort <>", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueGreaterThan(String value) {
-            addCriterion("sort_value >", value, "sortValue");
+        public Criteria andSortGreaterThan(Integer value) {
+            addCriterion("sort >", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueGreaterThanOrEqualTo(String value) {
-            addCriterion("sort_value >=", value, "sortValue");
+        public Criteria andSortGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sort >=", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueLessThan(String value) {
-            addCriterion("sort_value <", value, "sortValue");
+        public Criteria andSortLessThan(Integer value) {
+            addCriterion("sort <", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueLessThanOrEqualTo(String value) {
-            addCriterion("sort_value <=", value, "sortValue");
+        public Criteria andSortLessThanOrEqualTo(Integer value) {
+            addCriterion("sort <=", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueLike(String value) {
-            addCriterion("sort_value like", value, "sortValue");
+        public Criteria andSortIn(List<Integer> values) {
+            addCriterion("sort in", values, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueNotLike(String value) {
-            addCriterion("sort_value not like", value, "sortValue");
+        public Criteria andSortNotIn(List<Integer> values) {
+            addCriterion("sort not in", values, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueIn(List<String> values) {
-            addCriterion("sort_value in", values, "sortValue");
+        public Criteria andSortBetween(Integer value1, Integer value2) {
+            addCriterion("sort between", value1, value2, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortValueNotIn(List<String> values) {
-            addCriterion("sort_value not in", values, "sortValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSortValueBetween(String value1, String value2) {
-            addCriterion("sort_value between", value1, value2, "sortValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andSortValueNotBetween(String value1, String value2) {
-            addCriterion("sort_value not between", value1, value2, "sortValue");
+        public Criteria andSortNotBetween(Integer value1, Integer value2) {
+            addCriterion("sort not between", value1, value2, "sort");
             return (Criteria) this;
         }
     }
