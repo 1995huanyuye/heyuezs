@@ -6,25 +6,25 @@ import java.io.Serializable;
 public class SpaceItem implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "空间分类id",position = 0)
+    @ApiModelProperty(value = "空间分类id")
     private Long categoryId;
 
-    @ApiModelProperty(value = "空间名称",position = 1)
+    @ApiModelProperty(value = "空间名称")
     private String spaceItemName;
 
-    @ApiModelProperty(value = "空间编码",position = 2)
+    @ApiModelProperty(value = "空间编码")
     private String spaceItemCode;
 
-    @ApiModelProperty(value = "移入限制 0：不限制 1：套内空间 2：套外空间",position = 3)
-    private Integer limit;
+    @ApiModelProperty(value = "移入限制 0：不限制 1：套内空间 2：套外空间 ")
+    private Integer moveLimit;
 
-    @ApiModelProperty(value = "空间类型 0：清单空间 1：套餐空间 2：整装（基装包）3：整装（材料包）4：套餐包（新）",position = 4)
+    @ApiModelProperty(value = "空间类型 0：清单空间 1：套餐空间 2：整装（基装包）3：整装（材料包）4：套餐包（新）")
     private Integer spaceType;
 
-    @ApiModelProperty(value = "备注说明",position = 5)
+    @ApiModelProperty(value = "备注说明")
     private String note;
 
-    @ApiModelProperty(value = "排序值",position = 6)
+    @ApiModelProperty(value = "排序值")
     private Integer sort;
 
     private static final long serialVersionUID = 1L;
@@ -61,12 +61,12 @@ public class SpaceItem implements Serializable {
         this.spaceItemCode = spaceItemCode;
     }
 
-    public Integer getLimit() {
-        return limit;
+    public Integer getMoveLimit() {
+        return moveLimit;
     }
 
-    public void setLimit(Integer limit) {
-        this.limit = limit;
+    public void setMoveLimit(Integer moveLimit) {
+        this.moveLimit = moveLimit;
     }
 
     public Integer getSpaceType() {
@@ -103,7 +103,7 @@ public class SpaceItem implements Serializable {
         sb.append(", categoryId=").append(categoryId);
         sb.append(", spaceItemName=").append(spaceItemName);
         sb.append(", spaceItemCode=").append(spaceItemCode);
-        sb.append(", limit=").append(limit);
+        sb.append(", moveLimit=").append(moveLimit);
         sb.append(", spaceType=").append(spaceType);
         sb.append(", note=").append(note);
         sb.append(", sort=").append(sort);

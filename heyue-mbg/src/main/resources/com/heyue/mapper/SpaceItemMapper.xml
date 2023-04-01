@@ -6,7 +6,7 @@
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
     <result column="space_item_name" jdbcType="VARCHAR" property="spaceItemName" />
     <result column="space_item_code" jdbcType="VARCHAR" property="spaceItemCode" />
-    <result column="limit" jdbcType="INTEGER" property="limit" />
+    <result column="move_limit" jdbcType="INTEGER" property="moveLimit" />
     <result column="space_type" jdbcType="INTEGER" property="spaceType" />
     <result column="note" jdbcType="VARCHAR" property="note" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
@@ -70,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, category_id, space_item_name, space_item_code, limit, space_type, note, sort
+    id, category_id, space_item_name, space_item_code, move_limit, space_type, note, 
+    sort
   </sql>
   <select id="selectByExample" parameterType="com.heyue.model.SpaceItemExample" resultMap="BaseResultMap">
     select
@@ -107,10 +108,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into space_item (id,category_id, space_item_name, space_item_code,
-      limit, space_type, note, 
+      move_limit, space_type, note, 
       sort)
     values (#{id,jdbcType=BIGINT},#{categoryId,jdbcType=BIGINT}, #{spaceItemName,jdbcType=VARCHAR}, #{spaceItemCode,jdbcType=VARCHAR},
-      #{limit,jdbcType=INTEGER}, #{spaceType,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, 
+      #{moveLimit,jdbcType=INTEGER}, #{spaceType,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, 
       #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.heyue.model.SpaceItem">
@@ -128,8 +129,8 @@
       <if test="spaceItemCode != null">
         space_item_code,
       </if>
-      <if test="limit != null">
-        limit,
+      <if test="moveLimit != null">
+        move_limit,
       </if>
       <if test="spaceType != null">
         space_type,
@@ -151,8 +152,8 @@
       <if test="spaceItemCode != null">
         #{spaceItemCode,jdbcType=VARCHAR},
       </if>
-      <if test="limit != null">
-        #{limit,jdbcType=INTEGER},
+      <if test="moveLimit != null">
+        #{moveLimit,jdbcType=INTEGER},
       </if>
       <if test="spaceType != null">
         #{spaceType,jdbcType=INTEGER},
@@ -186,8 +187,8 @@
       <if test="row.spaceItemCode != null">
         space_item_code = #{row.spaceItemCode,jdbcType=VARCHAR},
       </if>
-      <if test="row.limit != null">
-        limit = #{row.limit,jdbcType=INTEGER},
+      <if test="row.moveLimit != null">
+        move_limit = #{row.moveLimit,jdbcType=INTEGER},
       </if>
       <if test="row.spaceType != null">
         space_type = #{row.spaceType,jdbcType=INTEGER},
@@ -209,7 +210,7 @@
       category_id = #{row.categoryId,jdbcType=BIGINT},
       space_item_name = #{row.spaceItemName,jdbcType=VARCHAR},
       space_item_code = #{row.spaceItemCode,jdbcType=VARCHAR},
-      limit = #{row.limit,jdbcType=INTEGER},
+      move_limit = #{row.moveLimit,jdbcType=INTEGER},
       space_type = #{row.spaceType,jdbcType=INTEGER},
       note = #{row.note,jdbcType=VARCHAR},
       sort = #{row.sort,jdbcType=INTEGER}
@@ -229,8 +230,8 @@
       <if test="spaceItemCode != null">
         space_item_code = #{spaceItemCode,jdbcType=VARCHAR},
       </if>
-      <if test="limit != null">
-        limit = #{limit,jdbcType=INTEGER},
+      <if test="moveLimit != null">
+        move_limit = #{moveLimit,jdbcType=INTEGER},
       </if>
       <if test="spaceType != null">
         space_type = #{spaceType,jdbcType=INTEGER},
@@ -249,7 +250,7 @@
     set category_id = #{categoryId,jdbcType=BIGINT},
       space_item_name = #{spaceItemName,jdbcType=VARCHAR},
       space_item_code = #{spaceItemCode,jdbcType=VARCHAR},
-      limit = #{limit,jdbcType=INTEGER},
+      move_limit = #{moveLimit,jdbcType=INTEGER},
       space_type = #{spaceType,jdbcType=INTEGER},
       note = #{note,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER}
