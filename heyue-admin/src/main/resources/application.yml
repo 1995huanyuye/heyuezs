@@ -37,11 +37,16 @@ secure:
       - /favicon.ico
       - /actuator/**
       - /druid/**
-      - /admin/login
-      - /admin/register
-      - /admin/info
-      - /admin/logout
-      - /minio/upload
+      - /admin/**
+      - /dept/**
+      - /material_detail/**
+      - /material_category/**
+      - /basic_detail/**
+      - /basic_category/**
+      - /client/**
+      - /space_model/**
+      - /space_category/**
+
 
 
 redis:
