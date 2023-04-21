@@ -24,6 +24,7 @@ import java.util.List;
 @Controller
 @Api(tags = "基装定额")
 @RequestMapping("/basic_detail")
+@CrossOrigin
 public class BasicDetailController {
     @Autowired
     private BasicDetailService service;

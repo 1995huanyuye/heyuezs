@@ -18,6 +18,7 @@ import java.util.List;
 @Controller
 @Api(tags = "部门管理")
 @RequestMapping("/dept")
+@CrossOrigin
 public class DeptController {
     @Autowired
     private DeptService deptService;

@@ -20,6 +20,7 @@ import java.util.List;
 @Controller
 @Api(tags = "空间模板管理")
 @RequestMapping("/space_model")
+@CrossOrigin
 public class SpaceModelController {
     @Autowired
     private SpaceModelService service;

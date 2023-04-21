@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 @Api(tags = "基装定额类别")
 @RequestMapping("/basic_category")
+@CrossOrigin
 public class BasicCategoryController {
     @Autowired
     private BasicCategoryService service;

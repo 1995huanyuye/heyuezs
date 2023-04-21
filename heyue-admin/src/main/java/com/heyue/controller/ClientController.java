@@ -18,6 +18,7 @@ import java.util.List;
 @Controller
 @Api(tags = "客户管理")
 @RequestMapping("/client")
+@CrossOrigin
 public class ClientController {
     @Autowired
     private ClientService clientService;

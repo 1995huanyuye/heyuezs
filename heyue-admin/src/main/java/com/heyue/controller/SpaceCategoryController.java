@@ -16,6 +16,7 @@ import java.util.List;
 @Controller
 @Api(tags = "空间模板类别")
 @RequestMapping("/space_category")
+@CrossOrigin
 public class SpaceCategoryController {
     @Autowired
     private SpaceCategoryService service;

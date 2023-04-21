@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @Controller
 @Api(tags = "用户管理")
 @RequestMapping("/admin")
+@CrossOrigin
 public class UserController {
 
     @Value("${jwt.tokenHeader}")

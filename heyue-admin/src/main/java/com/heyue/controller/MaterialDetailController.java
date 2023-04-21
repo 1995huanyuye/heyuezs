@@ -17,6 +17,7 @@ import java.util.List;
 @Controller
 @Api(tags = "材料定额")
 @RequestMapping("/material_detail")
+@CrossOrigin
 public class MaterialDetailController {
     @Autowired
     private MaterialDetailService service;
