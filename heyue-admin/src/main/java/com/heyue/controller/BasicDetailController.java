@@ -1,15 +1,24 @@
 package com.heyue.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.support.ExcelTypeEnum;
+import com.fasterxml.jackson.core.JsonParser;
 import com.heyue.api.CommonResult;
+import com.heyue.dto.BasicDetailExport;
 import com.heyue.dto.BasicDetailParam;
 import com.heyue.model.BasicDetail;
 import com.heyue.serivce.BasicDetailService;
+import com.heyue.util.ExcelExportUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -71,4 +80,19 @@ public class BasicDetailController {
         }
         return CommonResult.failed();
     }
+
+    @SneakyThrows(IOException.class)
+    @ApiOperation(value = "基装定额导出模板",notes = "export", produces = "application/octet-stream")
+    @RequestMapping(value = "/exportTemplate",method = RequestMethod.GET)
+    public void exportBasicDetailTemplate(HttpServletResponse response){
+        ExcelExportUtils.setExcelResProp(response,"基装定额导出模板");
+        EasyExcel.write(response.getOutputStream())
+                .head(BasicDetailExport.class)
+                .excelType(ExcelTypeEnum.XLSX)
+                .sheet("sheet1")
+                .doWrite(new ArrayList<>(8));
+    }
+
+
+
 }
