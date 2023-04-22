@@ -13,6 +13,15 @@
         from user_role_relation ar left join role r on ar.role_id = r.id
         where ar.user_id = #{user_id}
     </select>
+
+    <select id="getRoleListByCode" resultMap="com.heyue.mapper.RoleMapper.BaseResultMap">
+        select r.*
+        from user_role_relation ar left join role r on ar.role_id = r.id
+                                   left join `user` r1 on ar.user_id = r1.id
+        where r1.user_code = #{userCode}
+    </select>
+
+
     <select id="getResourceList" resultType="com.heyue.model.UserResource">
         SELECT
             ur.id id,

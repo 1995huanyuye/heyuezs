@@ -1,5 +1,6 @@
 package com.heyue.serivce;
 
+import com.heyue.dto.LoginDto;
 import com.heyue.dto.UpdateUserPasswordParam;
 import com.heyue.dto.UserParam;
 import com.heyue.model.Role;
@@ -30,7 +31,7 @@ public interface UserAdminService {
      * @param password 密码
      * @return 生成的JWT的token
      */
-    String login(String usercode,String password);
+    LoginDto login(String usercode, String password);
 
     /**
      * 刷新token的功能

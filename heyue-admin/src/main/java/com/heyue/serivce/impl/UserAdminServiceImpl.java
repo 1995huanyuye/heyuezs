@@ -5,9 +5,11 @@ import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.heyue.bo.HeyueUserDetails;
 import com.heyue.dao.UserRoleRelationDao;
+import com.heyue.dto.LoginDto;
 import com.heyue.dto.UpdateUserPasswordParam;
 import com.heyue.dto.UserParam;
 import com.heyue.exception.Asserts;
+import com.heyue.mapper.RoleMapper;
 import com.heyue.mapper.UserLoginLogMapper;
 import com.heyue.mapper.UserMapper;
 import com.heyue.mapper.UserRoleRelationMapper;
@@ -37,6 +39,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserAdminServiceImpl implements UserAdminService {
@@ -94,7 +97,8 @@ public class UserAdminServiceImpl implements UserAdminService {
     }
 
     @Override
-    public String login(String usercode, String password) {
+    public LoginDto login(String usercode, String password) {
+        LoginDto loginDto = new LoginDto();
         String token = null;
         //密码需要客户端加密后传递
         try {
@@ -112,7 +116,12 @@ public class UserAdminServiceImpl implements UserAdminService {
         }catch (AuthenticationException e){
             LOGGER.warn("登录异常：{}",e.getMessage());
         }
-        return token;
+        if(token !=null ){
+            List<Role> roleList = userRoleRelationDao.getRoleListByCode(usercode);
+            loginDto.setToken(token);
+            loginDto.setRoleList(roleList);
+        }
+        return loginDto;
     }
 
     /**

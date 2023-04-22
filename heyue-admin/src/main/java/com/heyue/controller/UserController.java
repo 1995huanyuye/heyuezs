@@ -3,6 +3,7 @@ package com.heyue.controller;
 import cn.hutool.core.collection.CollUtil;
 import com.heyue.api.CommonPage;
 import com.heyue.api.CommonResult;
+import com.heyue.dto.LoginDto;
 import com.heyue.dto.UpdateUserPasswordParam;
 import com.heyue.dto.UserLoginParam;
 import com.heyue.dto.UserParam;
@@ -56,15 +57,12 @@ public class UserController {
     @ApiOperation(value = "登录后返回token")
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult login(@Validated @RequestBody UserLoginParam param){
-        String token = userAdminService.login(param.getUserCode(), param.getPassword());
-        if(token==null){
+    public CommonResult<LoginDto> login(@Validated @RequestBody UserLoginParam param){
+        LoginDto dto = userAdminService.login(param.getUserCode(), param.getPassword());
+        if(dto==null){
             return CommonResult.validateFailed("用户名或密码错误");
         }
-        HashMap<String, String> tokenMap = new HashMap<>(2);
-        tokenMap.put("token",token);
-        tokenMap.put("tokenHead",tokenHead);
-        return CommonResult.success(tokenMap);
+        return CommonResult.success(dto);
     }
 
     @ApiOperation(value = "刷新token")

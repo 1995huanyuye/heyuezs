@@ -22,6 +22,11 @@ public interface UserRoleRelationDao {
     List<Role> getRoleList(@Param("user_id") Long user_id);
 
     /**
+     * 用户编码获取角色
+     */
+    List<Role> getRoleListByCode(@Param("userCode") String userCode);
+
+    /**
      * 获取用户所有可访问资源
      */
     List<UserResource> getResourceList(@Param("user_id") Long user_id);
