@@ -84,7 +84,7 @@ public class BasicDetailImpl implements BasicDetailService {
         BeanUtils.copyProperties(param,detail);
         //项目编码不允许重复
         BasicDetailExample basicDetailExample = new BasicDetailExample();
-        basicDetailExample.createCriteria().andProjectCodeEqualTo(param.getProjectCode());
+        basicDetailExample.createCriteria().andDetailCodeEqualTo(param.getDetailCode());
         List<BasicDetail> detailList = basicDetailMapper.selectByExample(basicDetailExample);
         if(CollUtil.isNotEmpty(detailList)){
             return -1;
@@ -99,7 +99,7 @@ public class BasicDetailImpl implements BasicDetailService {
     @Override
     public int updateBasicDetail(BasicDetail detail) {
         BasicDetailExample basicDetailExample = new BasicDetailExample();
-        basicDetailExample.createCriteria().andProjectCodeEqualTo(detail.getProjectCode());
+        basicDetailExample.createCriteria().andDetailCodeEqualTo(detail.getDetailCode());
         List<BasicDetail> detailList = basicDetailMapper.selectByExample(basicDetailExample);
         if(CollUtil.isEmpty(detailList)){
             return -1;

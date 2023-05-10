@@ -16,21 +16,15 @@ public interface BasicDetailMapper {
 
     int insertSelective(BasicDetail row);
 
-    List<BasicDetail> selectByExampleWithBLOBs(BasicDetailExample example);
-
     List<BasicDetail> selectByExample(BasicDetailExample example);
 
     BasicDetail selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("row") BasicDetail row, @Param("example") BasicDetailExample example);
 
-    int updateByExampleWithBLOBs(@Param("row") BasicDetail row, @Param("example") BasicDetailExample example);
-
     int updateByExample(@Param("row") BasicDetail row, @Param("example") BasicDetailExample example);
 
     int updateByPrimaryKeySelective(BasicDetail row);
-
-    int updateByPrimaryKeyWithBLOBs(BasicDetail row);
 
     int updateByPrimaryKey(BasicDetail row);
 }

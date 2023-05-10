@@ -9,6 +9,7 @@ import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.MaterialCategoryCacheService;
 import com.heyue.serivce.MaterialCategoryService;
 import com.heyue.util.PKeyGenerator;
+import com.heyue.util.ProduceNumUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,16 +52,11 @@ public class MaterialCategoryImpl implements MaterialCategoryService {
 
     @Override
     public int addMaterialCategory(MaterialCategoryParam param) {
-        //目录编码不允许重复
-        MaterialCategoryExample materialCategoryExample = new MaterialCategoryExample();
-        materialCategoryExample.createCriteria().andMaterialCategoryCodeEqualTo(param.getMaterialCategoryCode());
-        List<MaterialCategory> list = mapper.selectByExample(materialCategoryExample);
-        if(CollUtil.isNotEmpty(list)){
-            return -1;
-        }
+        //生成编码
         MaterialCategory category = new MaterialCategory();
         BeanUtils.copyProperties(param,category);
         category.setId(PKeyGenerator.generator());
+        category.setMaterialCategoryCode(ProduceNumUtil.getCode("M"));
         //插入数据后删掉整个目录缓存
         getCacheService().delAll();
         return mapper.insert(category);

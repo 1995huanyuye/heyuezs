@@ -8,66 +8,64 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class BasicDetailExport {
-    @ExcelProperty(value = "项目名称")
-    @ColumnWidth(20)
-    private String entryName;
-    @ExcelProperty(value = "单位")
-    @ColumnWidth(20)
-    private Integer mainUnit;
+    @ExcelProperty("定额名称")
+    @ColumnWidth(value = 20)
+    private String detailName;
 
-    @ExcelProperty(value = "项目编码")
-    @ColumnWidth(20)
-    private String projectCode;
+    @ExcelProperty("定额分类")
+    @ColumnWidth(value = 20)
+    private String detailType;
 
-    @ExcelProperty(value = "成本价")
-    @ColumnWidth(20)
-    private Double costPrice;
+    @ExcelProperty("定额编号")
+    @ColumnWidth(value = 20)
+    private String detailCode;
 
-    @ExcelProperty(value = "核算价")
-    @ColumnWidth(20)
-    private Double accountingPrice;
+    @ExcelProperty("计价单位")
+    @ColumnWidth(value = 20)
+    private Integer unit;
 
-    @ExcelProperty(value = "销售价")
-    @ColumnWidth(20)
-    private Double salesPrice;
+    @ExcelProperty("计价数量向上取整")
+    @ColumnWidth(value = 20)
+    private Integer roundUp;
 
-    @ExcelProperty(value = "最低售价")
-    @ColumnWidth(20)
-    private Double lowestSellingPrice;
+    @ExcelProperty("人工成本")
+    @ColumnWidth(value = 20)
+    private Double laborCost;
 
-    @ExcelProperty(value = "建议售价")
-    @ColumnWidth(20)
-    private Double recommendedSellingPrice;
+    @ExcelProperty("辅料成本")
+    @ColumnWidth(value = 20)
+    private Double auxiliaryMaterialCost;
 
-    @ExcelProperty(value = "发包价")
-    @ColumnWidth(20)
-    private Double contractPrice;
+    @ExcelProperty("人工售价")
+    @ColumnWidth(value = 20)
+    private Double laborPrice;
 
-    @ExcelProperty(value = "品牌")
-    @ColumnWidth(20)
-    private Long brandId;
+    @ExcelProperty("辅料售价")
+    @ColumnWidth(value = 20)
+    private Double accessoriesPrice;
 
-    @ExcelProperty(value = "型号")
-    @ColumnWidth(20)
-    private Long modelId;
+    @ExcelProperty("辅材损耗率")
+    @ColumnWidth(value = 20)
+    private Double auxiliaryMaterialLossRate;
 
-    @ExcelProperty(value = "规格")
-    @ColumnWidth(20)
-    private Long specifications;
+    @ExcelProperty("工程阶段")
+    @ColumnWidth(value = 20)
+    private Integer engineeringStage;
 
-    @ExcelProperty(value = "颜色")
-    @ColumnWidth(20)
-    private Long color;
+    @ExcelProperty("施工类型")
+    @ColumnWidth(value = 20)
+    private Integer constructionType;
 
-    @ExcelProperty(value = "项目说明")
-    @ColumnWidth(20)
-    private String projectDescription;
+    @ExcelProperty("施工工艺、材料说明")
+    @ColumnWidth(value = 20)
+    private String materialDescription;
 
-    @ExcelProperty(value = "计价说明")
-    @ColumnWidth(20)
-    private String pricingInstructions;
+    @ExcelProperty("上下架状态")
+    @ColumnWidth(value = 20)
+    private Integer shelfStatus;
 
-    @ExcelProperty(value = "验收标准")
-    @ColumnWidth(20)
-    private String acceptanceCriteria;
+    @ExcelProperty("排序")
+    @ColumnWidth(value = 20)
+    private Integer sort;
+
 }

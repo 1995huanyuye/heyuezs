@@ -8,79 +8,65 @@ public class MaterialDetail implements Serializable {
 
     private Long categoryId;
 
+    @ApiModelProperty(value = "定额名称")
+    private String materialNumber;
+
+    @ApiModelProperty(value = "定额分类")
+    private String materialClassification;
+
     @ApiModelProperty(value = "材料类型")
     private String materialType;
 
-    @ApiModelProperty(value = "材料编码")
-    private String materialNumber;
-    @ApiModelProperty(value = "材料名称")
-    private String materialName;
+    @ApiModelProperty(value = "定额编号")
+    private String materialCode;
 
-    @ApiModelProperty(value = "供应商")
-    private Long supplierId;
+    @ApiModelProperty(value = "计量单位")
+    private Integer unit;
 
-    @ApiModelProperty(value = "工程阶段")
-    private String engineeringStage;
+    @ApiModelProperty(value = "计价数量向上取整")
+    private Integer roundUp;
 
-    @ApiModelProperty(value = "成本价")
-    private Double costPrice;
+    @ApiModelProperty(value = "材料成本")
+    private Double materialCost;
 
-    @ApiModelProperty(value = "核算价")
-    private Double accountingPrice;
+    @ApiModelProperty(value = "材料售价")
+    private Double materialPrice;
 
-    @ApiModelProperty(value = "销售价")
-    private Double salesPrice;
-
-    @ApiModelProperty(value = "最低售价")
-    private Double lowestSellingPrice;
-
-    @ApiModelProperty(value = "建议售价")
-    private Double recommendedSellingPrice;
-
-    @ApiModelProperty(value = "发包价")
-    private Double contractPrice;
-
-    @ApiModelProperty(value = "主单位（枚举展示）")
-    private Integer mainUnit;
-
-    @ApiModelProperty(value = "副单位（枚举展示）")
-    private Integer deputyUnit;
+    @ApiModelProperty(value = "材料损耗率")
+    private Double materialWastageRate;
 
     @ApiModelProperty(value = "品牌")
-    private Long brandId;
+    private String brand;
 
     @ApiModelProperty(value = "型号")
-    private Long modelId;
+    private String modelNumber;
 
     @ApiModelProperty(value = "规格")
-    private Long specifications;
+    private String specification;
 
     @ApiModelProperty(value = "颜色")
-    private Long color;
+    private String color;
 
-    @ApiModelProperty(value = "公式")
-    private String formula;
+    @ApiModelProperty(value = "供应商")
+    private String supplier;
+
+    @ApiModelProperty(value = "工程阶段")
+    private Integer engineeringStage;
+
+    @ApiModelProperty(value = "施工类型")
+    private Integer constructionType;
+
+    @ApiModelProperty(value = "施工工艺、材料说明")
+    private String materialDescription;
+
+    @ApiModelProperty(value = "图片")
+    private String image;
 
     @ApiModelProperty(value = "上架状态")
     private String shelfStatus;
 
-    @ApiModelProperty(value = "漏项提醒")
-    private String remind;
-
-    @ApiModelProperty(value = "是否向上取整")
-    private String roundUp;
-
-    @ApiModelProperty(value = "项目说明")
-    private String projectDescription;
-
-    @ApiModelProperty(value = "计价说明")
-    private String pricingInstructions;
-
-    @ApiModelProperty(value = "验收标准")
-    private String acceptanceCriteria;
-
-    @ApiModelProperty(value = "上传图片")
-    private byte[] image;
+    @ApiModelProperty(value = "排序")
+    private Integer sort;
 
     private static final long serialVersionUID = 1L;
 
@@ -100,14 +86,6 @@ public class MaterialDetail implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public String getMaterialType() {
-        return materialType;
-    }
-
-    public void setMaterialType(String materialType) {
-        this.materialType = materialType;
-    }
-
     public String getMaterialNumber() {
         return materialNumber;
     }
@@ -116,132 +94,140 @@ public class MaterialDetail implements Serializable {
         this.materialNumber = materialNumber;
     }
 
-    public String getMaterialName() {
-        return materialName;
+    public String getMaterialClassification() {
+        return materialClassification;
     }
 
-    public void setMaterialName(String materialName) {
-        this.materialName = materialName;
+    public void setMaterialClassification(String materialClassification) {
+        this.materialClassification = materialClassification;
     }
 
-    public Long getSupplierId() {
-        return supplierId;
+    public String getMaterialType() {
+        return materialType;
     }
 
-    public void setSupplierId(Long supplierId) {
-        this.supplierId = supplierId;
+    public void setMaterialType(String materialType) {
+        this.materialType = materialType;
     }
 
-    public String getEngineeringStage() {
-        return engineeringStage;
+    public String getMaterialCode() {
+        return materialCode;
     }
 
-    public void setEngineeringStage(String engineeringStage) {
-        this.engineeringStage = engineeringStage;
+    public void setMaterialCode(String materialCode) {
+        this.materialCode = materialCode;
     }
 
-    public Double getCostPrice() {
-        return costPrice;
+    public Integer getUnit() {
+        return unit;
     }
 
-    public void setCostPrice(Double costPrice) {
-        this.costPrice = costPrice;
+    public void setUnit(Integer unit) {
+        this.unit = unit;
     }
 
-    public Double getAccountingPrice() {
-        return accountingPrice;
+    public Integer getRoundUp() {
+        return roundUp;
     }
 
-    public void setAccountingPrice(Double accountingPrice) {
-        this.accountingPrice = accountingPrice;
+    public void setRoundUp(Integer roundUp) {
+        this.roundUp = roundUp;
     }
 
-    public Double getSalesPrice() {
-        return salesPrice;
+    public Double getMaterialCost() {
+        return materialCost;
     }
 
-    public void setSalesPrice(Double salesPrice) {
-        this.salesPrice = salesPrice;
+    public void setMaterialCost(Double materialCost) {
+        this.materialCost = materialCost;
     }
 
-    public Double getLowestSellingPrice() {
-        return lowestSellingPrice;
+    public Double getMaterialPrice() {
+        return materialPrice;
     }
 
-    public void setLowestSellingPrice(Double lowestSellingPrice) {
-        this.lowestSellingPrice = lowestSellingPrice;
+    public void setMaterialPrice(Double materialPrice) {
+        this.materialPrice = materialPrice;
     }
 
-    public Double getRecommendedSellingPrice() {
-        return recommendedSellingPrice;
+    public Double getMaterialWastageRate() {
+        return materialWastageRate;
     }
 
-    public void setRecommendedSellingPrice(Double recommendedSellingPrice) {
-        this.recommendedSellingPrice = recommendedSellingPrice;
+    public void setMaterialWastageRate(Double materialWastageRate) {
+        this.materialWastageRate = materialWastageRate;
     }
 
-    public Double getContractPrice() {
-        return contractPrice;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setContractPrice(Double contractPrice) {
-        this.contractPrice = contractPrice;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public Integer getMainUnit() {
-        return mainUnit;
+    public String getModelNumber() {
+        return modelNumber;
     }
 
-    public void setMainUnit(Integer mainUnit) {
-        this.mainUnit = mainUnit;
+    public void setModelNumber(String modelNumber) {
+        this.modelNumber = modelNumber;
     }
 
-    public Integer getDeputyUnit() {
-        return deputyUnit;
+    public String getSpecification() {
+        return specification;
     }
 
-    public void setDeputyUnit(Integer deputyUnit) {
-        this.deputyUnit = deputyUnit;
+    public void setSpecification(String specification) {
+        this.specification = specification;
     }
 
-    public Long getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
-    public Long getModelId() {
-        return modelId;
-    }
-
-    public void setModelId(Long modelId) {
-        this.modelId = modelId;
-    }
-
-    public Long getSpecifications() {
-        return specifications;
-    }
-
-    public void setSpecifications(Long specifications) {
-        this.specifications = specifications;
-    }
-
-    public Long getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Long color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
-    public String getFormula() {
-        return formula;
+    public String getSupplier() {
+        return supplier;
     }
 
-    public void setFormula(String formula) {
-        this.formula = formula;
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public Integer getEngineeringStage() {
+        return engineeringStage;
+    }
+
+    public void setEngineeringStage(Integer engineeringStage) {
+        this.engineeringStage = engineeringStage;
+    }
+
+    public Integer getConstructionType() {
+        return constructionType;
+    }
+
+    public void setConstructionType(Integer constructionType) {
+        this.constructionType = constructionType;
+    }
+
+    public String getMaterialDescription() {
+        return materialDescription;
+    }
+
+    public void setMaterialDescription(String materialDescription) {
+        this.materialDescription = materialDescription;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getShelfStatus() {
@@ -252,52 +238,12 @@ public class MaterialDetail implements Serializable {
         this.shelfStatus = shelfStatus;
     }
 
-    public String getRemind() {
-        return remind;
+    public Integer getSort() {
+        return sort;
     }
 
-    public void setRemind(String remind) {
-        this.remind = remind;
-    }
-
-    public String getRoundUp() {
-        return roundUp;
-    }
-
-    public void setRoundUp(String roundUp) {
-        this.roundUp = roundUp;
-    }
-
-    public String getProjectDescription() {
-        return projectDescription;
-    }
-
-    public void setProjectDescription(String projectDescription) {
-        this.projectDescription = projectDescription;
-    }
-
-    public String getPricingInstructions() {
-        return pricingInstructions;
-    }
-
-    public void setPricingInstructions(String pricingInstructions) {
-        this.pricingInstructions = pricingInstructions;
-    }
-
-    public String getAcceptanceCriteria() {
-        return acceptanceCriteria;
-    }
-
-    public void setAcceptanceCriteria(String acceptanceCriteria) {
-        this.acceptanceCriteria = acceptanceCriteria;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     @Override
@@ -308,31 +254,26 @@ public class MaterialDetail implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", categoryId=").append(categoryId);
-        sb.append(", materialType=").append(materialType);
         sb.append(", materialNumber=").append(materialNumber);
-        sb.append(", materialName=").append(materialName);
-        sb.append(", supplierId=").append(supplierId);
-        sb.append(", engineeringStage=").append(engineeringStage);
-        sb.append(", costPrice=").append(costPrice);
-        sb.append(", accountingPrice=").append(accountingPrice);
-        sb.append(", salesPrice=").append(salesPrice);
-        sb.append(", lowestSellingPrice=").append(lowestSellingPrice);
-        sb.append(", recommendedSellingPrice=").append(recommendedSellingPrice);
-        sb.append(", contractPrice=").append(contractPrice);
-        sb.append(", mainUnit=").append(mainUnit);
-        sb.append(", deputyUnit=").append(deputyUnit);
-        sb.append(", brandId=").append(brandId);
-        sb.append(", modelId=").append(modelId);
-        sb.append(", specifications=").append(specifications);
-        sb.append(", color=").append(color);
-        sb.append(", formula=").append(formula);
-        sb.append(", shelfStatus=").append(shelfStatus);
-        sb.append(", remind=").append(remind);
+        sb.append(", materialClassification=").append(materialClassification);
+        sb.append(", materialType=").append(materialType);
+        sb.append(", materialCode=").append(materialCode);
+        sb.append(", unit=").append(unit);
         sb.append(", roundUp=").append(roundUp);
-        sb.append(", projectDescription=").append(projectDescription);
-        sb.append(", pricingInstructions=").append(pricingInstructions);
-        sb.append(", acceptanceCriteria=").append(acceptanceCriteria);
+        sb.append(", materialCost=").append(materialCost);
+        sb.append(", materialPrice=").append(materialPrice);
+        sb.append(", materialWastageRate=").append(materialWastageRate);
+        sb.append(", brand=").append(brand);
+        sb.append(", modelNumber=").append(modelNumber);
+        sb.append(", specification=").append(specification);
+        sb.append(", color=").append(color);
+        sb.append(", supplier=").append(supplier);
+        sb.append(", engineeringStage=").append(engineeringStage);
+        sb.append(", constructionType=").append(constructionType);
+        sb.append(", materialDescription=").append(materialDescription);
         sb.append(", image=").append(image);
+        sb.append(", shelfStatus=").append(shelfStatus);
+        sb.append(", sort=").append(sort);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

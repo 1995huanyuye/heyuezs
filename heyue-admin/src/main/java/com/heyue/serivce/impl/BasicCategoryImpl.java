@@ -9,6 +9,7 @@ import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.BasicCategoryCacheService;
 import com.heyue.serivce.BasicCategoryService;
 import com.heyue.util.PKeyGenerator;
+import com.heyue.util.ProduceNumUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,16 +50,10 @@ public class BasicCategoryImpl implements BasicCategoryService {
 
     @Override
     public int addBasicCategory(BasicCategoryParam param) {
-        //目录编码不允许重复
-        BasicCategoryExample basicCategoryExample = new BasicCategoryExample();
-        basicCategoryExample.createCriteria().andBasicCategoryCodeEqualTo(param.getBasicCategoryCode());
-        List<BasicCategory> list = mapper.selectByExample(basicCategoryExample);
-        if(CollUtil.isNotEmpty(list)){
-            return -1;
-        }
         BasicCategory category = new BasicCategory();
         BeanUtils.copyProperties(param,category);
         category.setId(PKeyGenerator.generator());
+        category.setBasicCategoryCode(ProduceNumUtil.getCode("B"));
         //插入数据后删掉整个目录缓存
         getCacheService().delAll();
         return mapper.insert(category);

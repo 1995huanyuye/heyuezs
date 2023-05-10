@@ -8,6 +8,7 @@ import com.heyue.dto.BasicDetailExport;
 import com.heyue.dto.BasicDetailParam;
 import com.heyue.model.BasicDetail;
 import com.heyue.serivce.BasicDetailService;
+import com.heyue.serivce.DataOpratorService;
 import com.heyue.util.ExcelExportUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +16,7 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -28,6 +30,9 @@ import java.util.List;
 public class BasicDetailController {
     @Autowired
     private BasicDetailService service;
+
+    @Autowired
+    private DataOpratorService dataOpratorService;
 
     @ApiOperation("获取所有基装定额")
     @RequestMapping(value = "/listAll",method = RequestMethod.GET)
@@ -86,12 +91,19 @@ public class BasicDetailController {
     @ApiOperation(value = "基装定额导出模板",notes = "export", produces = "application/octet-stream")
     @RequestMapping(value = "/exportTemplate",method = RequestMethod.GET)
     public void exportBasicDetailTemplate(HttpServletResponse response){
-        ExcelExportUtils.setExcelResProp(response,"基装定额导出模板");
+        ExcelExportUtils.setExcelResProp(response,"ExportTemplate");
         EasyExcel.write(response.getOutputStream())
                 .head(BasicDetailExport.class)
                 .excelType(ExcelTypeEnum.XLSX)
                 .sheet("sheet1")
                 .doWrite(new ArrayList<>(8));
+    }
+
+    @SneakyThrows(IOException.class)
+    @ApiOperation(value = "导入基装定额数据",notes = "import")
+    @RequestMapping(value = "/imoportData",method = RequestMethod.POST)
+    public void importBasicDetailData(@RequestPart("file")MultipartFile file){
+        dataOpratorService.importExcel(file);
     }
 
 

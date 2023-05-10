@@ -3,6 +3,7 @@ package com.heyue.controller;
 import com.heyue.api.CommonResult;
 import com.heyue.dto.BasicCategoryParam;
 import com.heyue.model.BasicCategory;
+import com.heyue.model.MaterialCategory;
 import com.heyue.serivce.BasicCategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @Api(tags = "基装定额类别")
@@ -24,7 +27,7 @@ public class BasicCategoryController {
     @RequestMapping(value = "/listAll",method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<BasicCategory>> listAll(){
-        List<BasicCategory> categories = service.listAll();
+        List<BasicCategory> categories = list2TreeByMap(service.listAll());
         return CommonResult.success(categories);
     }
 
@@ -43,15 +46,11 @@ public class BasicCategoryController {
     @RequestMapping(value = "/addBasicCategory",method = RequestMethod.POST)
     @ResponseBody
     public CommonResult addBasicCategory(@RequestBody BasicCategoryParam param){
-        String message = "";
         int count = service.addBasicCategory(param);
-        if(count==-1){
-            message= "类别编码重复";
-        }
         if(count>0){
             return CommonResult.success(count);
         }
-        return CommonResult.failed(message);
+        return CommonResult.failed();
     }
 
     @ApiOperation("修改基装定额类别")
@@ -74,5 +73,17 @@ public class BasicCategoryController {
             return CommonResult.success(count);
         }
         return CommonResult.failed();
+    }
+
+    private List<BasicCategory> list2TreeByMap(List<BasicCategory> details){
+        Map<Long, List<BasicCategory>> parentMap  = details.stream().collect(Collectors.groupingBy(BasicCategory::getParentId));
+        for (Map.Entry<Long, List<BasicCategory>> entry : parentMap.entrySet()) {
+            List<BasicCategory> childs = entry.getValue();
+            for (BasicCategory child : childs) {
+                child.setChild(parentMap.get(child.getId()));
+            }
+        }
+        //返回根节点数据
+        return parentMap.get(Long.valueOf(0));
     }
 }

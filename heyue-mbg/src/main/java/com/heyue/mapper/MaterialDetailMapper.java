@@ -16,21 +16,15 @@ public interface MaterialDetailMapper {
 
     int insertSelective(MaterialDetail row);
 
-    List<MaterialDetail> selectByExampleWithBLOBs(MaterialDetailExample example);
-
     List<MaterialDetail> selectByExample(MaterialDetailExample example);
 
     MaterialDetail selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("row") MaterialDetail row, @Param("example") MaterialDetailExample example);
 
-    int updateByExampleWithBLOBs(@Param("row") MaterialDetail row, @Param("example") MaterialDetailExample example);
-
     int updateByExample(@Param("row") MaterialDetail row, @Param("example") MaterialDetailExample example);
 
     int updateByPrimaryKeySelective(MaterialDetail row);
-
-    int updateByPrimaryKeyWithBLOBs(MaterialDetail row);
 
     int updateByPrimaryKey(MaterialDetail row);
 }

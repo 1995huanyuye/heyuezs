@@ -2,6 +2,7 @@ package com.heyue.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import java.util.List;
 
 public class BasicCategory implements Serializable {
     private Long id;
@@ -20,6 +21,16 @@ public class BasicCategory implements Serializable {
 
     @ApiModelProperty(value = "排序值")
     private Integer sort;
+
+    private List<BasicCategory> child;
+
+    public List<BasicCategory> getChild() {
+        return child;
+    }
+
+    public void setChild(List<BasicCategory> child) {
+        this.child = child;
+    }
 
     private static final long serialVersionUID = 1L;
 
