@@ -5,4 +5,17 @@
 
 
     </select>
+
+    <insert id="batchSave" >
+        INSERT INTO
+                basic_detail (id,category_id,detail_type,detail_name,detail_code,unit,round_up,sort,labor_cost,auxiliary_material_cost,labor_price,
+                              accessories_price,auxiliary_material_loss_rate,engineering_stage,construction_type,material_description,shelf_status)
+        VALUES
+            <foreach collection="data" item="basic_detail" separator=",">
+            (#{basic_detail.id},#{basic_detail.categoryId},#{basic_detail.detailType},#{basic_detail.detailName},#{basic_detail.detailCode},#{basic_detail.unit}
+                ,#{basic_detail.roundUp},#{basic_detail.sort},#{basic_detail.laborCost},#{basic_detail.auxiliaryMaterialCost}
+                    ,#{basic_detail.laborPrice},#{basic_detail.accessoriesPrice},#{basic_detail.auxiliaryMaterialLossRate},#{basic_detail.engineeringStage}
+                         ,#{basic_detail.constructionType},#{basic_detail.materialDescription},#{basic_detail.shelfStatus})
+            </foreach>
+    </insert>
 </mapper>

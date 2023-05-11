@@ -43,8 +43,8 @@ public class BasicDetailCacheServiceImpl implements BasicDetailCacheService {
     }
 
     @Override
-    public List<BasicDetail> getAll(Long category_id) {
-        String key = REDIS_DATABASE+":"+REDIS_KEY_BASICDETAILALL+":"+category_id;
+    public List<BasicDetail> getAll(Long category_id,String isHaveParent) {
+        String key = REDIS_DATABASE+":"+REDIS_KEY_BASICDETAILALL+":"+category_id+":"+isHaveParent;
         List<BasicDetail> list = (List<BasicDetail>) redisService.get(key);
         return list;
     }

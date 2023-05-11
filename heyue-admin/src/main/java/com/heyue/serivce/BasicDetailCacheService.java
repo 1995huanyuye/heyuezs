@@ -15,7 +15,7 @@ public interface BasicDetailCacheService {
 
     BasicDetail getBasicDetail(Long detail_id);
 
-    List<BasicDetail> getAll(Long category_id);
+    List<BasicDetail> getAll(Long category_id,String isHaveParent);
 
     void setAll(List<BasicDetail> list,Long category_id);
 

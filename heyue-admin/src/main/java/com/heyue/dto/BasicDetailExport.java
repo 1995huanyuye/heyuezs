@@ -2,6 +2,9 @@ package com.heyue.dto;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
+import com.heyue.util.BasicDetailRoundUpConverter;
+import com.heyue.util.BasicDetailShelfStatusConverter;
+import com.heyue.util.BasicDetailUnitConverter;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,11 +23,11 @@ public class BasicDetailExport {
     @ColumnWidth(value = 20)
     private String detailCode;
 
-    @ExcelProperty("计价单位")
+    @ExcelProperty(value = "计价单位",converter = BasicDetailUnitConverter.class)
     @ColumnWidth(value = 20)
     private Integer unit;
 
-    @ExcelProperty("计价数量向上取整")
+    @ExcelProperty(value = "计价数量向上取整",converter = BasicDetailRoundUpConverter.class)
     @ColumnWidth(value = 20)
     private Integer roundUp;
 
@@ -60,7 +63,7 @@ public class BasicDetailExport {
     @ColumnWidth(value = 20)
     private String materialDescription;
 
-    @ExcelProperty("上下架状态")
+    @ExcelProperty(value = "上下架状态",converter = BasicDetailShelfStatusConverter.class)
     @ColumnWidth(value = 20)
     private Integer shelfStatus;
 

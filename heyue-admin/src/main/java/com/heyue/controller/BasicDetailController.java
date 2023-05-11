@@ -88,7 +88,7 @@ public class BasicDetailController {
     }
 
     @SneakyThrows(IOException.class)
-    @ApiOperation(value = "基装定额导出模板",notes = "export", produces = "application/octet-stream")
+    @ApiOperation(value = "基装定额导出模板",notes = "exportTemplate", produces = "application/octet-stream")
     @RequestMapping(value = "/exportTemplate",method = RequestMethod.GET)
     public void exportBasicDetailTemplate(HttpServletResponse response){
         ExcelExportUtils.setExcelResProp(response,"ExportTemplate");
@@ -100,10 +100,20 @@ public class BasicDetailController {
     }
 
     @SneakyThrows(IOException.class)
-    @ApiOperation(value = "导入基装定额数据",notes = "import")
+    @ApiOperation(value = "导入基装定额数据",notes = "importData")
     @RequestMapping(value = "/imoportData",method = RequestMethod.POST)
-    public void importBasicDetailData(@RequestPart("file")MultipartFile file){
-        dataOpratorService.importExcel(file);
+    public void importBasicDetailData(@RequestPart("file")MultipartFile file,@RequestParam Long category){
+        dataOpratorService.importExcel(file,category);
+    }
+
+
+    @SneakyThrows(IOException.class)
+    @ApiOperation(value = "导出基装定额数据",notes = "exportData",produces = "application/octet-stream")
+    @RequestMapping(value = "/exportData",method = RequestMethod.GET)
+    public void exportDataBasicDetailData(@RequestParam Long category,HttpServletResponse response){
+        ExcelExportUtils.setExcelResProp(response,"Data");
+        List<BasicDetail> details = service.listAll(category,"Y");
+        dataOpratorService.exportExcel(details,response);
     }
 
 

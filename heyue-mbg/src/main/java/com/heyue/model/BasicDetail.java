@@ -1,61 +1,68 @@
 package com.heyue.model;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.heyue.util.BasicDetailRoundUpConverter;
+import com.heyue.util.BasicDetailShelfStatusConverter;
+import com.heyue.util.BasicDetailUnitConverter;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 public class BasicDetail implements Serializable {
+    @ExcelIgnore
     @ApiModelProperty(value = "主键")
     private Long id;
-
+    @ExcelIgnore
     private Long categoryId;
 
+    @ExcelProperty("定额分类")
     @ApiModelProperty(value = "定额分类")
     private String detailType;
-
+    @ExcelProperty("定额名称")
     @ApiModelProperty(value = "定额名称")
     private String detailName;
-
+    @ExcelProperty("定额编号")
     @ApiModelProperty(value = "定额编号")
     private String detailCode;
-
+    @ExcelProperty(value = "计价单位",converter = BasicDetailUnitConverter.class)
     @ApiModelProperty(value = "计价单位")
     private Integer unit;
-
+    @ExcelProperty(value = "计价数量向上取整",converter = BasicDetailRoundUpConverter.class)
     @ApiModelProperty(value = "计价数量向上取整")
     private Integer roundUp;
-
+    @ExcelProperty(value = "上下架状态",converter = BasicDetailShelfStatusConverter.class)
+    @ApiModelProperty(value = "上下架状态")
+    private Integer shelfStatus;
+    @ExcelProperty("排序")
     @ApiModelProperty(value = "排序")
     private Integer sort;
-
+    @ExcelProperty("人工成本")
     @ApiModelProperty(value = "人工成本")
     private Double laborCost;
-
+    @ExcelProperty("辅料成本")
     @ApiModelProperty(value = "辅料成本")
     private Double auxiliaryMaterialCost;
-
+    @ExcelProperty("人工售价")
     @ApiModelProperty(value = "人工售价")
     private Double laborPrice;
-
+    @ExcelProperty("辅料售价")
     @ApiModelProperty(value = "辅料售价")
     private Double accessoriesPrice;
-
+    @ExcelProperty("辅材损耗率")
     @ApiModelProperty(value = "辅材损耗率")
     private Double auxiliaryMaterialLossRate;
-
+    @ExcelProperty("工程阶段")
     @ApiModelProperty(value = "工程阶段")
     private Integer engineeringStage;
-
+    @ExcelProperty("施工类型")
     @ApiModelProperty(value = "施工类型")
     private Integer constructionType;
-
+    @ExcelProperty("施工工艺、材料说明")
     @ApiModelProperty(value = "施工工艺、材料说明")
     private String materialDescription;
-
+    @ExcelIgnore
     @ApiModelProperty(value = "图片")
     private String image;
-
-    @ApiModelProperty(value = "上架状态")
-    private Integer shelfStatus;
 
     private static final long serialVersionUID = 1L;
 

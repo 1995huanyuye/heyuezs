@@ -35,7 +35,7 @@ public class BasicDetailImpl implements BasicDetailService {
     public List<BasicDetail> listAll(Long catedory_id, String isHaveParent) {
         List<BasicDetail> list = new ArrayList<>(8);
         if("Y".equals(isHaveParent.toUpperCase())){
-            List<BasicDetail> all = getCacheService().getAll(catedory_id);
+            List<BasicDetail> all = getCacheService().getAll(catedory_id,isHaveParent);
             if(CollUtil.isNotEmpty(all)){
                 return all;
             }
@@ -44,7 +44,7 @@ public class BasicDetailImpl implements BasicDetailService {
             list = basicDetailMapper.selectByExample(basicDetailExample);
             getCacheService().setAll(list,catedory_id);
         }else {
-            List<BasicDetail> all = getCacheService().getAll(catedory_id);
+            List<BasicDetail> all = getCacheService().getAll(catedory_id,isHaveParent);
             if(CollUtil.isNotEmpty(all)){
                 return all;
             }
@@ -53,6 +53,7 @@ public class BasicDetailImpl implements BasicDetailService {
             List<BasicCategory> basicCategoryList = basicCategoryMapper.selectByExample(basicCategoryExample);
             if(CollUtil.isNotEmpty(basicCategoryList)){
                 List<Long> ids = new ArrayList<>(8);
+                ids.add(catedory_id);
                 for (BasicCategory category : basicCategoryList) {
                     ids.add(category.getId());
                 }
@@ -118,7 +119,7 @@ public class BasicDetailImpl implements BasicDetailService {
         //当前类别上级分类的缓存删掉
         BasicCategory category = basicCategoryMapper.selectByPrimaryKey(detail.getCategoryId());
         if(category.getParentId()!=0L){
-            getCacheService().getAll(category.getParentId());
+            getCacheService().delAll(category.getParentId());
         }
         return basicDetailMapper.deleteByPrimaryKey(id);
     }
