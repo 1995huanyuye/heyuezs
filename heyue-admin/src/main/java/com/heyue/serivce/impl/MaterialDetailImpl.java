@@ -28,35 +28,29 @@ public class MaterialDetailImpl implements MaterialDetailService {
 
 
     @Override
-    public List<MaterialDetail> listAll(Long catedory_id, String isHaveParent) {
+    public List<MaterialDetail> listAll(Long catedory_id) {
         List<MaterialDetail> list = new ArrayList<>(8);
-        if("Y".equals(isHaveParent.toUpperCase())){
-            List<MaterialDetail> all = getCacheService().getAll(catedory_id);
-            if(CollUtil.isNotEmpty(all)){
-                return all;
+        List<MaterialDetail> all = getCacheService().getAll(catedory_id);
+        if(CollUtil.isNotEmpty(all)){
+            return all;
+        }
+        MaterialCategoryExample materialCategoryExample = new MaterialCategoryExample();
+        materialCategoryExample.createCriteria().andParentIdEqualTo(catedory_id);
+        List<MaterialCategory> basicCategoryList = materialCategoryMapper.selectByExample(materialCategoryExample);
+        if(CollUtil.isNotEmpty(basicCategoryList)){
+            List<Long> ids = new ArrayList<>(8);
+            for (MaterialCategory category : basicCategoryList) {
+                ids.add(category.getId());
             }
             MaterialDetailExample materialDetailExample = new MaterialDetailExample();
-            materialDetailExample.createCriteria().andCategoryIdEqualTo(catedory_id);
+            materialDetailExample.createCriteria().andCategoryIdIn(ids);
             list = materialDetailMapper.selectByExample(materialDetailExample);
             getCacheService().setAll(list,catedory_id);
-        }else {
-            List<MaterialDetail> all = getCacheService().getAll(catedory_id);
-            if(CollUtil.isNotEmpty(all)){
-                return all;
-            }
-            MaterialCategoryExample materialCategoryExample = new MaterialCategoryExample();
-            materialCategoryExample.createCriteria().andParentIdEqualTo(catedory_id);
-            List<MaterialCategory> basicCategoryList = materialCategoryMapper.selectByExample(materialCategoryExample);
-            if(CollUtil.isNotEmpty(basicCategoryList)){
-                List<Long> ids = new ArrayList<>(8);
-                for (MaterialCategory category : basicCategoryList) {
-                    ids.add(category.getId());
-                }
-                MaterialDetailExample materialDetailExample = new MaterialDetailExample();
-                materialDetailExample.createCriteria().andCategoryIdIn(ids);
-                list = materialDetailMapper.selectByExample(materialDetailExample);
-                getCacheService().setAll(list,catedory_id);
-            }
+        }else{
+            MaterialDetailExample materialDetailExample = new MaterialDetailExample();
+            materialDetailExample.createCriteria().andIdEqualTo(catedory_id);
+            list = materialDetailMapper.selectByExample(materialDetailExample);
+            getCacheService().setAll(list,catedory_id);
         }
         return list;
     }

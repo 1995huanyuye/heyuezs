@@ -40,7 +40,7 @@ public class MaterialDetailController {
     @RequestMapping(value = "/listAll",method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<MaterialDetail>> listAll(@RequestParam Long category_id,@RequestParam String isHaveParent){
-        List<MaterialDetail> details = service.listAll(category_id,isHaveParent);
+        List<MaterialDetail> details = service.listAll(category_id);
         return CommonResult.success(details);
     }
 
@@ -123,7 +123,7 @@ public class MaterialDetailController {
     @RequestMapping(value = "/exportData",method = RequestMethod.GET)
     public CommonResult exportMaterialData(@RequestParam Long category,HttpServletResponse response){
         ExcelExportUtils.setExcelResProp(response,"Data");
-        List<MaterialDetail> details = service.listAll(category,"Y");
+        List<MaterialDetail> details = service.listAll(category);
         try {
             dataOpratorService.exporMaterialExcel(details,response);
         }catch (Exception e){

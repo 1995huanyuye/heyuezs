@@ -10,7 +10,7 @@ public interface MaterialDetailService {
     /**
      * 获取材料定额
      */
-    List<MaterialDetail> listAll(Long catedory_id,String isHaveParent);
+    List<MaterialDetail> listAll(Long catedory_id);
     /**
      * 获取材料定额
      */
