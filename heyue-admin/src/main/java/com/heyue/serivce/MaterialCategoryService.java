@@ -1,6 +1,7 @@
 package com.heyue.serivce;
 
 import com.heyue.dto.MaterialCategoryParam;
+import com.heyue.dto.MaterialCategoryUpdateParam;
 import com.heyue.model.BasicCategory;
 import com.heyue.model.MaterialCategory;
 
@@ -20,7 +21,7 @@ public interface MaterialCategoryService {
     /**
      * 更新材料类别信息
      */
-    int updateMaterialCategory(MaterialCategory category);
+    int updateMaterialCategory(MaterialCategoryUpdateParam category);
     /**
      * 删除材料类别
      */

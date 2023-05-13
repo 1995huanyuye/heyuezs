@@ -1,6 +1,7 @@
 package com.heyue.serivce;
 
 import com.heyue.dto.BasicCategoryParam;
+import com.heyue.dto.BasicCategoryUpdateParam;
 import com.heyue.model.BasicCategory;
 import com.heyue.model.Client;
 
@@ -22,7 +23,7 @@ public interface BasicCategoryService {
     /**
      * 更新基装类别信息
      */
-    int updateBasicCategory(BasicCategory category);
+    int updateBasicCategory(BasicCategoryUpdateParam category);
     /**
      * 删除类别
      */

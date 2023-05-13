@@ -2,6 +2,7 @@ package com.heyue.serivce.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.heyue.dto.BasicCategoryParam;
+import com.heyue.dto.BasicCategoryUpdateParam;
 import com.heyue.mapper.BasicCategoryMapper;
 import com.heyue.model.BasicCategory;
 import com.heyue.model.BasicCategoryExample;
@@ -60,11 +61,13 @@ public class BasicCategoryImpl implements BasicCategoryService {
     }
 
     @Override
-    public int updateBasicCategory(BasicCategory category) {
+    public int updateBasicCategory(BasicCategoryUpdateParam category) {
         getCacheService().delBasicCategory(category.getId());
         getCacheService().delAll();
-        int count = mapper.updateByPrimaryKey(category);
-        getCacheService().setBasicCategory(category);
+        BasicCategory vo = new BasicCategory();
+        BeanUtils.copyProperties(category,vo);
+        int count = mapper.updateByPrimaryKey(vo);
+        getCacheService().setBasicCategory(vo);
         return count;
     }
 

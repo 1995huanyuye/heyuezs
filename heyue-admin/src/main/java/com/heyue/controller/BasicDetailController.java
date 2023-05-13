@@ -1,9 +1,7 @@
 package com.heyue.controller;
 
-import com.alibaba.druid.sql.ast.expr.SQLCaseExpr;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.support.ExcelTypeEnum;
-import com.fasterxml.jackson.core.JsonParser;
 import com.heyue.api.CommonResult;
 import com.heyue.dto.BasicDetailExport;
 import com.heyue.dto.BasicDetailParam;
@@ -16,7 +14,6 @@ import com.heyue.util.ExcelExportUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

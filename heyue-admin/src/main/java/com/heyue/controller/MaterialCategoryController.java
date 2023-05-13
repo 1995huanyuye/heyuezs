@@ -2,6 +2,7 @@ package com.heyue.controller;
 
 import com.heyue.api.CommonResult;
 import com.heyue.dto.MaterialCategoryParam;
+import com.heyue.dto.MaterialCategoryUpdateParam;
 import com.heyue.model.MaterialCategory;
 import com.heyue.serivce.MaterialCategoryService;
 import io.swagger.annotations.Api;
@@ -60,8 +61,8 @@ public class MaterialCategoryController {
     @ApiOperation("修改材料定额类别")
     @RequestMapping(value = "/updateMaterialCategory",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateMaterialCategory(@RequestBody MaterialCategory category){
-        int count = service.updateMaterialCategory(category);
+    public CommonResult updateMaterialCategory(@RequestBody MaterialCategoryUpdateParam param){
+        int count = service.updateMaterialCategory(param);
         if(count>0){
             return CommonResult.success(count);
         }

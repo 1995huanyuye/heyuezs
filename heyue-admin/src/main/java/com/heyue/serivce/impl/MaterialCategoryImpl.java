@@ -2,6 +2,7 @@ package com.heyue.serivce.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.heyue.dto.MaterialCategoryParam;
+import com.heyue.dto.MaterialCategoryUpdateParam;
 import com.heyue.mapper.MaterialCategoryMapper;
 import com.heyue.model.MaterialCategory;
 import com.heyue.model.MaterialCategoryExample;
@@ -63,11 +64,13 @@ public class MaterialCategoryImpl implements MaterialCategoryService {
     }
 
     @Override
-    public int updateMaterialCategory(MaterialCategory category) {
+    public int updateMaterialCategory(MaterialCategoryUpdateParam category) {
         getCacheService().delMaterialCategory(category.getId());
         getCacheService().delAll();
-        int count = mapper.updateByPrimaryKey(category);
-        getCacheService().setMaterialCategory(category);
+        MaterialCategory vo = new MaterialCategory();
+        BeanUtils.copyProperties(category,vo);
+        int count = mapper.updateByPrimaryKey(vo);
+        getCacheService().setMaterialCategory(vo);
         return count;
     }
 

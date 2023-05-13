@@ -2,6 +2,7 @@ package com.heyue.controller;
 
 import com.heyue.api.CommonResult;
 import com.heyue.dto.BasicCategoryParam;
+import com.heyue.dto.BasicCategoryUpdateParam;
 import com.heyue.model.BasicCategory;
 import com.heyue.model.MaterialCategory;
 import com.heyue.serivce.BasicCategoryService;
@@ -56,7 +57,7 @@ public class BasicCategoryController {
     @ApiOperation("修改基装定额类别")
     @RequestMapping(value = "/updateBasicCategory",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateBasicCategory(@RequestBody BasicCategory category){
+    public CommonResult updateBasicCategory(@RequestBody BasicCategoryUpdateParam category){
         int count = service.updateBasicCategory(category);
         if(count>0){
             return CommonResult.success(count);
