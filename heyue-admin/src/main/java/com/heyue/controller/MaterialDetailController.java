@@ -92,6 +92,7 @@ public class MaterialDetailController {
     @SneakyThrows(IOException.class)
     @ApiOperation(value = "材料定额导出模板",notes = "exportTemplate", produces = "application/octet-stream")
     @RequestMapping(value = "/exportTemplate",method = RequestMethod.GET)
+    @ResponseBody
     public CommonResult exportMaterialDetailTemplate(HttpServletResponse response){
         ExcelExportUtils.setExcelResProp(response,"ExportTemplate");
         try {
@@ -108,6 +109,7 @@ public class MaterialDetailController {
 
     @ApiOperation(value = "导入材料定额数据",notes = "importData")
     @RequestMapping(value = "/imoportData",method = RequestMethod.POST)
+    @ResponseBody
     public CommonResult importMaterialDetailData(@RequestPart("file") MultipartFile file, @RequestParam Long category){
         try {
             dataOpratorService.importMaterialExcel(file,category);
@@ -121,6 +123,7 @@ public class MaterialDetailController {
     @SneakyThrows(IOException.class)
     @ApiOperation(value = "导出材料定额数据",notes = "exportData",produces = "application/octet-stream")
     @RequestMapping(value = "/exportData",method = RequestMethod.GET)
+    @ResponseBody
     public CommonResult exportMaterialData(@RequestParam Long category,HttpServletResponse response){
         ExcelExportUtils.setExcelResProp(response,"Data");
         List<MaterialDetail> details = service.listAll(category);
