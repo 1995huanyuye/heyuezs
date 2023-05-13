@@ -1,8 +1,10 @@
 package com.heyue.serivce;
 
 import com.heyue.dto.BasicDetailParam;
+import com.heyue.dto.ItemVOParm;
 import com.heyue.model.BasicCategory;
 import com.heyue.model.BasicDetail;
+import com.heyue.model.ItemVO;
 
 import java.util.List;
 
@@ -34,6 +36,12 @@ public interface BasicDetailService {
     BasicDetail loadBasicDetailById(Long id);
 
     BasicDetailCacheService getCacheService();
+
+    List<ItemVO> listBasicAll();
+
+    void insertBasic(ItemVOParm item);
+
+    void updateBasic (List<ItemVO> list);
 
 
 }

@@ -2,13 +2,12 @@ package com.heyue.serivce.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.heyue.dao.BasicDetailDao;
+import com.heyue.dao.ItemCtrlDao;
 import com.heyue.dto.BasicDetailParam;
+import com.heyue.dto.ItemVOParm;
 import com.heyue.mapper.BasicCategoryMapper;
 import com.heyue.mapper.BasicDetailMapper;
-import com.heyue.model.BasicCategory;
-import com.heyue.model.BasicCategoryExample;
-import com.heyue.model.BasicDetail;
-import com.heyue.model.BasicDetailExample;
+import com.heyue.model.*;
 import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.BasicDetailCacheService;
 import com.heyue.serivce.BasicDetailService;
@@ -30,6 +29,9 @@ public class BasicDetailImpl implements BasicDetailService {
 
     @Autowired
     private BasicDetailDao basicDetailDao;
+
+    @Autowired
+    private ItemCtrlDao itemCtrlDao;
 
     @Override
     public List<BasicDetail> listAll(Long catedory_id) {
@@ -126,5 +128,26 @@ public class BasicDetailImpl implements BasicDetailService {
     @Override
     public BasicDetailCacheService getCacheService() {
         return SpringUtil.getBean(BasicDetailCacheService.class);
+    }
+
+    @Override
+    public List<ItemVO> listBasicAll() {
+        List<ItemVO> itemVOS = itemCtrlDao.listBasicAll();
+        return itemVOS;
+    }
+
+    @Override
+    public void insertBasic(ItemVOParm item) {
+        ItemVO itemVO = new ItemVO();
+        BeanUtils.copyProperties(item,itemVO);
+        itemVO.setId(PKeyGenerator.generator());
+        itemCtrlDao.insertBasic(itemVO);
+    }
+
+    @Override
+    public void updateBasic(List<ItemVO> list) {
+        for (ItemVO itemVO : list) {
+            itemCtrlDao.updateBasic(itemVO);
+        }
     }
 }

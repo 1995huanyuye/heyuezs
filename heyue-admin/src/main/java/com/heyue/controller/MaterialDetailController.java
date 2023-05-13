@@ -4,9 +4,11 @@ import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.heyue.api.CommonResult;
 import com.heyue.dto.BasicDetailExport;
+import com.heyue.dto.ItemVOParm;
 import com.heyue.dto.MaterialDetailExport;
 import com.heyue.dto.MaterialDetailParam;
 import com.heyue.model.BasicDetail;
+import com.heyue.model.ItemVO;
 import com.heyue.model.MaterialDetail;
 import com.heyue.serivce.DataOpratorService;
 import com.heyue.serivce.MaterialDetailService;
@@ -131,6 +133,38 @@ public class MaterialDetailController {
             dataOpratorService.exporMaterialExcel(details,response);
         }catch (Exception e){
             return CommonResult.failed(e.getMessage());
+        }
+        return CommonResult.success(1);
+    }
+
+    @ApiOperation("获取字段显示信息")
+    @RequestMapping(value = "/listMaterialShowInfoAll",method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<List<ItemVO>> listMaterialAll(){
+        List<ItemVO> itemVOS = service.listMaterialAll();
+        return CommonResult.success(itemVOS);
+    }
+
+    @ApiOperation("插入字段显示信息")
+    @RequestMapping(value = "/insertMaterialShowInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult insertMaterial(@RequestBody ItemVOParm parm){
+        try {
+            service.insertMaterial(parm);
+        }catch (Exception e){
+            CommonResult.failed(e.getMessage());
+        }
+        return CommonResult.success(1);
+    }
+
+    @ApiOperation("更新字段显示信息")
+    @RequestMapping(value = "/updateMaterialShowInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateMaterial(@RequestBody List<ItemVO> list){
+        try {
+            service.updateMaterial(list);
+        }catch (Exception e){
+            CommonResult.failed(e.getMessage());
         }
         return CommonResult.success(1);
     }

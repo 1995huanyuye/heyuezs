@@ -1,13 +1,12 @@
 package com.heyue.serivce.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.heyue.dao.ItemCtrlDao;
+import com.heyue.dto.ItemVOParm;
 import com.heyue.dto.MaterialDetailParam;
 import com.heyue.mapper.MaterialCategoryMapper;
 import com.heyue.mapper.MaterialDetailMapper;
-import com.heyue.model.MaterialCategory;
-import com.heyue.model.MaterialCategoryExample;
-import com.heyue.model.MaterialDetail;
-import com.heyue.model.MaterialDetailExample;
+import com.heyue.model.*;
 import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.MaterialDetailCacheService;
 import com.heyue.serivce.MaterialDetailService;
@@ -25,6 +24,9 @@ public class MaterialDetailImpl implements MaterialDetailService {
     private MaterialDetailMapper materialDetailMapper;
     @Autowired
     private MaterialCategoryMapper materialCategoryMapper;
+
+    @Autowired
+    private ItemCtrlDao itemCtrlDao;
 
 
     @Override
@@ -122,5 +124,26 @@ public class MaterialDetailImpl implements MaterialDetailService {
     @Override
     public MaterialDetailCacheService getCacheService() {
         return SpringUtil.getBean(MaterialDetailCacheService.class);
+    }
+
+    @Override
+    public List<ItemVO> listMaterialAll() {
+        List<ItemVO> itemVOS = itemCtrlDao.listMaterialAll();
+        return itemVOS;
+    }
+
+    @Override
+    public void insertMaterial(ItemVOParm item) {
+        ItemVO itemVO = new ItemVO();
+        BeanUtils.copyProperties(item,itemVO);
+        itemVO.setId(PKeyGenerator.generator());
+        itemCtrlDao.insertMaterial(itemVO);
+    }
+
+    @Override
+    public void updateMaterial(List<ItemVO> list) {
+        for (ItemVO itemVO : list) {
+            itemCtrlDao.updateMaterial(itemVO);
+        }
     }
 }

@@ -1,18 +1,22 @@
 package com.heyue.controller;
 
+import com.alibaba.druid.sql.ast.expr.SQLCaseExpr;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.fasterxml.jackson.core.JsonParser;
 import com.heyue.api.CommonResult;
 import com.heyue.dto.BasicDetailExport;
 import com.heyue.dto.BasicDetailParam;
+import com.heyue.dto.ItemVOParm;
 import com.heyue.model.BasicDetail;
+import com.heyue.model.ItemVO;
 import com.heyue.serivce.BasicDetailService;
 import com.heyue.serivce.DataOpratorService;
 import com.heyue.util.ExcelExportUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +37,7 @@ public class BasicDetailController {
 
     @Autowired
     private DataOpratorService dataOpratorService;
+
 
     @ApiOperation("获取所有基装定额")
     @RequestMapping(value = "/listAll",method = RequestMethod.GET)
@@ -133,6 +138,40 @@ public class BasicDetailController {
         }
         return CommonResult.success(1);
     }
+
+
+    @ApiOperation("获取字段显示信息")
+    @RequestMapping(value = "/listBasicShowInfoAll",method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<List<ItemVO>> listBasicAll(){
+        List<ItemVO> itemVOS = service.listBasicAll();
+        return CommonResult.success(itemVOS);
+    }
+
+    @ApiOperation("插入字段显示信息")
+    @RequestMapping(value = "/insertBasicShowInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult insertBasic(@RequestBody ItemVOParm parm){
+        try {
+            service.insertBasic(parm);
+        }catch (Exception e){
+            CommonResult.failed(e.getMessage());
+        }
+        return CommonResult.success(1);
+    }
+
+    @ApiOperation("更新字段显示信息")
+    @RequestMapping(value = "/updateBasicShowInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateBasic(@RequestBody List<ItemVO> list){
+        try {
+            service.updateBasic(list);
+        }catch (Exception e){
+            CommonResult.failed(e.getMessage());
+        }
+        return CommonResult.success(1);
+    }
+
 
 
 

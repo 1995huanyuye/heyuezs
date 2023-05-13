@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.dao.ItemCtrlDao">
+    <select id="listBasicAll" resultType="com.heyue.model.ItemVO">
+     select id,column_names,column_code,isshow,sort from basic_item_ctrl
+    </select>
+
+    <select id="listMaterialAll" resultType="com.heyue.model.ItemVO">
+        select id,column_names,column_code,isshow,sort from material_item_ctrl
+    </select>
+
+    <insert id="insertBasic" parameterType="com.heyue.model.ItemVO">
+        insert into
+            basic_item_ctrl (id,column_names,column_code,isshow,sort) values
+            (#{id,jdbcType=BIGINT},#{column_names,jdbcType=VARCHAR},#{column_code,jdbcType=VARCHAR},#{isshow,jdbcType=INTEGER},#{sort,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertMaterial" parameterType="com.heyue.model.ItemVO">
+        insert into
+            material_item_ctrl (id,column_names,column_code,isshow,sort) values
+            (#{id,jdbcType=BIGINT},#{column_names,jdbcType=VARCHAR},#{column_code,jdbcType=VARCHAR},#{isshow,jdbcType=INTEGER},#{sort,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateBasic" parameterType="com.heyue.model.ItemVO">
+        update basic_item_ctrl
+        set isshow = #{isshow,jdbcType=BIGINT},
+            sort = #{sort,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateMaterial" parameterType="com.heyue.model.ItemVO">
+        update material_item_ctrl
+        set isshow = #{isshow,jdbcType=BIGINT},
+            sort = #{sort,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>

@@ -1,7 +1,9 @@
 package com.heyue.serivce;
 
+import com.heyue.dto.ItemVOParm;
 import com.heyue.dto.MaterialDetailParam;
 import com.heyue.model.BasicDetail;
+import com.heyue.model.ItemVO;
 import com.heyue.model.MaterialDetail;
 
 import java.util.List;
@@ -34,4 +36,10 @@ public interface MaterialDetailService {
     MaterialDetail loadMaterialDetailById(Long id);
 
     MaterialDetailCacheService getCacheService();
+
+    List<ItemVO> listMaterialAll();
+
+    void insertMaterial(ItemVOParm item);
+
+    void updateMaterial (List<ItemVO> item);
 }
