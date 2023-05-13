@@ -22,14 +22,14 @@ public class BasicCategory implements Serializable {
     @ApiModelProperty(value = "排序值")
     private Integer sort;
 
-    private List<BasicCategory> child;
+    private List<BasicCategory> children;
 
-    public List<BasicCategory> getChild() {
-        return child;
+    public List<BasicCategory> getChildren() {
+        return children;
     }
 
-    public void setChild(List<BasicCategory> child) {
-        this.child = child;
+    public void setChildren(List<BasicCategory> child) {
+        this.children = child;
     }
 
     private static final long serialVersionUID = 1L;

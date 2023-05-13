@@ -84,7 +84,7 @@ public class MaterialCategoryController {
         for (Map.Entry<Long, List<MaterialCategory>> entry : parentMap.entrySet()) {
             List<MaterialCategory> childs = entry.getValue();
             for (MaterialCategory child : childs) {
-                child.setChild(parentMap.get(child.getId()));
+                child.setChildren(parentMap.get(child.getId()));
             }
         }
         //返回根节点数据

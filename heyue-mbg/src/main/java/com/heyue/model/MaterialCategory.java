@@ -22,14 +22,14 @@ public class MaterialCategory implements Serializable {
     @ApiModelProperty(value = "排序值")
     private Integer sort;
 
-    private List<MaterialCategory> child;
+    private List<MaterialCategory> children;
 
-    public List<MaterialCategory> getChild() {
-        return child;
+    public List<MaterialCategory> getChildren() {
+        return children;
     }
 
-    public void setChild(List<MaterialCategory> child) {
-        this.child = child;
+    public void setChildren(List<MaterialCategory> child) {
+        this.children = child;
     }
 
     private static final long serialVersionUID = 1L;

@@ -80,7 +80,7 @@ public class BasicCategoryController {
         for (Map.Entry<Long, List<BasicCategory>> entry : parentMap.entrySet()) {
             List<BasicCategory> childs = entry.getValue();
             for (BasicCategory child : childs) {
-                child.setChild(parentMap.get(child.getId()));
+                child.setChildren(parentMap.get(child.getId()));
             }
         }
         //返回根节点数据
