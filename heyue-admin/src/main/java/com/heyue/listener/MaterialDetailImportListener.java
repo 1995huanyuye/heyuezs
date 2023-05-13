@@ -5,7 +5,9 @@ import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.read.listener.ReadListener;
 import com.alibaba.excel.util.ListUtils;
 import com.heyue.dao.BasicDetailDao;
+import com.heyue.dao.MaterialDao;
 import com.heyue.model.BasicDetail;
+import com.heyue.model.MaterialDetail;
 import com.heyue.util.PKeyGenerator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,9 +17,9 @@ import java.util.List;
 
 
 @Component
-public class BasicDetailImportListener implements ReadListener<BasicDetail> {
+public class MaterialDetailImportListener implements ReadListener<MaterialDetail> {
 
-    private static final Log logger = LogFactory.getLog(BasicDetailImportListener.class);
+    private static final Log logger = LogFactory.getLog(MaterialDetailImportListener.class);
     /**
      * 每隔5条存储数据库，实际使用中可以100条，然后清理list ，方便内存回收
      */
@@ -25,22 +27,22 @@ public class BasicDetailImportListener implements ReadListener<BasicDetail> {
     /**
      * 缓存的数据
      */
-    private List<BasicDetail> cachedDataList = ListUtils.newArrayListWithExpectedSize(BATCH_COUNT);
+    private List<MaterialDetail> cachedDataList = ListUtils.newArrayListWithExpectedSize(BATCH_COUNT);
 
-    private BasicDetailDao dao;
+    private MaterialDao dao;
     private Long categoryId ;
 
-    public BasicDetailImportListener() {
+    public MaterialDetailImportListener() {
 
     }
 
-    public BasicDetailImportListener(BasicDetailDao dao, Long categoryId) {
+    public MaterialDetailImportListener(MaterialDao dao, Long categoryId) {
         this.dao = dao;
         this.categoryId = categoryId;
     }
 
     @Override
-    public void invoke(BasicDetail detail, AnalysisContext analysisContext) {
+    public void invoke(MaterialDetail detail, AnalysisContext analysisContext) {
         cachedDataList.add(detail);
         if(cachedDataList.size()>=BATCH_COUNT){
             saveData();
@@ -56,7 +58,7 @@ public class BasicDetailImportListener implements ReadListener<BasicDetail> {
     }
 
     private void saveData(){
-        for (BasicDetail detail : cachedDataList) {
+        for (MaterialDetail detail : cachedDataList) {
             detail.setId(PKeyGenerator.generator());
             detail.setCategoryId(categoryId);
         }

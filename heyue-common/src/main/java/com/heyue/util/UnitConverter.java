@@ -6,7 +6,7 @@ import com.alibaba.excel.converters.WriteConverterContext;
 import com.alibaba.excel.metadata.data.WriteCellData;
 import com.heyue.constinfo.basic.UnitEnum;
 
-public class BasicDetailUnitConverter implements Converter<Integer> {
+public class UnitConverter implements Converter<Integer> {
     @Override
     public Integer convertToJavaData(ReadConverterContext<?> context) throws Exception {
         String value = context.getReadCellData().getStringValue();

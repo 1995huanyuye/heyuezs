@@ -2,9 +2,9 @@ package com.heyue.model;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.heyue.util.BasicDetailRoundUpConverter;
-import com.heyue.util.BasicDetailShelfStatusConverter;
-import com.heyue.util.BasicDetailUnitConverter;
+import com.heyue.util.RoundUpConverter;
+import com.heyue.util.ShelfStatusConverter;
+import com.heyue.util.UnitConverter;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
@@ -24,13 +24,13 @@ public class BasicDetail implements Serializable {
     @ExcelProperty("定额编号")
     @ApiModelProperty(value = "定额编号")
     private String detailCode;
-    @ExcelProperty(value = "计价单位",converter = BasicDetailUnitConverter.class)
+    @ExcelProperty(value = "计价单位",converter = UnitConverter.class)
     @ApiModelProperty(value = "计价单位")
     private Integer unit;
-    @ExcelProperty(value = "计价数量向上取整",converter = BasicDetailRoundUpConverter.class)
+    @ExcelProperty(value = "计价数量向上取整",converter = RoundUpConverter.class)
     @ApiModelProperty(value = "计价数量向上取整")
     private Integer roundUp;
-    @ExcelProperty(value = "上下架状态",converter = BasicDetailShelfStatusConverter.class)
+    @ExcelProperty(value = "上下架状态",converter = ShelfStatusConverter.class)
     @ApiModelProperty(value = "上下架状态")
     private Integer shelfStatus;
     @ExcelProperty("排序")

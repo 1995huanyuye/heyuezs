@@ -6,7 +6,7 @@ import com.alibaba.excel.converters.WriteConverterContext;
 import com.alibaba.excel.metadata.data.WriteCellData;
 import com.heyue.constinfo.basic.NormalConst;
 
-public class BasicDetailRoundUpConverter implements Converter<Integer> {
+public class RoundUpConverter implements Converter<Integer> {
     @Override
     public Integer convertToJavaData(ReadConverterContext<?> context) throws Exception {
         String value = context.getReadCellData().getStringValue();

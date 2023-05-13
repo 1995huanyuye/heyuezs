@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.dao.MaterialDao">
+    <insert id="batchSave" >
+        INSERT INTO
+                material_detail (id,category_id,material_number,material_classification,material_type,material_code,unit,round_up,material_cost,material_price,material_wastage_rate,
+        brand,model_number,specification,color,supplier,engineering_stage,construction_type,material_description,shelf_status,sort)
+        VALUES
+            <foreach collection="data" item="material_detail" separator=",">
+            (#{material_detail.id},#{material_detail.categoryId},#{material_detail.materialNumber},#{material_detail.materialClassification},#{material_detail.materialType},#{material_detail.materialCode}
+                ,#{material_detail.unit},#{material_detail.roundUp},#{material_detail.materialCost},#{material_detail.materialPrice}
+                    ,#{material_detail.materialWastageRate},#{material_detail.brand},#{material_detail.modelNumber},#{material_detail.specification}
+                         ,#{material_detail.color},#{material_detail.supplier},#{material_detail.engineeringStage},#{material_detail.constructionType},#{material_detail.materialDescription}
+                ,#{material_detail.shelfStatus},#{material_detail.sort})
+            </foreach>
+    </insert>
+</mapper>

@@ -1,70 +1,75 @@
 package com.heyue.model;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.heyue.util.RoundUpConverter;
+import com.heyue.util.UnitConverter;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 public class MaterialDetail implements Serializable {
+    @ExcelIgnore
     private Long id;
-
+    @ExcelIgnore
     private Long categoryId;
-
+    @ExcelProperty("定额名称")
     @ApiModelProperty(value = "定额名称")
     private String materialNumber;
-
+    @ExcelProperty("定额分类")
     @ApiModelProperty(value = "定额分类")
     private String materialClassification;
-
+    @ExcelProperty("材料类型")
     @ApiModelProperty(value = "材料类型")
     private String materialType;
-
+    @ExcelProperty("定额编号")
     @ApiModelProperty(value = "定额编号")
     private String materialCode;
-
+    @ExcelProperty(value = "计量单位",converter = UnitConverter.class)
     @ApiModelProperty(value = "计量单位")
     private Integer unit;
-
+    @ExcelProperty(value = "计价数量向上取整",converter = RoundUpConverter.class)
     @ApiModelProperty(value = "计价数量向上取整")
     private Integer roundUp;
-
+    @ExcelProperty("材料成本")
     @ApiModelProperty(value = "材料成本")
     private Double materialCost;
-
+    @ExcelProperty("材料售价")
     @ApiModelProperty(value = "材料售价")
     private Double materialPrice;
-
+    @ExcelProperty("材料损耗率")
     @ApiModelProperty(value = "材料损耗率")
     private Double materialWastageRate;
-
+    @ExcelProperty("品牌")
     @ApiModelProperty(value = "品牌")
     private String brand;
-
+    @ExcelProperty("型号")
     @ApiModelProperty(value = "型号")
     private String modelNumber;
-
+    @ExcelProperty("规格")
     @ApiModelProperty(value = "规格")
     private String specification;
-
+    @ExcelProperty("颜色")
     @ApiModelProperty(value = "颜色")
     private String color;
-
+    @ExcelProperty("供应商")
     @ApiModelProperty(value = "供应商")
     private String supplier;
-
+    @ExcelProperty("工程阶段")
     @ApiModelProperty(value = "工程阶段")
     private Integer engineeringStage;
-
+    @ExcelProperty("施工类型")
     @ApiModelProperty(value = "施工类型")
     private Integer constructionType;
-
+    @ExcelProperty("施工工艺、材料说明")
     @ApiModelProperty(value = "施工工艺、材料说明")
     private String materialDescription;
-
+    @ExcelIgnore
     @ApiModelProperty(value = "图片")
     private String image;
-
+    @ExcelProperty("上架状态")
     @ApiModelProperty(value = "上架状态")
     private String shelfStatus;
-
+    @ExcelProperty("排序")
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
