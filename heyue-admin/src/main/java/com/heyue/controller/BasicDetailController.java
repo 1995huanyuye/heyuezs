@@ -37,8 +37,8 @@ public class BasicDetailController {
     @ApiOperation("获取所有基装定额")
     @RequestMapping(value = "/listAll",method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<BasicDetail>> listAll(@RequestParam Long category_id,@RequestParam String isHaveParent){
-        List<BasicDetail> details = service.listAll(category_id,isHaveParent);
+    public CommonResult<List<BasicDetail>> listAll(@RequestParam Long category_id){
+        List<BasicDetail> details = service.listAll(category_id);
         return CommonResult.success(details);
     }
 
@@ -122,7 +122,7 @@ public class BasicDetailController {
     @RequestMapping(value = "/exportData",method = RequestMethod.GET)
     public CommonResult exportDataBasicDetailData(@RequestParam Long category,HttpServletResponse response){
         ExcelExportUtils.setExcelResProp(response,"Data");
-        List<BasicDetail> details = service.listAll(category,"Y");
+        List<BasicDetail> details = service.listAll(category);
         try {
             dataOpratorService.exportBasicExcel(details,response);
         }catch (Exception e){

@@ -11,7 +11,7 @@ public interface BasicDetailService {
     /**
      * 获取目录下所有基装定额
      */
-    List<BasicDetail> listAll(Long catedory_id,String isHaveParent);
+    List<BasicDetail> listAll(Long catedory_id);
     /**
      * 获取基装定额
      */
