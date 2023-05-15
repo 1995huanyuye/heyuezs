@@ -50,7 +50,7 @@ public class MaterialDetailImpl implements MaterialDetailService {
             getCacheService().setAll(list,catedory_id);
         }else{
             MaterialDetailExample materialDetailExample = new MaterialDetailExample();
-            materialDetailExample.createCriteria().andIdEqualTo(catedory_id);
+            materialDetailExample.createCriteria().andCategoryIdEqualTo(catedory_id);
             list = materialDetailMapper.selectByExample(materialDetailExample);
             getCacheService().setAll(list,catedory_id);
         }

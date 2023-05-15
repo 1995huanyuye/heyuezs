@@ -41,7 +41,7 @@ public class MaterialDetailController {
     @ApiOperation("获取所有材料定额")
     @RequestMapping(value = "/listAll",method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MaterialDetail>> listAll(@RequestParam Long category_id,@RequestParam String isHaveParent){
+    public CommonResult<List<MaterialDetail>> listAll(@RequestParam Long category_id){
         List<MaterialDetail> details = service.listAll(category_id);
         return CommonResult.success(details);
     }

@@ -38,19 +38,19 @@ public class BasicDetail implements Serializable {
     private Integer sort;
     @ExcelProperty("人工成本")
     @ApiModelProperty(value = "人工成本")
-    private Double laborCost;
+    private String laborCost;
     @ExcelProperty("辅料成本")
     @ApiModelProperty(value = "辅料成本")
-    private Double auxiliaryMaterialCost;
+    private String auxiliaryMaterialCost;
     @ExcelProperty("人工售价")
     @ApiModelProperty(value = "人工售价")
-    private Double laborPrice;
+    private String laborPrice;
     @ExcelProperty("辅料售价")
     @ApiModelProperty(value = "辅料售价")
-    private Double accessoriesPrice;
+    private String accessoriesPrice;
     @ExcelProperty("辅材损耗率")
     @ApiModelProperty(value = "辅材损耗率")
-    private Double auxiliaryMaterialLossRate;
+    private String auxiliaryMaterialLossRate;
     @ExcelProperty("工程阶段")
     @ApiModelProperty(value = "工程阶段")
     private Integer engineeringStage;
@@ -130,43 +130,43 @@ public class BasicDetail implements Serializable {
         this.sort = sort;
     }
 
-    public Double getLaborCost() {
+    public String getLaborCost() {
         return laborCost;
     }
 
-    public void setLaborCost(Double laborCost) {
+    public void setLaborCost(String laborCost) {
         this.laborCost = laborCost;
     }
 
-    public Double getAuxiliaryMaterialCost() {
+    public String getAuxiliaryMaterialCost() {
         return auxiliaryMaterialCost;
     }
 
-    public void setAuxiliaryMaterialCost(Double auxiliaryMaterialCost) {
+    public void setAuxiliaryMaterialCost(String auxiliaryMaterialCost) {
         this.auxiliaryMaterialCost = auxiliaryMaterialCost;
     }
 
-    public Double getLaborPrice() {
+    public String getLaborPrice() {
         return laborPrice;
     }
 
-    public void setLaborPrice(Double laborPrice) {
+    public void setLaborPrice(String laborPrice) {
         this.laborPrice = laborPrice;
     }
 
-    public Double getAccessoriesPrice() {
+    public String getAccessoriesPrice() {
         return accessoriesPrice;
     }
 
-    public void setAccessoriesPrice(Double accessoriesPrice) {
+    public void setAccessoriesPrice(String accessoriesPrice) {
         this.accessoriesPrice = accessoriesPrice;
     }
 
-    public Double getAuxiliaryMaterialLossRate() {
+    public String getAuxiliaryMaterialLossRate() {
         return auxiliaryMaterialLossRate;
     }
 
-    public void setAuxiliaryMaterialLossRate(Double auxiliaryMaterialLossRate) {
+    public void setAuxiliaryMaterialLossRate(String auxiliaryMaterialLossRate) {
         this.auxiliaryMaterialLossRate = auxiliaryMaterialLossRate;
     }
 

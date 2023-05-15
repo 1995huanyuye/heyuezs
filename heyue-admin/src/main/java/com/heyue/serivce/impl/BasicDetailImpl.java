@@ -55,7 +55,7 @@ public class BasicDetailImpl implements BasicDetailService {
             getCacheService().setAll(list,catedory_id);
         }else{
             BasicDetailExample basicDetailExample = new BasicDetailExample();
-            basicDetailExample.createCriteria().andIdEqualTo(catedory_id);
+            basicDetailExample.createCriteria().andCategoryIdEqualTo(catedory_id);
             list = basicDetailMapper.selectByExample(basicDetailExample);
             getCacheService().setAll(list,catedory_id);
         }

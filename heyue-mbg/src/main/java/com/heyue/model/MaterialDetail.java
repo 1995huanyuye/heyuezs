@@ -32,13 +32,13 @@ public class MaterialDetail implements Serializable {
     private Integer roundUp;
     @ExcelProperty("材料成本")
     @ApiModelProperty(value = "材料成本")
-    private Double materialCost;
+    private String materialCost;
     @ExcelProperty("材料售价")
     @ApiModelProperty(value = "材料售价")
-    private Double materialPrice;
+    private String materialPrice;
     @ExcelProperty("材料损耗率")
     @ApiModelProperty(value = "材料损耗率")
-    private Double materialWastageRate;
+    private String materialWastageRate;
     @ExcelProperty("品牌")
     @ApiModelProperty(value = "品牌")
     private String brand;
@@ -139,27 +139,27 @@ public class MaterialDetail implements Serializable {
         this.roundUp = roundUp;
     }
 
-    public Double getMaterialCost() {
+    public String getMaterialCost() {
         return materialCost;
     }
 
-    public void setMaterialCost(Double materialCost) {
+    public void setMaterialCost(String materialCost) {
         this.materialCost = materialCost;
     }
 
-    public Double getMaterialPrice() {
+    public String getMaterialPrice() {
         return materialPrice;
     }
 
-    public void setMaterialPrice(Double materialPrice) {
+    public void setMaterialPrice(String materialPrice) {
         this.materialPrice = materialPrice;
     }
 
-    public Double getMaterialWastageRate() {
+    public String getMaterialWastageRate() {
         return materialWastageRate;
     }
 
-    public void setMaterialWastageRate(Double materialWastageRate) {
+    public void setMaterialWastageRate(String materialWastageRate) {
         this.materialWastageRate = materialWastageRate;
     }
 
