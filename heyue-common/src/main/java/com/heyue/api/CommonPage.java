@@ -1,6 +1,7 @@
 package com.heyue.api;
 
 import com.github.pagehelper.PageInfo;
+import io.swagger.models.auth.In;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -34,14 +35,23 @@ public class CommonPage<T> {
     /**
      * 将PageHelper分页后的list转为分页信息
      */
+    public static <T> CommonPage<T> restPage(List<T> list,Long total) {
+        CommonPage<T> result = new CommonPage<T>();
+        PageInfo<T> pageInfo = new PageInfo<T>(list);
+        result.setTotalPage(pageInfo.getPages());
+        result.setList(pageInfo.getList());
+        result.setTotal(total);
+        return result;
+    }
+
     public static <T> CommonPage<T> restPage(List<T> list) {
         CommonPage<T> result = new CommonPage<T>();
         PageInfo<T> pageInfo = new PageInfo<T>(list);
         result.setTotalPage(pageInfo.getPages());
         result.setPageNum(pageInfo.getPageNum());
         result.setPageSize(pageInfo.getPageSize());
-        result.setTotal(pageInfo.getTotal());
         result.setList(pageInfo.getList());
+        result.setTotal(pageInfo.getTotal());
         return result;
     }
 

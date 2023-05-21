@@ -4,8 +4,11 @@ import cn.hutool.core.collection.CollUtil;
 import com.heyue.dto.MaterialCategoryParam;
 import com.heyue.dto.MaterialCategoryUpdateParam;
 import com.heyue.mapper.MaterialCategoryMapper;
+import com.heyue.mapper.MaterialDetailMapper;
 import com.heyue.model.MaterialCategory;
 import com.heyue.model.MaterialCategoryExample;
+import com.heyue.model.MaterialDetail;
+import com.heyue.model.MaterialDetailExample;
 import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.MaterialCategoryCacheService;
 import com.heyue.serivce.MaterialCategoryService;
@@ -22,6 +25,8 @@ public class MaterialCategoryImpl implements MaterialCategoryService {
 
     @Autowired
     private MaterialCategoryMapper mapper;
+    @Autowired
+    private MaterialDetailMapper detailMapper;
     @Override
     public List<MaterialCategory> listAll() {
         //取缓存中的目录
@@ -67,8 +72,8 @@ public class MaterialCategoryImpl implements MaterialCategoryService {
     public int updateMaterialCategory(MaterialCategoryUpdateParam category) {
         getCacheService().delMaterialCategory(category.getId());
         getCacheService().delAll();
-        MaterialCategory vo = new MaterialCategory();
-        BeanUtils.copyProperties(category,vo);
+        MaterialCategory vo = mapper.selectByPrimaryKey(category.getId());
+        vo.setMaterialCategoryName(category.getMaterialCategoryName());
         int count = mapper.updateByPrimaryKey(vo);
         getCacheService().setMaterialCategory(vo);
         return count;
@@ -76,6 +81,12 @@ public class MaterialCategoryImpl implements MaterialCategoryService {
 
     @Override
     public int deleteMaterialCategory(Long id) {
+        MaterialDetailExample materialDetailExample = new MaterialDetailExample();
+        materialDetailExample.createCriteria().andCategoryIdEqualTo(id);
+        List<MaterialDetail> materialDetailList = detailMapper.selectByExample(materialDetailExample);
+        if(materialDetailList.size()!=0){
+            return -1;
+        }
         getCacheService().delMaterialCategory(id);
         getCacheService().delAll();
         int count = mapper.deleteByPrimaryKey(id);

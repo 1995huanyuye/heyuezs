@@ -1,6 +1,7 @@
 package com.heyue.serivce.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.github.pagehelper.PageHelper;
 import com.heyue.dao.BasicDetailDao;
 import com.heyue.dao.ItemCtrlDao;
 import com.heyue.dto.BasicDetailParam;
@@ -32,6 +33,7 @@ public class BasicDetailImpl implements BasicDetailService {
 
     @Autowired
     private ItemCtrlDao itemCtrlDao;
+
 
     @Override
     public List<BasicDetail> listAll(Long catedory_id) {

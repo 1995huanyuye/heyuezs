@@ -77,7 +77,7 @@ public class MaterialCategoryController {
         if(count>0){
             return CommonResult.success(count);
         }
-        return CommonResult.failed();
+        return CommonResult.failed("材料定额类别存在数据，不允许删除！");
     }
 
     private List<MaterialCategory> list2TreeByMap(List<MaterialCategory> details){

@@ -73,7 +73,7 @@ public class BasicCategoryController {
         if(count>0){
             return CommonResult.success(count);
         }
-        return CommonResult.failed();
+        return CommonResult.failed("基装定额类别下存在数据，不允许删除！");
     }
 
     private List<BasicCategory> list2TreeByMap(List<BasicCategory> details){

@@ -2,6 +2,8 @@ package com.heyue.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.github.pagehelper.PageHelper;
+import com.heyue.api.CommonPage;
 import com.heyue.api.CommonResult;
 import com.heyue.dto.BasicDetailExport;
 import com.heyue.dto.BasicDetailParam;
@@ -39,9 +41,16 @@ public class BasicDetailController {
     @ApiOperation("获取所有基装定额")
     @RequestMapping(value = "/listAll",method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<BasicDetail>> listAll(@RequestParam Long category_id){
+    public CommonResult<CommonPage<BasicDetail>> listAll(@RequestParam Long category_id,
+                                                         @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                                                         @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
         List<BasicDetail> details = service.listAll(category_id);
-        return CommonResult.success(details);
+        int firstIndex = (pageNum - 1) * pageSize;
+        int lastIndex = pageNum * pageSize;
+        if(lastIndex>=details.size()){
+            lastIndex = details.size();
+        }
+        return CommonResult.success(CommonPage.restPage(details.subList(firstIndex, lastIndex),new Long(details.size())));
     }
 
     @ApiOperation(value = "基装定额详细信息")

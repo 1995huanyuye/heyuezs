@@ -28,7 +28,6 @@ public class MaterialDetailImpl implements MaterialDetailService {
     @Autowired
     private ItemCtrlDao itemCtrlDao;
 
-
     @Override
     public List<MaterialDetail> listAll(Long catedory_id) {
         List<MaterialDetail> list = new ArrayList<>(8);

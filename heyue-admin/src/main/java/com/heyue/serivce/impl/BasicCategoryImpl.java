@@ -4,8 +4,11 @@ import cn.hutool.core.collection.CollUtil;
 import com.heyue.dto.BasicCategoryParam;
 import com.heyue.dto.BasicCategoryUpdateParam;
 import com.heyue.mapper.BasicCategoryMapper;
+import com.heyue.mapper.BasicDetailMapper;
 import com.heyue.model.BasicCategory;
 import com.heyue.model.BasicCategoryExample;
+import com.heyue.model.BasicDetail;
+import com.heyue.model.BasicDetailExample;
 import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.BasicCategoryCacheService;
 import com.heyue.serivce.BasicCategoryService;
@@ -20,6 +23,8 @@ import java.util.List;
 public class BasicCategoryImpl implements BasicCategoryService {
     @Autowired
     private BasicCategoryMapper mapper;
+    @Autowired
+    private BasicDetailMapper detailMapper;
     @Override
     public List<BasicCategory> listAll() {
         //取缓存中的目录
@@ -64,8 +69,8 @@ public class BasicCategoryImpl implements BasicCategoryService {
     public int updateBasicCategory(BasicCategoryUpdateParam category) {
         getCacheService().delBasicCategory(category.getId());
         getCacheService().delAll();
-        BasicCategory vo = new BasicCategory();
-        BeanUtils.copyProperties(category,vo);
+        BasicCategory vo = mapper.selectByPrimaryKey(category.getId());
+        vo.setBasicCategoryName(category.getBasicCategoryName());
         int count = mapper.updateByPrimaryKey(vo);
         getCacheService().setBasicCategory(vo);
         return count;
@@ -73,6 +78,13 @@ public class BasicCategoryImpl implements BasicCategoryService {
 
     @Override
     public int deleteBasicCategory(Long id) {
+        //分类下有数据不允许删除分类
+        BasicDetailExample basicDetailExample = new BasicDetailExample();
+        basicDetailExample.createCriteria().andCategoryIdEqualTo(id);
+        List<BasicDetail> details = detailMapper.selectByExample(basicDetailExample);
+        if(details.size()!=0){
+            return -1;
+        }
         getCacheService().delBasicCategory(id);
         getCacheService().delAll();
         int count = mapper.deleteByPrimaryKey(id);
