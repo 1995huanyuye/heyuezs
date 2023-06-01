@@ -116,7 +116,7 @@ public class BasicDetailImpl implements BasicDetailService {
         getCacheService().delAll(detail.getCategoryId());
         //当前类别上级分类的缓存删掉
         BasicCategory category = basicCategoryMapper.selectByPrimaryKey(detail.getCategoryId());
-        if(category.getParentId()!=0L){
+        if(category!=null&&category.getParentId()!=0L){
             getCacheService().delAll(category.getParentId());
         }
         return basicDetailMapper.deleteByPrimaryKey(id);

@@ -23,19 +23,19 @@ public class BasicDetailParam {
     private Integer roundUp;
 
     @ApiModelProperty(value = "人工成本",position = 4)
-    private Double laborCost;
+    private String laborCost;
 
     @ApiModelProperty(value = "辅料成本",position = 5)
-    private Double auxiliaryMaterialCost;
+    private String auxiliaryMaterialCost;
 
     @ApiModelProperty(value = "人工售价",position = 6)
-    private Double laborPrice;
+    private String laborPrice;
 
     @ApiModelProperty(value = "辅料售价",position = 7)
-    private Double accessoriesPrice;
+    private String accessoriesPrice;
 
     @ApiModelProperty(value = "辅材损耗率",position = 8)
-    private Double auxiliaryMaterialLossRate;
+    private String auxiliaryMaterialLossRate;
 
     @ApiModelProperty(value = "工程阶段",position = 9)
     private Integer engineeringStage;

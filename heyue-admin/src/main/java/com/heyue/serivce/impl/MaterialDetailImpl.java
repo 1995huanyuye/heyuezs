@@ -109,7 +109,7 @@ public class MaterialDetailImpl implements MaterialDetailService {
         getCacheService().delAll(detail.getCategoryId());
         //当前类别上级分类的缓存删掉
         MaterialCategory category = materialCategoryMapper.selectByPrimaryKey(detail.getCategoryId());
-        if(category.getParentId()!=0L){
+        if(category!=null&&category.getParentId()!=0L){
             getCacheService().getAll(category.getParentId());
         }
         return materialDetailMapper.deleteByPrimaryKey(id);

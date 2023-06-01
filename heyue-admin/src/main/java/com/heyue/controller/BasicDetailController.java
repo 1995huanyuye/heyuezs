@@ -102,7 +102,7 @@ public class BasicDetailController {
     @ApiOperation(value = "基装定额导出模板",notes = "exportTemplate", produces = "application/octet-stream")
     @RequestMapping(value = "/exportTemplate",method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult exportBasicDetailTemplate(HttpServletResponse response){
+    public void exportBasicDetailTemplate(HttpServletResponse response){
         ExcelExportUtils.setExcelResProp(response,"ExportTemplate");
         try {
             EasyExcel.write(response.getOutputStream())
@@ -111,22 +111,21 @@ public class BasicDetailController {
                     .sheet("sheet1")
                     .doWrite(new ArrayList<>(8));
         }catch (Exception e){
-            return CommonResult.failed(e.getMessage());
+            throw e;
         }
 
-        return CommonResult.success(1);
     }
 
     @ApiOperation(value = "导入基装定额数据",notes = "importData")
     @RequestMapping(value = "/imoportData",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult importBasicDetailData(@RequestPart("file")MultipartFile file,@RequestParam Long category){
+    public void importBasicDetailData(@RequestPart("file")MultipartFile file,@RequestParam Long category) throws IOException {
         try {
             dataOpratorService.importBasicExcel(file,category);
         }catch (Exception e){
-            return CommonResult.failed(e.getMessage());
+            throw e;
         }
-        return CommonResult.success(1);
+
     }
 
 
@@ -134,15 +133,14 @@ public class BasicDetailController {
     @ApiOperation(value = "导出基装定额数据",notes = "exportData",produces = "application/octet-stream")
     @RequestMapping(value = "/exportData",method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult exportDataBasicDetailData(@RequestParam Long category,HttpServletResponse response){
+    public void exportDataBasicDetailData(@RequestParam Long category,HttpServletResponse response){
         ExcelExportUtils.setExcelResProp(response,"Data");
         List<BasicDetail> details = service.listAll(category);
         try {
             dataOpratorService.exportBasicExcel(details,response);
         }catch (Exception e){
-            return CommonResult.failed(e.getMessage());
+            throw e;
         }
-        return CommonResult.success(1);
     }
 
 

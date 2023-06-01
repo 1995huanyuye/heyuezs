@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heyue.dao.ItemCtrlDao">
     <select id="listBasicAll" resultType="com.heyue.model.ItemVO">
-     select id,column_names,column_code,isshow,sort from basic_item_ctrl
+     select id,column_names,column_code,isshow,sort from basic_item_ctrl order by sort ASC
     </select>
 
     <select id="listMaterialAll" resultType="com.heyue.model.ItemVO">
-        select id,column_names,column_code,isshow,sort from material_item_ctrl
+        select id,column_names,column_code,isshow,sort from material_item_ctrl order by sort ASC
     </select>
 
     <insert id="insertBasic" parameterType="com.heyue.model.ItemVO">

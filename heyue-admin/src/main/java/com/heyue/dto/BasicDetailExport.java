@@ -33,23 +33,23 @@ public class BasicDetailExport {
 
     @ExcelProperty("人工成本")
     @ColumnWidth(value = 20)
-    private Double laborCost;
+    private String laborCost;
 
     @ExcelProperty("辅料成本")
     @ColumnWidth(value = 20)
-    private Double auxiliaryMaterialCost;
+    private String auxiliaryMaterialCost;
 
     @ExcelProperty("人工售价")
     @ColumnWidth(value = 20)
-    private Double laborPrice;
+    private String laborPrice;
 
     @ExcelProperty("辅料售价")
     @ColumnWidth(value = 20)
-    private Double accessoriesPrice;
+    private String accessoriesPrice;
 
     @ExcelProperty("辅材损耗率")
     @ColumnWidth(value = 20)
-    private Double auxiliaryMaterialLossRate;
+    private String auxiliaryMaterialLossRate;
 
     @ExcelProperty("工程阶段")
     @ColumnWidth(value = 20)
