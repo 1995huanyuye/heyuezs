@@ -60,6 +60,9 @@ public class BasicDetailImportListener implements ReadListener<BasicDetail> {
             detail.setId(PKeyGenerator.generator());
             detail.setCategoryId(categoryId);
         }
-        dao.batchSave(cachedDataList);
+        if(cachedDataList.size()!=0){
+            dao.batchSave(cachedDataList);
+        }
+
     }
 }

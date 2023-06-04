@@ -1,5 +1,9 @@
 package com.heyue.dto;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.heyue.util.RoundUpConverter;
+import com.heyue.util.UnitConverter;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,78 +11,44 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MaterialDetailParam {
-    @ApiModelProperty(value = "材料类型",position = 0)
-    private String materialType;
-
-    @ApiModelProperty(value = "材料名称",position = 1)
+    @ApiModelProperty(value = "定额名称",position = 0)
     private String materialNumber;
-
-    @ApiModelProperty(value = "材料编码",position = 2)
-    private String materialName;
-
-    @ApiModelProperty(value = "供应商",position = 3)
-    private Long supplierId;
-
-    @ApiModelProperty(value = "工程阶段",position = 4)
-    private String engineeringStage;
-
-    @ApiModelProperty(value = "成本价",position = 5)
-    private Double costPrice;
-
-    @ApiModelProperty(value = "核算价",position = 6)
-    private Double accountingPrice;
-
-    @ApiModelProperty(value = "销售价",position = 7)
-    private Double salesPrice;
-
-    @ApiModelProperty(value = "最低售价",position = 8)
-    private Double lowestSellingPrice;
-
-    @ApiModelProperty(value = "建议售价",position = 9)
-    private Double recommendedSellingPrice;
-
-    @ApiModelProperty(value = "发包价",position = 10)
-    private Double contractPrice;
-
-    @ApiModelProperty(value = "主单位（枚举展示）",position = 11)
-    private Integer mainUnit;
-
-    @ApiModelProperty(value = "副单位（枚举展示）",position = 12)
-    private Integer deputyUnit;
-
-    @ApiModelProperty(value = "品牌",position = 13)
-    private Long brandId;
-
-    @ApiModelProperty(value = "型号",position = 14)
-    private Long modelId;
-
-    @ApiModelProperty(value = "规格",position = 15)
-    private Long specifications;
-
-    @ApiModelProperty(value = "颜色",position = 16)
-    private Long color;
-
-    @ApiModelProperty(value = "公式",position = 17)
-    private String formula;
-
+    @ApiModelProperty(value = "定额分类",position = 1)
+    private String materialClassification;
+    @ApiModelProperty(value = "材料类型",position = 2)
+    private String materialType;
+    @ApiModelProperty(value = "定额编号",position = 3)
+    private String materialCode;
+    @ApiModelProperty(value = "计量单位",position = 4)
+    private Integer unit;
+    @ApiModelProperty(value = "计价数量向上取整",position = 5)
+    private Integer roundUp;
+    @ApiModelProperty(value = "材料成本",position = 6)
+    private String materialCost;
+    @ApiModelProperty(value = "材料售价",position = 7)
+    private String materialPrice;
+    @ApiModelProperty(value = "材料损耗率",position = 8)
+    private String materialWastageRate;
+    @ApiModelProperty(value = "品牌",position = 9)
+    private String brand;
+    @ApiModelProperty(value = "型号",position = 10)
+    private String modelNumber;
+    @ApiModelProperty(value = "规格",position = 11)
+    private String specification;
+    @ApiModelProperty(value = "颜色",position = 12)
+    private String color;
+    @ApiModelProperty(value = "供应商",position = 13)
+    private String supplier;
+    @ApiModelProperty(value = "工程阶段",position = 14)
+    private Integer engineeringStage;
+    @ApiModelProperty(value = "施工类型",position = 15)
+    private Integer constructionType;
+    @ApiModelProperty(value = "施工工艺、材料说明",position = 16)
+    private String materialDescription;
+    @ApiModelProperty(value = "图片",position = 17)
+    private String image;
     @ApiModelProperty(value = "上架状态",position = 18)
     private String shelfStatus;
-
-    @ApiModelProperty(value = "漏项提醒",position = 19)
-    private String remind;
-
-    @ApiModelProperty(value = "是否向上取整",position = 20)
-    private String roundUp;
-
-    @ApiModelProperty(value = "项目说明",position = 21)
-    private String projectDescription;
-
-    @ApiModelProperty(value = "计价说明",position = 22)
-    private String pricingInstructions;
-
-    @ApiModelProperty(value = "验收标准",position = 23)
-    private String acceptanceCriteria;
-
-    @ApiModelProperty(value = "上传图片",position = 24)
-    private byte[] image;
+    @ApiModelProperty(value = "排序",position = 19)
+    private Integer sort;
 }

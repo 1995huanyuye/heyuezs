@@ -45,11 +45,13 @@ public class MaterialDetailImpl implements MaterialDetailService {
             }
             MaterialDetailExample materialDetailExample = new MaterialDetailExample();
             materialDetailExample.createCriteria().andCategoryIdIn(ids);
+            materialDetailExample.setOrderByClause("id");
             list = materialDetailMapper.selectByExample(materialDetailExample);
             getCacheService().setAll(list,catedory_id);
         }else{
             MaterialDetailExample materialDetailExample = new MaterialDetailExample();
             materialDetailExample.createCriteria().andCategoryIdEqualTo(catedory_id);
+            materialDetailExample.setOrderByClause("id");
             list = materialDetailMapper.selectByExample(materialDetailExample);
             getCacheService().setAll(list,catedory_id);
         }

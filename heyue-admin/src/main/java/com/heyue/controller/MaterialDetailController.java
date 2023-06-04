@@ -124,9 +124,9 @@ public class MaterialDetailController {
         try {
             dataOpratorService.importMaterialExcel(file,category);
         }catch (Exception e){
-            return CommonResult.failed(e.getMessage());
+            return CommonResult.failed("导入失败");
         }
-        return CommonResult.success(1);
+        return CommonResult.success("导入成功");
     }
 
 

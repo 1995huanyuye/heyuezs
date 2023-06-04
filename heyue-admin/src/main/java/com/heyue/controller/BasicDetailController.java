@@ -119,13 +119,13 @@ public class BasicDetailController {
     @ApiOperation(value = "导入基装定额数据",notes = "importData")
     @RequestMapping(value = "/imoportData",method = RequestMethod.POST)
     @ResponseBody
-    public void importBasicDetailData(@RequestPart("file")MultipartFile file,@RequestParam Long category) throws IOException {
+    public CommonResult importBasicDetailData(@RequestPart("file")MultipartFile file,@RequestParam Long category) throws IOException {
         try {
             dataOpratorService.importBasicExcel(file,category);
         }catch (Exception e){
-            throw e;
+            return CommonResult.failed("导入失败");
         }
-
+        return CommonResult.success("导入成功");
     }
 
 

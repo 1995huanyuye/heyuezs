@@ -53,11 +53,13 @@ public class BasicDetailImpl implements BasicDetailService {
             }
             BasicDetailExample basicDetailExample = new BasicDetailExample();
             basicDetailExample.createCriteria().andCategoryIdIn(ids);
+            basicDetailExample.setOrderByClause("id");
             list = basicDetailMapper.selectByExample(basicDetailExample);
             getCacheService().setAll(list,catedory_id);
         }else{
             BasicDetailExample basicDetailExample = new BasicDetailExample();
             basicDetailExample.createCriteria().andCategoryIdEqualTo(catedory_id);
+            basicDetailExample.setOrderByClause("id");
             list = basicDetailMapper.selectByExample(basicDetailExample);
             getCacheService().setAll(list,catedory_id);
         }
