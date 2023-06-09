@@ -1,14 +1,15 @@
 package com.heyue.serivce.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.heyue.dao.DecorationProjectDao;
 import com.heyue.dao.SpaceParamDao;
+import com.heyue.dto.DecorationProjectParam;
 import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
 import com.heyue.dto.SpaceParam4Add;
 import com.heyue.mapper.SpaceItemConfigMapper;
 import com.heyue.mapper.SpaceItemMapper;
 import com.heyue.mapper.SpaceItemParamMapper;
-import com.heyue.mapper.SpaceParamMapper;
 import com.heyue.model.*;
 import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.SpaceModelCacheService;
@@ -30,6 +31,9 @@ public class SpaceModelServiceImpl implements SpaceModelService {
     private SpaceItemConfigMapper spaceItemConfigMapper;
     @Autowired
     private SpaceParamDao spaceParamDao;
+    @Autowired
+    private DecorationProjectDao decorationProjectDao;
+
     @Override
     public List<SpaceItem> listAll(Long category_id) {
         List<SpaceItem> all = getCacheService().getAll(category_id);
@@ -160,5 +164,29 @@ public class SpaceModelServiceImpl implements SpaceModelService {
     @Override
     public SpaceModelCacheService getCacheService() {
         return SpringUtil.getBean(SpaceModelCacheService.class);
+    }
+
+    @Override
+    public int addDecorationParam(DecorationProjectParam param) {
+        DecorationProject decorationProject = new DecorationProject();
+        BeanUtils.copyProperties(param,decorationProject);
+        decorationProject.setId(PKeyGenerator.generator());
+        decorationProjectDao.addDecorationParam(decorationProject);
+        return 0;
+    }
+
+    @Override
+    public void delDecorationParam(Long id) {
+        decorationProjectDao.delDecorationParam(id);
+    }
+
+    @Override
+    public int updateDecorationParam(DecorationProject vo) {
+        return decorationProjectDao.updateDecorationParam(vo);
+    }
+
+    @Override
+    public List<DecorationProject> listDecorationParam(Integer projectType) {
+        return decorationProjectDao.listDecorationParam(projectType);
     }
 }

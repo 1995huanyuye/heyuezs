@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.dao.DecorationProjectDao">
+     <insert id="addDecorationParam" parameterType="com.heyue.model.DecorationProject">
+        insert into decoration_project(id,project_name,note,project_type) values
+            (#{id},#{projectName},#{note},#{projectType})
+     </insert>
+
+        <update id="updateDecorationParam">
+            update decoration_project set project_name = #{projectName},note = #{note} where id = #{id}
+        </update>
+
+    <select id="listDecorationParam" resultType="com.heyue.model.DecorationProject">
+        select id,project_name as projectName,note,project_type as projectType  from decoration_project where  project_type = #{projectType} order by id desc
+    </select>
+
+    <delete id="delDecorationParam">
+        delete from decoration_project where id = #{id}
+    </delete>
+
+</mapper>

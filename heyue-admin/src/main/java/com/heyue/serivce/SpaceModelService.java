@@ -1,5 +1,6 @@
 package com.heyue.serivce;
 
+import com.heyue.dto.DecorationProjectParam;
 import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
 import com.heyue.dto.SpaceParam4Add;
@@ -59,4 +60,12 @@ public interface SpaceModelService {
     SpaceAggVO loadSpaceDataById(Long id);
 
     SpaceModelCacheService getCacheService();
+
+    int addDecorationParam(DecorationProjectParam param);
+
+    void delDecorationParam(Long id);
+
+    int updateDecorationParam(DecorationProject vo);
+
+    List<DecorationProject> listDecorationParam(Integer projectType);
 }

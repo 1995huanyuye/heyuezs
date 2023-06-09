@@ -2,6 +2,7 @@ package com.heyue.controller;
 
 import com.heyue.api.CommonPage;
 import com.heyue.api.CommonResult;
+import com.heyue.dto.DecorationProjectParam;
 import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
 import com.heyue.dto.SpaceParam4Add;
@@ -127,5 +128,58 @@ public class SpaceModelController {
         int count = service.deleteSpaceItem(id,category_id);
         return CommonResult.success(count);
     }
+
+    @ApiOperation(value = "新增装修项目")
+    @RequestMapping(value = "/addDecorationParam",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult addDecorationParam(@RequestBody DecorationProjectParam param){
+        try {
+            service.addDecorationParam(param);
+        }catch (Exception e){
+            return CommonResult.failed("新增失败！"+e.getMessage());
+        }
+        return CommonResult.success("新增成功！");
+    }
+
+    @ApiOperation(value = "删除装修项目")
+    @RequestMapping(value = "/delDecorationParam",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult delDecorationParam(@RequestParam Long id){
+        try {
+            service.delDecorationParam(id);
+        }catch (Exception e){
+            return CommonResult.failed("删除失败！"+e.getMessage());
+        }
+        return CommonResult.success("删除成功！");
+    }
+
+    @ApiOperation(value = "更新装修项目")
+    @RequestMapping(value = "/updateDecorationParam",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateDecorationParam(@RequestBody DecorationProject vo){
+        try {
+            service.updateDecorationParam(vo);
+        }catch (Exception e){
+            return CommonResult.failed("更新失败"+e.getMessage());
+        }
+        return CommonResult.success("更新成功！");
+    }
+
+    @ApiOperation(value = "分页查询装修项目")
+    @RequestMapping(value = "/listDecorationParam",method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<CommonPage<DecorationProject>> listDecorationParam(@RequestParam Integer projectType,@RequestParam(defaultValue = "0") int pageNum, @RequestParam(defaultValue = "10")int pageSize){
+        List<DecorationProject> decorationProjects = service.listDecorationParam(projectType);
+        if(decorationProjects!=null&&decorationProjects.size()>0){
+            int firstIndex = (pageNum - 1) * pageSize;
+            int lastIndex = pageNum * pageSize;
+            if(lastIndex>=decorationProjects.size()){
+                lastIndex = decorationProjects.size();
+            }
+            return CommonResult.success(CommonPage.restPage(decorationProjects.subList(firstIndex, lastIndex),pageNum,pageSize,decorationProjects.size()/pageSize+1,new Long(decorationProjects.size())));
+        }
+       return  CommonResult.success(CommonPage.restPage(decorationProjects));
+    }
+
 
 }
