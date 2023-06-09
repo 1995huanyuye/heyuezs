@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.heyue.mapper.SpaceParamMapper">
-  <resultMap id="BaseResultMap" type="com.heyue.model.SpaceParam">
+<mapper namespace="com.heyue.mapper.DecorationProjectMapper">
+  <resultMap id="BaseResultMap" type="com.heyue.model.DecorationProject">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="param_name" jdbcType="VARCHAR" property="paramName" />
-    <result column="param_code" jdbcType="VARCHAR" property="paramCode" />
-    <result column="unit" jdbcType="VARCHAR" property="unit" />
-    <result column="num" jdbcType="VARCHAR" property="num" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="project_type" jdbcType="INTEGER" property="projectType" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, param_name, param_code, unit, num
+    id, project_name, note, project_type
   </sql>
-  <select id="selectByExample" parameterType="com.heyue.model.SpaceParamExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.heyue.model.DecorationProjectExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from space_param
+    from decoration_project
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,85 +85,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from space_param
+    from decoration_project
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from space_param
+    delete from decoration_project
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.heyue.model.SpaceParamExample">
-    delete from space_param
+  <delete id="deleteByExample" parameterType="com.heyue.model.DecorationProjectExample">
+    delete from decoration_project
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.heyue.model.SpaceParam">
+  <insert id="insert" parameterType="com.heyue.model.DecorationProject">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into space_param (id,param_name, param_code, unit,
-      num)
-    values (#{id,jdbcType=BIGINT},#{paramName,jdbcType=VARCHAR}, #{paramCode,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR},
-      #{num,jdbcType=VARCHAR})
+    insert into decoration_project (project_name, note, project_type
+      )
+    values (#{projectName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{projectType,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.heyue.model.SpaceParam">
+  <insert id="insertSelective" parameterType="com.heyue.model.DecorationProject">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into space_param
+    insert into decoration_project
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="paramName != null">
-        param_name,
+      <if test="projectName != null">
+        project_name,
       </if>
-      <if test="paramCode != null">
-        param_code,
+      <if test="note != null">
+        note,
       </if>
-      <if test="unit != null">
-        unit,
-      </if>
-      <if test="num != null">
-        num,
+      <if test="projectType != null">
+        project_type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="paramName != null">
-        #{paramName,jdbcType=VARCHAR},
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
       </if>
-      <if test="paramCode != null">
-        #{paramCode,jdbcType=VARCHAR},
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
       </if>
-      <if test="unit != null">
-        #{unit,jdbcType=VARCHAR},
-      </if>
-      <if test="num != null">
-        #{num,jdbcType=VARCHAR},
+      <if test="projectType != null">
+        #{projectType,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.heyue.model.SpaceParamExample" resultType="java.lang.Long">
-    select count(*) from space_param
+  <select id="countByExample" parameterType="com.heyue.model.DecorationProjectExample" resultType="java.lang.Long">
+    select count(*) from decoration_project
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update space_param
+    update decoration_project
     <set>
       <if test="row.id != null">
         id = #{row.id,jdbcType=BIGINT},
       </if>
-      <if test="row.paramName != null">
-        param_name = #{row.paramName,jdbcType=VARCHAR},
+      <if test="row.projectName != null">
+        project_name = #{row.projectName,jdbcType=VARCHAR},
       </if>
-      <if test="row.paramCode != null">
-        param_code = #{row.paramCode,jdbcType=VARCHAR},
+      <if test="row.note != null">
+        note = #{row.note,jdbcType=VARCHAR},
       </if>
-      <if test="row.unit != null">
-        unit = #{row.unit,jdbcType=VARCHAR},
-      </if>
-      <if test="row.num != null">
-        num = #{row.num,jdbcType=VARCHAR},
+      <if test="row.projectType != null">
+        project_type = #{row.projectType,jdbcType=INTEGER},
       </if>
     </set>
     <if test="example != null">
@@ -172,40 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update space_param
+    update decoration_project
     set id = #{row.id,jdbcType=BIGINT},
-      param_name = #{row.paramName,jdbcType=VARCHAR},
-      param_code = #{row.paramCode,jdbcType=VARCHAR},
-      unit = #{row.unit,jdbcType=VARCHAR},
-      num = #{row.num,jdbcType=VARCHAR}
+      project_name = #{row.projectName,jdbcType=VARCHAR},
+      note = #{row.note,jdbcType=VARCHAR},
+      project_type = #{row.projectType,jdbcType=INTEGER}
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.SpaceParam">
-    update space_param
+  <update id="updateByPrimaryKeySelective" parameterType="com.heyue.model.DecorationProject">
+    update decoration_project
     <set>
-      <if test="paramName != null">
-        param_name = #{paramName,jdbcType=VARCHAR},
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
       </if>
-      <if test="paramCode != null">
-        param_code = #{paramCode,jdbcType=VARCHAR},
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
       </if>
-      <if test="unit != null">
-        unit = #{unit,jdbcType=VARCHAR},
-      </if>
-      <if test="num != null">
-        num = #{num,jdbcType=VARCHAR},
+      <if test="projectType != null">
+        project_type = #{projectType,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.heyue.model.SpaceParam">
-    update space_param
-    set param_name = #{paramName,jdbcType=VARCHAR},
-      param_code = #{paramCode,jdbcType=VARCHAR},
-      unit = #{unit,jdbcType=VARCHAR},
-      num = #{num,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.heyue.model.DecorationProject">
+    update decoration_project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      project_type = #{projectType,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

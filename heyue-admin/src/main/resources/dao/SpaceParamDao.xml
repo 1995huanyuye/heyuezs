@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heyue.dao.SpaceParamDao">
+     <insert id="addSpaceParam" parameterType="com.heyue.model.SpaceParam">
+        insert into space_param(id,param_name,param_code,unit,num) values
+            (#{id},#{paramName},#{paramCode},#{unit},#{num})
+     </insert>
+
+        <update id="updateSpaceParam">
+            update space_param set num = #{num} where id = #{spaceParamId}
+        </update>
+
+    <select id="listSpaceParam" resultType="com.heyue.model.SpaceParam">
+        select id,param_name as paramName ,param_code as paramCode ,unit,num from space_param order by id desc
+    </select>
+
+    <delete id="delSpaceParam">
+        delete from space_param where id = #{spaceParamId}
+    </delete>
+
+</mapper>

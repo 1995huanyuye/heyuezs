@@ -1,12 +1,14 @@
 package com.heyue.serivce.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.heyue.dao.SpaceParamDao;
 import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
-import com.heyue.dto.SpaceItemParam4Add;
+import com.heyue.dto.SpaceParam4Add;
 import com.heyue.mapper.SpaceItemConfigMapper;
 import com.heyue.mapper.SpaceItemMapper;
 import com.heyue.mapper.SpaceItemParamMapper;
+import com.heyue.mapper.SpaceParamMapper;
 import com.heyue.model.*;
 import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.SpaceModelCacheService;
@@ -26,6 +28,8 @@ public class SpaceModelServiceImpl implements SpaceModelService {
     private SpaceItemParamMapper spaceItemParamMapper;
     @Autowired
     private SpaceItemConfigMapper spaceItemConfigMapper;
+    @Autowired
+    private SpaceParamDao spaceParamDao;
     @Override
     public List<SpaceItem> listAll(Long category_id) {
         List<SpaceItem> all = getCacheService().getAll(category_id);
@@ -82,21 +86,30 @@ public class SpaceModelServiceImpl implements SpaceModelService {
     }
 
     @Override
-    public int addSpaceItemParam(SpaceItemParam4Add o, Long item_id) {
-        SpaceItemParam spaceItemParam = new SpaceItemParam();
-        BeanUtils.copyProperties(o,spaceItemParam);
-        spaceItemParam.setId(PKeyGenerator.generator());
-        spaceItemParam.setSpaceItemId(item_id);
-        int count = spaceItemParamMapper.insert(spaceItemParam);
-        getCacheService().delSpaceItem(item_id);
-        return count;
+    public int addSpaceParam(SpaceParam4Add o) {
+        SpaceParam param = new SpaceParam();
+        BeanUtils.copyProperties(o,param);
+        param.setId(PKeyGenerator.generator());
+        spaceParamDao.addSpaceParam(param);
+        return 0;
     }
 
     @Override
-    public int delSpaceItemParam(SpaceItemParam o) {
-        getCacheService().delSpaceItem(o.getSpaceItemId());
-        return  spaceItemParamMapper.deleteByPrimaryKey(o.getId());
+    public int delSpaceParam(Long spaceParamId) {
+        spaceParamDao.delSpaceParam(spaceParamId);
+        return 0;
     }
+
+    @Override
+    public void updateSpaceParam(Long spaceParamId, String num) {
+        spaceParamDao.updateSpaceParam(spaceParamId,num);
+    }
+
+    @Override
+    public List<SpaceParam> listSpaceParam() {
+        return  spaceParamDao.listSpaceParam();
+    }
+
 
     @Override
     public int addSpaceItemConfig(SpaceItemConfigParam o, Long item_id) {

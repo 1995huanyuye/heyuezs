@@ -51,7 +51,7 @@ public class MaterialDetailController {
         if(lastIndex>=details.size()){
             lastIndex = details.size();
         }
-        return CommonResult.success(CommonPage.restPage(details.subList(firstIndex, lastIndex),new Long(details.size())));
+        return CommonResult.success(CommonPage.restPage(details.subList(firstIndex, lastIndex),pageNum,pageSize,details.size()/pageSize+1,new Long(details.size())));
     }
 
     @ApiOperation(value = "材料定额详细信息")

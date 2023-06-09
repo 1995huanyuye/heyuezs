@@ -2,11 +2,8 @@ package com.heyue.serivce;
 
 import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
-import com.heyue.dto.SpaceItemParam4Add;
-import com.heyue.model.SpaceAggVO;
-import com.heyue.model.SpaceItem;
-import com.heyue.model.SpaceItemConfig;
-import com.heyue.model.SpaceItemParam;
+import com.heyue.dto.SpaceParam4Add;
+import com.heyue.model.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -29,13 +26,17 @@ public interface SpaceModelService {
     Long addSpaceItem(SpaceItemAddParam param,Long category_id);
 
     /**
-     * 新增配置参数
+     * 新增空间参数
      */
-    int addSpaceItemParam(SpaceItemParam4Add o,Long item_id);
+    int addSpaceParam(SpaceParam4Add o);
     /**
      * 删除配置参数
      */
-    int delSpaceItemParam(SpaceItemParam o);
+    int delSpaceParam(Long spaceParamId);
+
+    void updateSpaceParam(Long spaceParamId,String num);
+
+    List<SpaceParam> listSpaceParam();
     /**
      * 新增装修配置
      */

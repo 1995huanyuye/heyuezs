@@ -6,14 +6,17 @@ import java.io.Serializable;
 public class SpaceParam implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "参数名称",position = 0)
+    @ApiModelProperty(value = "参数名称")
     private String paramName;
 
-    @ApiModelProperty(value = "参数代码",position = 1)
+    @ApiModelProperty(value = "参数代码")
     private String paramCode;
 
-    @ApiModelProperty(value = "单位",position = 2)
+    @ApiModelProperty(value = "单位")
     private String unit;
+
+    @ApiModelProperty(value = "数值")
+    private String num;
 
     private static final long serialVersionUID = 1L;
 
@@ -49,6 +52,14 @@ public class SpaceParam implements Serializable {
         this.unit = unit;
     }
 
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -59,6 +70,7 @@ public class SpaceParam implements Serializable {
         sb.append(", paramName=").append(paramName);
         sb.append(", paramCode=").append(paramCode);
         sb.append(", unit=").append(unit);
+        sb.append(", num=").append(num);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

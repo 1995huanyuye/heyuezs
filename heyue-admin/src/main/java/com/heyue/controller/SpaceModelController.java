@@ -1,13 +1,11 @@
 package com.heyue.controller;
 
+import com.heyue.api.CommonPage;
 import com.heyue.api.CommonResult;
 import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
-import com.heyue.dto.SpaceItemParam4Add;
-import com.heyue.model.SpaceAggVO;
-import com.heyue.model.SpaceItem;
-import com.heyue.model.SpaceItemConfig;
-import com.heyue.model.SpaceItemParam;
+import com.heyue.dto.SpaceParam4Add;
+import com.heyue.model.*;
 import com.heyue.serivce.SpaceModelService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -49,20 +47,53 @@ public class SpaceModelController {
         return CommonResult.success(aLong);
     }
 
-    @ApiOperation(value = "新增配置参数")
-    @RequestMapping(value = "/addSpaceItemParam",method = RequestMethod.POST)
+    @ApiOperation(value = "新增空间参数")
+    @RequestMapping(value = "/addSpaceParam",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult addSpaceItemParam(@RequestBody SpaceItemParam4Add o,@RequestParam Long item_id){
-        int count = service.addSpaceItemParam(o, item_id);
-        return CommonResult.success(count);
+    public CommonResult addSpaceParam(@RequestBody SpaceParam4Add o){
+        try {
+            service.addSpaceParam(o);
+        }catch (Exception e){
+            return CommonResult.failed("新增失败！"+e.getMessage());
+        }
+        return CommonResult.success("新增成功！");
     }
 
-    @ApiOperation(value = "删除配置参数")
-    @RequestMapping(value = "/delSpaceItemParam",method = RequestMethod.POST)
+    @ApiOperation(value = "删除空间参数")
+    @RequestMapping(value = "/delSpaceParam",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delSpaceItemParam(@RequestBody SpaceItemParam o){
-        int count = service.delSpaceItemParam(o);
-        return CommonResult.success(count);
+    public CommonResult delSpaceParam(@RequestParam Long id){
+        try {
+           service.delSpaceParam(id);
+        }catch (Exception e){
+           return CommonResult.failed("删除失败！"+e.getMessage());
+        }
+        return CommonResult.success("删除成功！");
+    }
+
+    @ApiOperation(value = "更新空间参数")
+    @RequestMapping(value = "/updateSpaceParam",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateSpaceParam(@RequestParam Long id,@RequestParam String num){
+        try {
+            service.updateSpaceParam(id,num);
+        }catch (Exception e){
+           return CommonResult.failed("更新失败"+e.getMessage());
+        }
+        return CommonResult.success("更新成功！");
+    }
+
+    @ApiOperation(value = "分页查询空间参数")
+    @RequestMapping(value = "/listSpaceParam",method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<CommonPage<SpaceParam>> listSpaceParam(@RequestParam(defaultValue = "0") int pageNum, @RequestParam(defaultValue = "10")int pageSize){
+        List<SpaceParam> spaceParamsList = service.listSpaceParam();
+        int firstIndex = (pageNum - 1) * pageSize;
+        int lastIndex = pageNum * pageSize;
+        if(lastIndex>=spaceParamsList.size()){
+            lastIndex = spaceParamsList.size();
+        }
+        return CommonResult.success(CommonPage.restPage(spaceParamsList.subList(firstIndex, lastIndex),pageNum,pageSize,spaceParamsList.size()/pageSize+1,new Long(spaceParamsList.size())));
     }
 
     @ApiOperation(value = "新增装修配置")
