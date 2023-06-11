@@ -75,9 +75,9 @@ public class SpaceModelController {
     @ApiOperation(value = "更新空间参数")
     @RequestMapping(value = "/updateSpaceParam",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateSpaceParam(@RequestParam Long id,@RequestParam String num){
+    public CommonResult updateSpaceParam(@RequestBody SpaceParam param){
         try {
-            service.updateSpaceParam(id,num);
+            service.updateSpaceParam(param);
         }catch (Exception e){
            return CommonResult.failed("更新失败"+e.getMessage());
         }

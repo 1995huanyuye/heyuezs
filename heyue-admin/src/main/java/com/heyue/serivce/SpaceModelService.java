@@ -35,7 +35,7 @@ public interface SpaceModelService {
      */
     int delSpaceParam(Long spaceParamId);
 
-    void updateSpaceParam(Long spaceParamId,String num);
+    void updateSpaceParam(SpaceParam param);
 
     List<SpaceParam> listSpaceParam();
     /**

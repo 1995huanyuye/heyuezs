@@ -7,7 +7,7 @@
      </insert>
 
         <update id="updateSpaceParam">
-            update space_param set num = #{num} where id = #{spaceParamId}
+            update space_param set param_name = #{paramName},param_code = #{paramCode},num = #{num},unit = #{unit} where id = #{id}
         </update>
 
     <select id="listSpaceParam" resultType="com.heyue.model.SpaceParam">

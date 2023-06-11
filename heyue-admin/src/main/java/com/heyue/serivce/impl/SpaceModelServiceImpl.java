@@ -105,8 +105,8 @@ public class SpaceModelServiceImpl implements SpaceModelService {
     }
 
     @Override
-    public void updateSpaceParam(Long spaceParamId, String num) {
-        spaceParamDao.updateSpaceParam(spaceParamId,num);
+    public void updateSpaceParam(SpaceParam param) {
+        spaceParamDao.updateSpaceParam(param);
     }
 
     @Override
