@@ -1,9 +1,9 @@
 package com.heyue.serivce;
 
 import com.heyue.dto.DecorationProjectParam;
-import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
 import com.heyue.dto.SpaceParam4Add;
+import com.heyue.dto.SpaceTemplateAgg;
 import com.heyue.model.*;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,12 +19,13 @@ public interface SpaceModelService {
      * 获取空间
      */
     @Transactional
-    SpaceAggVO getItem(Long item_id);
+    SpaceTemplateAgg getItem(Long item_id);
 
     /**
      * 新增空间
      */
-    Long addSpaceItem(SpaceItemAddParam param,Long category_id);
+    @Transactional
+    Long addSpaceItem(SpaceTemplateAgg agg, Long category_id);
 
     /**
      * 新增空间参数
@@ -49,15 +50,16 @@ public interface SpaceModelService {
     /**
      * 更新空间
      */
-    int updateSpaceItem(SpaceItem item);
+    @Transactional
+    int updateSpaceItem(SpaceTemplateAgg item);
     /**
      * 删除空间
      */
     @Transactional
-    int deleteSpaceItem(Long id,Long category_id);
+    int deleteSpaceItem(Long id);
 
     @Transactional
-    SpaceAggVO loadSpaceDataById(Long id);
+    SpaceTemplateAgg loadSpaceDataById(Long id);
 
     SpaceModelCacheService getCacheService();
 

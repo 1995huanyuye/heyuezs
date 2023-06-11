@@ -18,4 +18,16 @@
         delete from decoration_project where id = #{id}
     </delete>
 
+    <insert id="batchAddSpaceItemConfig">
+        INSERT INTO
+        space_item_config (id,space_item_id,space_config_id,note,type)
+        VALUES
+        <foreach collection="list" item="param" separator=",">
+            (#{param.id},#{param.spaceItemId},#{param.spaceConfigId},#{param.note},#{param.type})
+        </foreach>
+    </insert>
+
+    <delete id="delDecorationParamByItemId">
+        delete from space_item_config where space_item_id = #{spaceItemId}
+    </delete>
 </mapper>

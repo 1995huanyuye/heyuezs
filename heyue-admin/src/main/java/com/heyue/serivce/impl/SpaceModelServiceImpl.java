@@ -4,9 +4,9 @@ import cn.hutool.core.collection.CollUtil;
 import com.heyue.dao.DecorationProjectDao;
 import com.heyue.dao.SpaceParamDao;
 import com.heyue.dto.DecorationProjectParam;
-import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
 import com.heyue.dto.SpaceParam4Add;
+import com.heyue.dto.SpaceTemplateAgg;
 import com.heyue.mapper.SpaceItemConfigMapper;
 import com.heyue.mapper.SpaceItemMapper;
 import com.heyue.mapper.SpaceItemParamMapper;
@@ -19,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,57 +37,69 @@ public class SpaceModelServiceImpl implements SpaceModelService {
 
     @Override
     public List<SpaceItem> listAll(Long category_id) {
-        List<SpaceItem> all = getCacheService().getAll(category_id);
-        if(CollUtil.isNotEmpty(all)){
-            return all;
-        }
         SpaceItemExample spaceItemExample = new SpaceItemExample();
         spaceItemExample.createCriteria().andCategoryIdEqualTo(category_id);
         List<SpaceItem> spaceItemList = spaceItemMapper.selectByExample(spaceItemExample);
-        if(CollUtil.isNotEmpty(spaceItemList)){
-            getCacheService().setAll(spaceItemList,category_id);
-        }
         return spaceItemList;
     }
 
     @Override
-    public SpaceAggVO getItem(Long item_id) {
-        SpaceAggVO spaceItemData = getCacheService().getSpaceItemData(item_id);
+    public SpaceTemplateAgg getItem(Long item_id) {
+        SpaceTemplateAgg spaceItemData = getCacheService().getSpaceItemData(item_id);
         if(spaceItemData!=null){
             return spaceItemData;
         }
         //组装聚合对象
-        SpaceAggVO spaceAggVO = new SpaceAggVO();
+        SpaceTemplateAgg spaceAggVO = new SpaceTemplateAgg();
         SpaceItem spaceItem = spaceItemMapper.selectByPrimaryKey(item_id);
-        spaceAggVO.setItem(spaceItem);
+        spaceAggVO.setId(spaceItem.getId());
+        spaceAggVO.setNote(spaceItem.getNote());
+        spaceAggVO.setSpaceType(spaceItem.getSpaceType());
+        spaceAggVO.setSpaceItemName(spaceItem.getSpaceItemName());
         //参数列表
         SpaceItemParamExample spaceItemParamExample = new SpaceItemParamExample();
         spaceItemParamExample.createCriteria().andSpaceItemIdEqualTo(item_id);
         List<SpaceItemParam> spaceItemParams = spaceItemParamMapper.selectByExample(spaceItemParamExample);
         if(CollUtil.isNotEmpty(spaceItemParams)){
-            spaceAggVO.setItemParams(spaceItemParams);
+            spaceAggVO.setParamList(spaceItemParams);
         }
         //装修项目配置列表
         SpaceItemConfigExample spaceItemConfigExample = new SpaceItemConfigExample();
         spaceItemConfigExample.createCriteria().andSpaceItemIdEqualTo(item_id);
         List<SpaceItemConfig> spaceItemConfigs = spaceItemConfigMapper.selectByExample(spaceItemConfigExample);
         if(CollUtil.isNotEmpty(spaceItemConfigs)){
-            spaceAggVO.setItemConfigs(spaceItemConfigs);
+            spaceAggVO.setItemConfigList(spaceItemConfigs);
         }
         getCacheService().setSpaceItem(spaceAggVO);
         return spaceAggVO;
     }
 
     @Override
-    public Long addSpaceItem(SpaceItemAddParam param,Long category_id) {
+    public Long addSpaceItem(SpaceTemplateAgg agg, Long category_id) {
+        //空间模板
+        Long spaceItemId = PKeyGenerator.generator();
         SpaceItem spaceItem = new SpaceItem();
-        BeanUtils.copyProperties(param,spaceItem);
-        Long id = PKeyGenerator.generator();
-        spaceItem.setId(id);
+        spaceItem.setId(spaceItemId);
         spaceItem.setCategoryId(category_id);
+        spaceItem.setSpaceItemName(agg.getSpaceItemName());
+        spaceItem.setSpaceType(agg.getSpaceType());
+        spaceItem.setNote(agg.getNote());
+        //测量数据
+        List<SpaceItemParam> paramList = agg.getParamList();
+        for (SpaceItemParam spaceItemParam : paramList) {
+            spaceItemParam.setId(PKeyGenerator.generator());
+            spaceItemParam.setSpaceItemId(spaceItemId);
+        }
+        //装修项目
+        List<SpaceItemConfig> spaceItemConfigs = agg.getItemConfigList();
+        for (SpaceItemConfig spaceItemConfig : spaceItemConfigs) {
+            spaceItemConfig.setId(PKeyGenerator.generator());
+            spaceItemConfig.setSpaceItemId(spaceItemId);
+        }
         spaceItemMapper.insert(spaceItem);
-        getCacheService().delAll(category_id);
-        return id;
+        spaceParamDao.batchAddSpaceItemParam(paramList);
+        decorationProjectDao.batchAddSpaceItemConfig(spaceItemConfigs);
+        return 0L;
     }
 
     @Override
@@ -133,15 +146,28 @@ public class SpaceModelServiceImpl implements SpaceModelService {
     }
 
     @Override
-    public int updateSpaceItem(SpaceItem item) {
-        Long categoryId = item.getCategoryId();
-        int count = spaceItemMapper.updateByPrimaryKeySelective(item);
-        getCacheService().delAll(categoryId);
-        return count;
+    public int updateSpaceItem(SpaceTemplateAgg agg) {
+        Long spaceItemId = agg.getId();
+        //更新表头
+        SpaceItem spaceItem = new SpaceItem();
+        spaceItem.setId(spaceItemId);
+        spaceItem.setSpaceItemName(agg.getSpaceItemName());
+        spaceItem.setNote(agg.getNote());
+        //删除参数和装修配置后
+        spaceParamDao.delSpaceParamByItemId(spaceItemId);
+        decorationProjectDao.delDecorationParamByItemId(spaceItemId);
+        //重新插入
+        //测量数据
+        List<SpaceItemParam> paramList = agg.getParamList();
+        List<SpaceItemConfig> itemConfigList = agg.getItemConfigList();
+        spaceParamDao.updateSpaceItem(spaceItem);
+        spaceParamDao.batchAddSpaceItemParam(paramList);
+        decorationProjectDao.batchAddSpaceItemConfig(itemConfigList);
+        return 0;
     }
 
     @Override
-    public int deleteSpaceItem(Long id,Long category_id) {
+    public int deleteSpaceItem(Long id) {
         spaceItemMapper.deleteByPrimaryKey(id);
         //删掉参数列表
         SpaceItemParamExample spaceItemParamExample = new SpaceItemParamExample();
@@ -152,12 +178,11 @@ public class SpaceModelServiceImpl implements SpaceModelService {
         spaceItemConfigExample.createCriteria().andSpaceItemIdEqualTo(id);
         spaceItemConfigMapper.deleteByExample(spaceItemConfigExample);
         getCacheService().delSpaceItem(id);
-        getCacheService().delAll(category_id);
         return 1;
     }
 
     @Override
-    public SpaceAggVO loadSpaceDataById(Long id) {
+    public SpaceTemplateAgg loadSpaceDataById(Long id) {
         return getItem(id);
     }
 

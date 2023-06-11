@@ -13,7 +13,7 @@ public class SpaceItemParam implements Serializable {
     private Long spaceItemId;
 
     @ApiModelProperty(value = "数值",position = 2)
-    private Float value;
+    private String num;
 
     private static final long serialVersionUID = 1L;
 
@@ -41,12 +41,12 @@ public class SpaceItemParam implements Serializable {
         this.spaceItemId = spaceItemId;
     }
 
-    public Float getValue() {
-        return value;
+    public String getNum() {
+        return num;
     }
 
-    public void setValue(Float value) {
-        this.value = value;
+    public void setNum(String num) {
+        this.num = num;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class SpaceItemParam implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", spaceParamId=").append(spaceParamId);
         sb.append(", spaceItemId=").append(spaceItemId);
-        sb.append(", value=").append(value);
+        sb.append(", num=").append(num);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

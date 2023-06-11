@@ -1,6 +1,6 @@
 package com.heyue.serivce;
 
-import com.heyue.model.SpaceAggVO;
+import com.heyue.dto.SpaceTemplateAgg;
 import com.heyue.model.SpaceItem;
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public interface SpaceModelCacheService {
     void delSpaceItem(Long id);
 
-    void setSpaceItem(SpaceAggVO vo);
+    void setSpaceItem(SpaceTemplateAgg vo);
 
-    SpaceAggVO getSpaceItemData(Long id);
+    SpaceTemplateAgg getSpaceItemData(Long id);
 
     List<SpaceItem> getAll(Long id);
 

@@ -1,6 +1,6 @@
 package com.heyue.serivce.impl;
 
-import com.heyue.model.SpaceAggVO;
+import com.heyue.dto.SpaceTemplateAgg;
 import com.heyue.model.SpaceItem;
 import com.heyue.serivce.SpaceModelCacheService;
 import com.heyue.service.RedisService;
@@ -30,16 +30,16 @@ public class SpaceModelCacheServiceImpl implements SpaceModelCacheService {
     }
 
     @Override
-    public void setSpaceItem(SpaceAggVO vo) {
-        Long id = vo.getItem().getId();
+    public void setSpaceItem(SpaceTemplateAgg vo) {
+        Long id = vo.getId();
         String key = REDIS_DATABASE+":"+REDIS_KEY_SPACEITEMDATA+":"+id;
         redisService.set(key,vo,REDIS_EXPIRE);
     }
 
     @Override
-    public SpaceAggVO getSpaceItemData(Long id) {
+    public SpaceTemplateAgg getSpaceItemData(Long id) {
         String key = REDIS_DATABASE+":"+REDIS_KEY_SPACEITEMDATA+":"+id;
-        SpaceAggVO agg = (SpaceAggVO) redisService.get(key);
+        SpaceTemplateAgg agg = (SpaceTemplateAgg) redisService.get(key);
         return agg;
     }
 

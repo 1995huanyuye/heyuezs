@@ -3,9 +3,9 @@ package com.heyue.controller;
 import com.heyue.api.CommonPage;
 import com.heyue.api.CommonResult;
 import com.heyue.dto.DecorationProjectParam;
-import com.heyue.dto.SpaceItemAddParam;
 import com.heyue.dto.SpaceItemConfigParam;
 import com.heyue.dto.SpaceParam4Add;
+import com.heyue.dto.SpaceTemplateAgg;
 import com.heyue.model.*;
 import com.heyue.serivce.SpaceModelService;
 import io.swagger.annotations.Api;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @Api(tags = "空间模板管理")
@@ -35,17 +36,46 @@ public class SpaceModelController {
     @ApiOperation(value = "空间详细信息")
     @RequestMapping(value = "/getItem",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<SpaceAggVO> getItem(@RequestParam Long item_id){
-        SpaceAggVO item = service.loadSpaceDataById(item_id);
+    public CommonResult<SpaceTemplateAgg> getItem(@RequestParam Long item_id){
+        SpaceTemplateAgg item = service.loadSpaceDataById(item_id);
         return CommonResult.success(item);
     }
 
     @ApiOperation(value = "新增空间")
     @RequestMapping(value = "/addSpaceItem",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<Long> addSpaceItem(@RequestBody SpaceItemAddParam param, @RequestParam Long category_id){
-        Long aLong = service.addSpaceItem(param, category_id);
-        return CommonResult.success(aLong);
+    public CommonResult addSpaceItem(@RequestBody SpaceTemplateAgg param, @RequestParam Long category_id){
+        try {
+            service.addSpaceItem(param, category_id);
+        }catch (Exception e){
+            return CommonResult.failed("新增失败！");
+        }
+        return CommonResult.success("新增成功！");
+    }
+
+
+    @ApiOperation(value = "更新空间")
+    @RequestMapping(value = "/updateSpaceItem",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateSpaceItem(@RequestBody SpaceTemplateAgg agg){
+        try {
+            service.updateSpaceItem(agg);
+        }catch (Exception e){
+            return CommonResult.failed("更新失败！");
+        }
+        return CommonResult.success("更新成功！");
+    }
+
+    @ApiOperation(value = "删除空间")
+    @RequestMapping(value = "/deleteSpaceItem",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult deleteSpaceItem(@RequestParam Long id){
+        try {
+            service.deleteSpaceItem(id);
+        }catch (Exception e){
+            return CommonResult.failed("删除失败！");
+        }
+        return CommonResult.success("删除成功！");
     }
 
     @ApiOperation(value = "新增空间参数")
@@ -110,22 +140,6 @@ public class SpaceModelController {
     @ResponseBody
     public CommonResult delSpaceItemConfig(@RequestBody SpaceItemConfig o){
         int count = service.delSpaceItemConfig(o);
-        return CommonResult.success(count);
-    }
-
-    @ApiOperation(value = "更新空间")
-    @RequestMapping(value = "/updateSpaceItem",method = RequestMethod.POST)
-    @ResponseBody
-    public CommonResult updateSpaceItem(@RequestBody SpaceItem o){
-        int count = service.updateSpaceItem(o);
-        return CommonResult.success(count);
-    }
-
-    @ApiOperation(value = "删除空间")
-    @RequestMapping(value = "/deleteSpaceItem",method = RequestMethod.POST)
-    @ResponseBody
-    public CommonResult deleteSpaceItem(@RequestParam Long id,@RequestParam Long category_id){
-        int count = service.deleteSpaceItem(id,category_id);
         return CommonResult.success(count);
     }
 

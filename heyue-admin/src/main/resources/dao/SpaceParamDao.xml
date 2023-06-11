@@ -18,4 +18,23 @@
         delete from space_param where id = #{spaceParamId}
     </delete>
 
+    <insert id="batchAddSpaceItemParam">
+        INSERT INTO
+        space_item_param (id,space_param_id,space_item_id,num)
+        VALUES
+        <foreach collection="list" item="param" separator=",">
+            (#{param.id},#{param.spaceParamId},#{param.spaceItemId},#{param.num})
+        </foreach>
+    </insert>
+
+    <update id="updateSpaceItem">
+        update space_item set space_item_name = #{spaceItemName}, note = #{note} where id = #{id}
+    </update>
+
+    <delete id="delSpaceParamByItemId">
+        delete from space_item_param where space_item_id = #{spaceItemId}
+    </delete>
+
+
+
 </mapper>
