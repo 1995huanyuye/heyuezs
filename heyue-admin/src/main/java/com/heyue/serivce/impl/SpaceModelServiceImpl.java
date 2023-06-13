@@ -147,22 +147,35 @@ public class SpaceModelServiceImpl implements SpaceModelService {
 
     @Override
     public int updateSpaceItem(SpaceTemplateAgg agg) {
-        Long spaceItemId = agg.getId();
-        //更新表头
-        SpaceItem spaceItem = new SpaceItem();
-        spaceItem.setId(spaceItemId);
-        spaceItem.setSpaceItemName(agg.getSpaceItemName());
-        spaceItem.setNote(agg.getNote());
-        //删除参数和装修配置后
-        spaceParamDao.delSpaceParamByItemId(spaceItemId);
-        decorationProjectDao.delDecorationParamByItemId(spaceItemId);
-        //重新插入
-        //测量数据
-        List<SpaceItemParam> paramList = agg.getParamList();
-        List<SpaceItemConfig> itemConfigList = agg.getItemConfigList();
-        spaceParamDao.updateSpaceItem(spaceItem);
-        spaceParamDao.batchAddSpaceItemParam(paramList);
-        decorationProjectDao.batchAddSpaceItemConfig(itemConfigList);
+        try {
+            Long spaceItemId = agg.getId();
+            //更新表头
+            SpaceItem spaceItem = new SpaceItem();
+            spaceItem.setId(spaceItemId);
+            spaceItem.setSpaceItemName(agg.getSpaceItemName());
+            spaceItem.setNote(agg.getNote());
+            //删除参数和装修配置后
+            spaceParamDao.delSpaceParamByItemId(spaceItemId);
+            decorationProjectDao.delDecorationParamByItemId(spaceItemId);
+            //重新插入
+            //测量数据
+            List<SpaceItemParam> paramList = agg.getParamList();
+            for (SpaceItemParam spaceItemParam : paramList) {
+                spaceItemParam.setId(PKeyGenerator.generator());
+                spaceItemParam.setSpaceItemId(spaceItemId);
+            }
+            List<SpaceItemConfig> itemConfigList = agg.getItemConfigList();
+            for (SpaceItemConfig spaceItemConfig : itemConfigList) {
+                spaceItemConfig.setId(PKeyGenerator.generator());
+                spaceItemConfig.setSpaceItemId(spaceItemId);
+            }
+            spaceParamDao.updateSpaceItem(spaceItem);
+            spaceParamDao.batchAddSpaceItemParam(paramList);
+            decorationProjectDao.batchAddSpaceItemConfig(itemConfigList);
+        }catch (Exception e){
+            throw  e;
+        }
+        getCacheService().delSpaceItem(agg.getId());
         return 0;
     }
 

@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="space_param_id" jdbcType="BIGINT" property="spaceParamId" />
     <result column="space_item_id" jdbcType="BIGINT" property="spaceItemId" />
-    <result column="value" jdbcType="REAL" property="value" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, space_param_id, space_item_id, value
+    id, space_param_id, space_item_id, num
   </sql>
   <select id="selectByExample" parameterType="com.heyue.model.SpaceItemParamExample" resultMap="BaseResultMap">
     select
@@ -102,9 +102,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into space_item_param (id,space_param_id, space_item_id, value
+    insert into space_item_param (space_param_id, space_item_id, num
       )
-    values (#{id,jdbcType=BIGINT},#{spaceParamId,jdbcType=BIGINT}, #{spaceItemId,jdbcType=BIGINT}, #{value,jdbcType=REAL}
+    values (#{spaceParamId,jdbcType=BIGINT}, #{spaceItemId,jdbcType=BIGINT}, #{num,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.heyue.model.SpaceItemParam">
@@ -119,8 +119,8 @@
       <if test="spaceItemId != null">
         space_item_id,
       </if>
-      <if test="value != null">
-        value,
+      <if test="num != null">
+        num,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -130,8 +130,8 @@
       <if test="spaceItemId != null">
         #{spaceItemId,jdbcType=BIGINT},
       </if>
-      <if test="value != null">
-        #{value,jdbcType=REAL},
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -153,8 +153,8 @@
       <if test="row.spaceItemId != null">
         space_item_id = #{row.spaceItemId,jdbcType=BIGINT},
       </if>
-      <if test="row.value != null">
-        value = #{row.value,jdbcType=REAL},
+      <if test="row.num != null">
+        num = #{row.num,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="example != null">
@@ -166,7 +166,7 @@
     set id = #{row.id,jdbcType=BIGINT},
       space_param_id = #{row.spaceParamId,jdbcType=BIGINT},
       space_item_id = #{row.spaceItemId,jdbcType=BIGINT},
-      value = #{row.value,jdbcType=REAL}
+      num = #{row.num,jdbcType=VARCHAR}
     <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -180,8 +180,8 @@
       <if test="spaceItemId != null">
         space_item_id = #{spaceItemId,jdbcType=BIGINT},
       </if>
-      <if test="value != null">
-        value = #{value,jdbcType=REAL},
+      <if test="num != null">
+        num = #{num,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -190,7 +190,7 @@
     update space_item_param
     set space_param_id = #{spaceParamId,jdbcType=BIGINT},
       space_item_id = #{spaceItemId,jdbcType=BIGINT},
-      value = #{value,jdbcType=REAL}
+      num = #{num,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

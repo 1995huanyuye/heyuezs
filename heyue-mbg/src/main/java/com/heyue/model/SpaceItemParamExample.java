@@ -284,63 +284,73 @@ public class SpaceItemParamExample {
             return (Criteria) this;
         }
 
-        public Criteria andValueIsNull() {
-            addCriterion("value is null");
+        public Criteria andNumIsNull() {
+            addCriterion("num is null");
             return (Criteria) this;
         }
 
-        public Criteria andValueIsNotNull() {
-            addCriterion("value is not null");
+        public Criteria andNumIsNotNull() {
+            addCriterion("num is not null");
             return (Criteria) this;
         }
 
-        public Criteria andValueEqualTo(Float value) {
-            addCriterion("value =", value, "value");
+        public Criteria andNumEqualTo(String value) {
+            addCriterion("num =", value, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueNotEqualTo(Float value) {
-            addCriterion("value <>", value, "value");
+        public Criteria andNumNotEqualTo(String value) {
+            addCriterion("num <>", value, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueGreaterThan(Float value) {
-            addCriterion("value >", value, "value");
+        public Criteria andNumGreaterThan(String value) {
+            addCriterion("num >", value, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueGreaterThanOrEqualTo(Float value) {
-            addCriterion("value >=", value, "value");
+        public Criteria andNumGreaterThanOrEqualTo(String value) {
+            addCriterion("num >=", value, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueLessThan(Float value) {
-            addCriterion("value <", value, "value");
+        public Criteria andNumLessThan(String value) {
+            addCriterion("num <", value, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueLessThanOrEqualTo(Float value) {
-            addCriterion("value <=", value, "value");
+        public Criteria andNumLessThanOrEqualTo(String value) {
+            addCriterion("num <=", value, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueIn(List<Float> values) {
-            addCriterion("value in", values, "value");
+        public Criteria andNumLike(String value) {
+            addCriterion("num like", value, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueNotIn(List<Float> values) {
-            addCriterion("value not in", values, "value");
+        public Criteria andNumNotLike(String value) {
+            addCriterion("num not like", value, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueBetween(Float value1, Float value2) {
-            addCriterion("value between", value1, value2, "value");
+        public Criteria andNumIn(List<String> values) {
+            addCriterion("num in", values, "num");
             return (Criteria) this;
         }
 
-        public Criteria andValueNotBetween(Float value1, Float value2) {
-            addCriterion("value not between", value1, value2, "value");
+        public Criteria andNumNotIn(List<String> values) {
+            addCriterion("num not in", values, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumBetween(String value1, String value2) {
+            addCriterion("num between", value1, value2, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumNotBetween(String value1, String value2) {
+            addCriterion("num not between", value1, value2, "num");
             return (Criteria) this;
         }
     }

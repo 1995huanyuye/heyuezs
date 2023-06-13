@@ -6,13 +6,13 @@ import java.io.Serializable;
 public class SpaceItemParam implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "参数id",position = 0)
+    @ApiModelProperty(value = "参数")
     private Long spaceParamId;
 
-    @ApiModelProperty(value = "空间主键",position = 1)
+    @ApiModelProperty(value = "空间主键 ")
     private Long spaceItemId;
 
-    @ApiModelProperty(value = "数值",position = 2)
+    @ApiModelProperty(value = "数值")
     private String num;
 
     private static final long serialVersionUID = 1L;
