@@ -70,4 +70,14 @@ public interface SpaceModelService {
     int updateDecorationParam(DecorationProject vo);
 
     List<DecorationProject> listDecorationParam(Integer projectType);
+
+    void moveIntoConfig(Long id,int type);
+
+    void removeConfig(Long id);
+
+    List<SpaceSelectInfo> selectConfig(Long spaceId);
+
+    List<SpaceItemConfig> querySpaceItemConfig(Long spaceItemId);
+
+    void updateSpaceItemConfig(SpaceItemConfig param);
 }

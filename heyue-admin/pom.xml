@@ -40,6 +40,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--指定唯一入口类，也就是Application的位置-->
+                    <mainClass>com.heyue.HeyueAdminApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

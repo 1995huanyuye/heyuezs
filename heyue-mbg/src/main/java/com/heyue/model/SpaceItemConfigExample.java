@@ -473,6 +473,256 @@ public class SpaceItemConfigExample {
             addCriterion("sort not between", value1, value2, "sort");
             return (Criteria) this;
         }
+
+        public Criteria andQuotaIsNull() {
+            addCriterion("quota is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaIsNotNull() {
+            addCriterion("quota is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaEqualTo(Integer value) {
+            addCriterion("quota =", value, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaNotEqualTo(Integer value) {
+            addCriterion("quota <>", value, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaGreaterThan(Integer value) {
+            addCriterion("quota >", value, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaGreaterThanOrEqualTo(Integer value) {
+            addCriterion("quota >=", value, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaLessThan(Integer value) {
+            addCriterion("quota <", value, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaLessThanOrEqualTo(Integer value) {
+            addCriterion("quota <=", value, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaIn(List<Integer> values) {
+            addCriterion("quota in", values, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaNotIn(List<Integer> values) {
+            addCriterion("quota not in", values, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaBetween(Integer value1, Integer value2) {
+            addCriterion("quota between", value1, value2, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuotaNotBetween(Integer value1, Integer value2) {
+            addCriterion("quota not between", value1, value2, "quota");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyIsNull() {
+            addCriterion("quantify is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyIsNotNull() {
+            addCriterion("quantify is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyEqualTo(Integer value) {
+            addCriterion("quantify =", value, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyNotEqualTo(Integer value) {
+            addCriterion("quantify <>", value, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyGreaterThan(Integer value) {
+            addCriterion("quantify >", value, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyGreaterThanOrEqualTo(Integer value) {
+            addCriterion("quantify >=", value, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyLessThan(Integer value) {
+            addCriterion("quantify <", value, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyLessThanOrEqualTo(Integer value) {
+            addCriterion("quantify <=", value, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyIn(List<Integer> values) {
+            addCriterion("quantify in", values, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyNotIn(List<Integer> values) {
+            addCriterion("quantify not in", values, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyBetween(Integer value1, Integer value2) {
+            addCriterion("quantify between", value1, value2, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuantifyNotBetween(Integer value1, Integer value2) {
+            addCriterion("quantify not between", value1, value2, "quantify");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularIsNull() {
+            addCriterion("regular is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularIsNotNull() {
+            addCriterion("regular is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularEqualTo(Integer value) {
+            addCriterion("regular =", value, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularNotEqualTo(Integer value) {
+            addCriterion("regular <>", value, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularGreaterThan(Integer value) {
+            addCriterion("regular >", value, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularGreaterThanOrEqualTo(Integer value) {
+            addCriterion("regular >=", value, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularLessThan(Integer value) {
+            addCriterion("regular <", value, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularLessThanOrEqualTo(Integer value) {
+            addCriterion("regular <=", value, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularIn(List<Integer> values) {
+            addCriterion("regular in", values, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularNotIn(List<Integer> values) {
+            addCriterion("regular not in", values, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularBetween(Integer value1, Integer value2) {
+            addCriterion("regular between", value1, value2, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegularNotBetween(Integer value1, Integer value2) {
+            addCriterion("regular not between", value1, value2, "regular");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaIsNull() {
+            addCriterion("formula is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaIsNotNull() {
+            addCriterion("formula is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaEqualTo(String value) {
+            addCriterion("formula =", value, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaNotEqualTo(String value) {
+            addCriterion("formula <>", value, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaGreaterThan(String value) {
+            addCriterion("formula >", value, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaGreaterThanOrEqualTo(String value) {
+            addCriterion("formula >=", value, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaLessThan(String value) {
+            addCriterion("formula <", value, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaLessThanOrEqualTo(String value) {
+            addCriterion("formula <=", value, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaLike(String value) {
+            addCriterion("formula like", value, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaNotLike(String value) {
+            addCriterion("formula not like", value, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaIn(List<String> values) {
+            addCriterion("formula in", values, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaNotIn(List<String> values) {
+            addCriterion("formula not in", values, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaBetween(String value1, String value2) {
+            addCriterion("formula between", value1, value2, "formula");
+            return (Criteria) this;
+        }
+
+        public Criteria andFormulaNotBetween(String value1, String value2) {
+            addCriterion("formula not between", value1, value2, "formula");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

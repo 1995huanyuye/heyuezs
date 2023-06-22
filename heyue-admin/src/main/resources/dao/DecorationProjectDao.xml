@@ -18,6 +18,13 @@
         delete from decoration_project where id = #{id}
     </delete>
 
+    <select id="querySpaceItemConfig" resultType="com.heyue.model.SpaceItemConfig">
+        SELECT a.id,b.project_name as name,a.quota,a.quantify,a.regular,a.formula,a.type
+             FROM
+                 space_item_config a join decoration_project b on a.space_config_id = b.id
+             where a.space_item_id = #{id}
+    </select>
+
     <insert id="batchAddSpaceItemConfig">
         INSERT INTO
         space_item_config (id,space_item_id,space_config_id,note,type)
@@ -27,7 +34,19 @@
         </foreach>
     </insert>
 
+    <update id="updateSpaceItemConfig">
+        update space_item_config
+            set quota =#{param.quota},quantify = #{param.quantify},regular = #{param.regular},formula = #{param.formula}
+            where id = #{param.id}
+    </update>
+
     <delete id="delDecorationParamByItemId">
         delete from space_item_config where space_item_id = #{spaceItemId}
     </delete>
+
+    <select id="selectCountBySpaceItemConfigId" resultType="java.lang.Integer">
+        select COUNT(*) as num from space_select_info where space_item_id = #{id};
+    </select>
+
+
 </mapper>

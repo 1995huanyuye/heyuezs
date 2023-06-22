@@ -196,4 +196,65 @@ public class SpaceModelController {
     }
 
 
+    @ApiOperation(value = "移入定额配置")
+    @RequestMapping(value = "/moveIntoConfig",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult moveIntoConfig(@RequestParam Long id,@RequestParam int type){
+        try {
+            service.moveIntoConfig(id,type);
+        }catch (Exception e){
+            return CommonResult.failed("移入失败！"+e.getMessage());
+        }
+        return CommonResult.success("移入成功！");
+    }
+
+    @ApiOperation(value = "移出定额配置")
+    @RequestMapping(value = "/removeConfig",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult removeConfig(@RequestParam Long id){
+        try {
+            service.removeConfig(id);
+        }catch (Exception e){
+            return CommonResult.failed("移出失败！"+e.getMessage());
+        }
+        return CommonResult.success("移出成功！");
+    }
+
+    @ApiOperation(value = "查询已移入配置")
+    @RequestMapping(value = "/selectConfig",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<List<SpaceSelectInfo>> selectConfig(@RequestParam Long id){
+        try {
+            List<SpaceSelectInfo> spaceSelectInfos = service.selectConfig(id);
+            return CommonResult.success(spaceSelectInfos);
+        }catch (Exception e){
+            return CommonResult.failed("查询失败！"+e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "查询报价项目")
+    @RequestMapping(value = "/querySpaceItemConfig",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<List<SpaceItemConfig>> querySpaceItemConfig(@RequestParam Long spaceItemId){
+        try {
+            List<SpaceItemConfig> spaceItemConfigs = service.querySpaceItemConfig(spaceItemId);
+            return CommonResult.success(spaceItemConfigs);
+        }catch (Exception e){
+            return CommonResult.failed("查询失败！"+e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "更新报价项目配置")
+    @RequestMapping(value = "/updateSpaceItemConfig",method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateSpaceItemConfig(@RequestBody SpaceItemConfig param){
+        try {
+            service.updateSpaceItemConfig(param);
+        }catch (Exception e){
+            return CommonResult.failed("查询失败！"+e.getMessage());
+        }
+        return CommonResult.failed("更新成功！");
+    }
+
+
 }

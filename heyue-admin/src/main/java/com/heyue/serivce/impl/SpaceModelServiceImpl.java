@@ -10,6 +10,7 @@ import com.heyue.dto.SpaceTemplateAgg;
 import com.heyue.mapper.SpaceItemConfigMapper;
 import com.heyue.mapper.SpaceItemMapper;
 import com.heyue.mapper.SpaceItemParamMapper;
+import com.heyue.mapper.SpaceSelectInfoMapper;
 import com.heyue.model.*;
 import com.heyue.security.util.SpringUtil;
 import com.heyue.serivce.SpaceModelCacheService;
@@ -34,6 +35,8 @@ public class SpaceModelServiceImpl implements SpaceModelService {
     private SpaceParamDao spaceParamDao;
     @Autowired
     private DecorationProjectDao decorationProjectDao;
+    @Autowired
+    private SpaceSelectInfoMapper spaceSelectInfoMapper;
 
     @Override
     public List<SpaceItem> listAll(Long category_id) {
@@ -227,4 +230,45 @@ public class SpaceModelServiceImpl implements SpaceModelService {
     public List<DecorationProject> listDecorationParam(Integer projectType) {
         return decorationProjectDao.listDecorationParam(projectType);
     }
+
+    @Override
+    public void moveIntoConfig(Long id, int type) {
+        SpaceSelectInfo spaceSelectInfo = new SpaceSelectInfo();
+        spaceSelectInfo.setId(PKeyGenerator.generator());
+        spaceSelectInfo.setSelectedId(id);
+        spaceSelectInfo.setType(type);
+        spaceSelectInfo.setIsselected(1);
+        spaceSelectInfoMapper.insertSelective(spaceSelectInfo);
+    }
+
+    @Override
+    public void removeConfig(Long id) {
+        spaceSelectInfoMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<SpaceSelectInfo> selectConfig(Long spaceId) {
+        SpaceSelectInfoExample spaceSelectInfoExample = new SpaceSelectInfoExample();
+        spaceSelectInfoExample.createCriteria().andSpaceItemIdEqualTo(spaceId);
+        List<SpaceSelectInfo> spaceSelectInfos = spaceSelectInfoMapper.selectByExample(spaceSelectInfoExample);
+        return spaceSelectInfos;
+    }
+
+    @Override
+    public List<SpaceItemConfig> querySpaceItemConfig(Long spaceItemId) {
+        List<SpaceItemConfig> spaceItemConfigs = decorationProjectDao.querySpaceItemConfig(spaceItemId);
+        for (SpaceItemConfig spaceItemConfig : spaceItemConfigs) {
+            Long id = spaceItemConfig.getId();
+            int count = decorationProjectDao.selectCountBySpaceItemConfigId(id);
+            spaceItemConfig.setNum(count);
+        }
+        return spaceItemConfigs;
+    }
+
+    @Override
+    public void updateSpaceItemConfig(SpaceItemConfig param) {
+        decorationProjectDao.updateSpaceItemConfig(param);
+    }
+
+
 }

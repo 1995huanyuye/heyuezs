@@ -9,11 +9,13 @@ public interface DecorationProjectDao {
     int addDecorationParam(DecorationProject param);
 
     int batchAddSpaceItemConfig(List<SpaceItemConfig> list);
+    List<SpaceItemConfig> querySpaceItemConfig(Long id);
+    int updateSpaceItemConfig(SpaceItemConfig param);
     void delDecorationParam(Long id);
 
     void delDecorationParamByItemId(Long spaceItemId);
 
     int updateDecorationParam(DecorationProject vo);
-
     List<DecorationProject> listDecorationParam(Integer projectType);
+    int selectCountBySpaceItemConfigId(Long id);
 }
